@@ -1,8 +1,14 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
 
-    const navItems = ["Home", "Cars", "About", "Contact"];
+    const navItems = [
+        {name: "Home", path: "/"},
+        {name: "Cars", path: "/cars"},
+        {name: "About", path: "/about"},
+        {name: "Admin", path: "/admin-board"}
+    ]
 
     return (
         <>
@@ -10,7 +16,7 @@ const Navbar = () => {
             <h1 className="absolute left-10 text-2xl font-semibold">Rent a Car</h1>
             <div className="flex justify-between gap-5">
                 {navItems.map((item, index) => (
-                    <p key={index} className="text-lg font-semibold">{item}</p>
+                    <Link key={index} to={item.path} className="text-lg font-semibold">{item.name}</Link>
                 ))}
             </div>
         </nav>

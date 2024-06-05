@@ -39,7 +39,7 @@ const Sidebar = () => {
     }
 
     return (
-        <div className={`bg-gray-900 text-white ${isOpen ? 'w-[200px]' : 'w-[5rem]'} h-screen duration-500`}>
+        <div className={`bg-gray-900 text-white ${isOpen ? 'w-[200px]' : 'w-[5rem]'} min-h-screen duration-500`}>
             <div className="flex justify-end items-center p-5">
                 <button onClick={handleSidebar} className="text-2xl">
                     {isOpen ? <MdKeyboardDoubleArrowLeft /> : <MdKeyboardDoubleArrowRight />}
@@ -49,7 +49,7 @@ const Sidebar = () => {
                 {
                     sideMenu.map((item) => (
                         <Link key={item.id} to={item.path} className="flex items-center gap-3 py-10 duration-500">
-                            <span className={isOpen && 'flex justify-center'}>{item.icon}</span>
+                            <span className={isOpen ? 'flex justify-center' : ''}>{item.icon}</span>
                             <span className="text-xl">{isOpen && item.title}</span>
                         </Link>
                     ))
