@@ -16,7 +16,7 @@ const Table = ({header, data}) => {
                     <tr key={rowIndex}>
                         {
                             header.map((header, headerIndex) => {
-                                    return <td key={`${rowIndex}-${headerIndex}`} className="border border-gray-300 px-4 py-2">
+                                    return <td key={`${rowIndex}-${headerIndex}`} className="border border-gray-300 px-4 py-2" style={{ width: header.index === "image" ? "150px" : "auto" }}>
                                         {header.render ? header.render(row) : row[header.index]}
                                     </td>
                             })

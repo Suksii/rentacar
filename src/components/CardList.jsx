@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from "./Card.jsx";
-import cardCar from "../assets/card-car.jpg";
 
 const CardList = ({data}) => {
     return (
@@ -8,7 +7,7 @@ const CardList = ({data}) => {
             {data.map((car) => (
                 <Card
                     key={car.id}
-                    srcImg={cardCar}
+                    srcImg={car.image}
                     carModel={car?.carModel}
                     year={car?.year}
                     rating={car?.rating}

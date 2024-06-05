@@ -1,6 +1,5 @@
 import React from 'react';
 import CardList from "../components/CardList.jsx";
-import Table from "../components/Table.jsx";
 
 
 const Home = ({data}) => {
