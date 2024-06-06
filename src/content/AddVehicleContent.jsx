@@ -1,20 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Button from "../components/Button.jsx";
+import Select from "../components/Select.jsx";
+import {useForm} from "react-hook-form";
 
 const AddVehicleContent = () => {
+
+    const [selectedYear, setSelectedYear] = useState(null);
+    const [selectedModel, setSelectedModel] = useState(null);
+
+    const getYears = () => {
+        const currentYear = new Date().getFullYear();
+        const years = [];
+        for (let year = currentYear; year >= 2000; year--) {
+            years.push(year);
+        }
+        return years;
+    };
+
+    const years = getYears();
+
+    const carMakes = ["Audi", "BMW", "Mercedes", "Toyota", "Volkswagen", "Volvo"];
+
     return (
         <div className="flex flex-col items-center justify-center h-full">
             <h1 className="text-4xl font-semibold">Add Vehicle</h1>
-            <form className="flex flex-col gap-5 w-1/3">
-                <input type="text" placeholder="Car Model" className="p-3 border border-gray-300 rounded-md"/>
-                <input type="number" placeholder="Year" className="p-3 border border-gray-300 rounded-md"/>
-                <input type="number" placeholder="Price" className="p-3 border border-gray-300 rounded-md"/>
-                <input type="text" placeholder="Type" className="p-3 border border-gray-300 rounded-md"/>
-                <input type="number" placeholder="Seats" className="p-3 border border-gray-300 rounded-md"/>
-                <input type="text" placeholder="Gear" className="p-3 border border-gray-300 rounded-md"/>
-                <input type="text" placeholder="Fuel" className="p-3 border border-gray-300 rounded-md"/>
-                <input type="text" placeholder="Image URL" className="p-3 border border-gray-300 rounded-md"/>
-                <button className="p-3 bg-gray-900 text-white font-semibold rounded-md">Add Vehicle</button>
-            </form>
+            <input type={"file"} className="py-3 px-4 m-2 outline-none text-xl placeholder-gray-900"/>
+            <Select label="Year" data={years}/>
+            <Select label="Model" data={carMakes}/>
+                <Button label="Add Vehicle" className="bg-gray-900 text-white font-semibold rounded-full"/>
         </div>
     );
 };
