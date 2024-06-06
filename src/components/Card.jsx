@@ -4,7 +4,7 @@ import { FaCar } from "react-icons/fa";
 import { PiSeatbeltFill } from "react-icons/pi";
 import { FaGear } from "react-icons/fa6";
 import { BsFuelPumpDieselFill } from "react-icons/bs";
-import Button from "./Button.jsx";
+import ButtonSubmit from "./ButtonSubmit.jsx";
 const Card = ({
                     srcImg,
                     carModel,
@@ -59,8 +59,8 @@ const Card = ({
                 </div>
             </div>
             <div className="flex justify-center items-center gap-5">
-                <Button label="Details" className="bg-gray-200 text-gray-800 hover:bg-gray-800 hover:text-white duration-500"/>
-                <Button label="Rent" className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"/>
+                <ButtonSubmit label="Details" className="bg-gray-200 text-gray-800 hover:bg-gray-800 hover:text-white duration-500"/>
+                <ButtonSubmit label="Rent" className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"/>
             </div>
 
         </div>

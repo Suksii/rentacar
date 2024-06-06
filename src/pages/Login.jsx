@@ -4,22 +4,24 @@ import Input from "../components/Input.jsx";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Button from "../components/Button.jsx";
 
-const Registration = () => {
+const Login = () => {
 
-    const shema = yup.object({
+    const schema = yup.object({
         username: yup.string()
             .required("Username is required")
             .min(4, "Username must be at least 4 characters"),
         password: yup.string().required("Password is required")
-            .min(8, "Password must be at least 6 characters")
+            .min(6, "Password must be at least 6 characters")
     });
     const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(shema)
+        resolver: yupResolver(schema)
     });
 
     const onSubmit = (data) => {
         console.log(data);
+
     }
 
         return (
@@ -30,19 +32,21 @@ const Registration = () => {
                 <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                     <Input type="text"
                            placeholder="Username"
+                           className={"bg-gray-500 bg-opacity-50 rounded-full"}
                            register={{...register("username")}}
                            errorMessage={errors.username?.message}
                     />
                     <Input type={"password"}
-                           register={{...register("password")}}
                            placeholder="Password"
+                           className={"bg-gray-500 bg-opacity-50 rounded-full"}
+                           register={{...register("password")}}
                            errorMessage={errors.password?.message}
                     />
-                    <button className="p-3 m-2 bg-gray-900 rounded-full outline-none text-xl uppercase text-gray-200 tracking-widest font-semibold">Login</button>
+                    <Button type="submit" label="Login" className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
             </div>
         </div>
     );
 };
 
-export default Registration;
+export default Login;

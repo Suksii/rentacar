@@ -1,20 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const Input = ({
     type,
     placeholder,
     register,
-    errorMessage
+    errorMessage,
+    className
                 }) => {
+
+    const [showError, setShowError] = useState(false);
+
+    useEffect(() => {
+        if (errorMessage && errorMessage.length > 0) {
+            setShowError(true);
+            const timer = setTimeout(() => {
+                setShowError(false);
+            }, 2000);
+            return () => clearTimeout(timer);
+            } else {
+            setShowError(false);
+        }
+    }, [errorMessage])
 
     return (
         <div className="flex flex-col w-full">
             <input type={type}
                    placeholder={placeholder}
-                   className="py-3 px-4 m-2 bg-gray-500 bg-opacity-50 rounded-full outline-none text-xl placeholder-gray-900"
+                   className={`py-3 px-4 m-2 outline-none text-xl placeholder-gray-900 ${className}`}
                    {...register}
             />
-            {errorMessage && errorMessage.length > 0 && <p className="text-red-500 px-4">{errorMessage}</p>}
+            {showError && <p className="text-red-500 px-4">{errorMessage}</p>}
         </div>
     );
 };
