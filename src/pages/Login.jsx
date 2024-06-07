@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "../components/Button.jsx";
+import {Link} from "react-router-dom";
 
 const Login = () => {
 
@@ -44,6 +45,8 @@ const Login = () => {
                     />
                     <Button type="submit" label="Login" className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
+                <p className="flex justify-center gap-2 text-gray-300 font-semibold text-lg py-2">Don't have an account? <Link to="/registration" className="text-blue-900">Register here</Link>
+                </p>
             </div>
         </div>
     );

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Button = ({label, onClick, className}) => {
+const Button = ({label, onClick, className, type}) => {
     return (
-        <button type="submit"
+        <button type={type ? type : "button"}
                 onClick={onClick}
-                className={`p-3 m-2 min-w-[140px] rounded-full outline-none text-xl uppercase tracking-wider font-semibold ${className}`}>
+                className={`p-3 min-w-[140px] rounded-full outline-none text-xl uppercase tracking-wider font-semibold ${className}`}>
             {label}
         </button>
     );

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { FaCar } from "react-icons/fa";
+import {MdDateRange, MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight} from "react-icons/md";
+import {FaUser, FaCar} from "react-icons/fa6";
 import {Link} from "react-router-dom";
 
 const Sidebar = () => {
@@ -8,9 +8,9 @@ const Sidebar = () => {
     const sideMenu = [
         {
             id: 1,
-            title: "Home",
-            icon: <FaCar size={22}/>,
-            path: "/"
+            title: "Clients",
+            icon: <FaUser size={22}/>,
+            path: "/clients"
         },
         {
             id: 2,
@@ -20,16 +20,10 @@ const Sidebar = () => {
         },
         {
             id: 3,
-            title: "About",
-            icon: <FaCar size={22} />,
-            path: '/about'
-        },
-        {
-            id: 4,
-            title: "Contact",
-            icon: <FaCar size={22} />,
-            path: '/contact'
-        },
+            title: "Reservations",
+            icon: <MdDateRange size={22} />,
+            path: '/reservations'
+        }
     ]
 
     const [isOpen, setIsOpen] = useState(false);
