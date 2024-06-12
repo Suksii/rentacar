@@ -33,18 +33,18 @@ const Sidebar = () => {
     }
 
     return (
-        <div className={`bg-gray-900 text-white ${isOpen ? 'w-[200px]' : 'w-[5rem]'} min-h-screen duration-500`}>
-            <div className="flex justify-end items-center p-5">
-                <button onClick={handleSidebar} className="text-2xl">
+        <div className={`bg-gray-900 text-white ${isOpen ? 'md:w-[200px]' : 'md:w-[5rem]'} w-full md:min-h-screen duration-500`}>
+            <div className="hidden md:flex justify-end items-center p-5">
+                <button onClick={handleSidebar} className="text-2xl hover:text-blue-400 duration-500">
                     {isOpen ? <MdKeyboardDoubleArrowLeft /> : <MdKeyboardDoubleArrowRight />}
                 </button>
             </div>
-            <div className="w-fit mx-auto">
+            <div className="md:w-fit md:mx-auto flex justify-around md:flex-col">
                 {
                     sideMenu.map((item) => (
-                        <Link key={item.id} to={item.path} className="flex items-center gap-3 py-10 duration-500">
+                        <Link key={item.id} to={item.path} className="flex items-center gap-3 py-6 md:py-10 hover:text-blue-400 duration-500">
                             <span className={isOpen ? 'flex justify-center' : ''}>{item.icon}</span>
-                            <span className="text-xl">{isOpen && item.title}</span>
+                            <span className="text-xl hidden md:block">{isOpen && item.title}</span>
                         </Link>
                     ))
                 }

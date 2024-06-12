@@ -2,6 +2,8 @@ import React, {useRef, useState} from 'react';
 import Button from "../components/Button.jsx";
 import Select from "../components/Select.jsx";
 import car from "../assets/car.jpg";
+import Input from "../components/Input.jsx";
+import Textarea from "../components/Textarea.jsx";
 
 const AddVehicleContent = () => {
 
@@ -24,15 +26,9 @@ const AddVehicleContent = () => {
     const years = getYears();
 
     const carMakes = ["Audi", "BMW", "Mercedes", "Toyota", "Volkswagen", "Volvo"];
-    const carModels = {
-        Audi: ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "Q2", "Q3", "Q5", "Q7", "Q8", "TT"],
-        BMW: ["1 Series", "2 Series", "3 Series", "4 Series", "5 Series", "6 Series", "7 Series", "8 Series", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "Z4"],
-        Mercedes: ["A-Class", "B-Class", "C-Class", "E-Class", "S-Class", "CLA", "CLS", "GLA", "GLB", "GLC", "GLE", "GLS", "SL", "SLC", "V-Class"],
-        Toyota: ["Aygo", "Yaris", "Corolla", "Camry", "Auris", "Prius", "Avensis", "Verso", "RAV4", "C-HR", "Highlander", "Land Cruiser", "Hilux", "Proace"],
-        Volkswagen: ["Up!", "Polo", "Golf", "Passat", "Arteon", "T-Roc", "Tiguan", "Touran", "Sharan", "Touareg", "ID.3", "ID.4", "ID.5", "ID.6"],
-        Volvo: ["C30", "S40", "V40", "S60", "V60", "S80", "V90", "XC40", "XC60", "XC70", "XC90"]
-    };
     const seatNumbers = [2, 4, 5, 7, 9];
+    const fuelTypes = ["Diesel", "Electric", "Gasoline", "Hybrid"];
+    const transmissionTypes = ["Automatic", "Manual"];
 
     const changeImage = () => {
         const file = imgRef.current.files[0];
@@ -46,12 +42,12 @@ const AddVehicleContent = () => {
     }
 
     return (
-        <div className="max-w-xl mx-auto">
-            <h1 className="text-4xl font-semibold text-center py-5">Add Vehicle</h1>
-            <div className="flex justify-between py-10">
-                <div className="flex flex-col gap-1">
+        <div className="max-w-2xl mx-auto pb-12">
+            <h1 className="text-4xl font-semibold text-center py-5">Add Car</h1>
+            <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-10 py-10">
+                <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2 justify-center md:justify-start items-center">
                     <img src={selectedImage} alt="car" className="w-[200px] h-[200px] object-cover object-center rounded-md"/>
-                    <div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-300 cursor-pointer rounded-md">
+                    <div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-300 cursor-pointer rounded-sm">
                         Change Image
                         <input type={"file"}
                                ref={ imgRef }
@@ -59,15 +55,21 @@ const AddVehicleContent = () => {
                                onChange={changeImage}
                         />
                     </div>
-                </div>
-                <div>
-                    <Select label="Year" data={years}/>
                     <Select label="Model" data={carMakes}/>
-                    {/*<Select label="Make" data={carModels[selectedMake]}/>*/}
+                    <Input label="Name" placeholder={"Enter name"} className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}/>
+                    <Select label="Year" data={years}/>
+                </div>
+                <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2">
+                    <Select label="Fuel types" data={fuelTypes}/>
                     <Select label="Seats" data={seatNumbers}/>
+                    <Select label="Transmission" data={transmissionTypes}/>
+                    <Textarea label="Description" placeholder={"Enter description"} className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}/>
+                    <Input label="Price" placeholder={"Enter price"} className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}/>
                 </div>
             </div>
-            <Button label="Add Vehicle" className="w-full bg-gray-900 text-white font-semibold rounded-full"/>
+            <div className="w-[90%] mx-auto md:w-full ">
+                <Button label="Add Car" className="w-full bg-gray-900 text-white font-semibold rounded-sm"/>
+            </div>
 
         </div>
     );

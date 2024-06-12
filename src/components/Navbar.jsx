@@ -12,11 +12,18 @@ const Navbar = () => {
         window.scrollTo(0, 0);
     }
 
-    const navItems = [
+    const navItemsUser = [
         {name: "Home", path: "/"},
         {name: "Cars", path: "/cars"},
-        {name: "About", path: "/about"},
-        {name: "Admin", path: "/admin-board"},
+        {name: "My Bookings", path: "/bookings"},
+        {name: "Contact", path: "/contact"}
+    ]
+
+    const navItemsAdmin = [
+        {name: "Home", path: "/"},
+        {name: "Cars", path: "/cars"},
+        {name: "Add Car", path: "/add-car"},
+        {name: "Bookings", path: "/bookings"},
         {name: "Contact", path: "/contact"}
     ]
 
@@ -26,7 +33,7 @@ const Navbar = () => {
                 <h1 className="absolute left-6 text-2xl font-semibold">Rent a Car</h1>
                  <p className="text-lg">Welcome, {currentUser}</p>
                 <div className="flex justify-between gap-5">
-                    {navItems.map((item, index) => (
+                    {navItemsAdmin.map((item, index) => (
                         <Link key={index} to={item.path} className="text-lg font-semibold">{item.name}</Link>
                     ))}
                 </div>
@@ -46,7 +53,7 @@ const Navbar = () => {
              </nav>
              <div className="relative">
                  <div className={`absolute flex flex-col bg-gray-900 text-center h-[25rem] left-0 right-0 ${toggle ? 'translate-y-0 opacity-100' : '-translate-y-[100vh] opacity-0'} duration-1000 z-50`}>
-                     {navItems.map((item, index) => {
+                     {navItemsAdmin.map((item, index) => {
                          return (
                              <Link to={item.path}
                                    key={index}

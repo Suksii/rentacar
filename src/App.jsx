@@ -126,7 +126,7 @@ function App() {
             element: <Login />
         },
         {
-            path: "/add-vehicle",
+            path: "/add-car",
             element: <AddVehicleContent />
         }
 
