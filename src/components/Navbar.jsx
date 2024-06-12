@@ -16,7 +16,8 @@ const Navbar = () => {
         {name: "Home", path: "/"},
         {name: "Cars", path: "/cars"},
         {name: "About", path: "/about"},
-        {name: "Admin", path: "/admin-board"}
+        {name: "Admin", path: "/admin-board"},
+        {name: "Contact", path: "/contact"}
     ]
 
     return (
@@ -31,7 +32,7 @@ const Navbar = () => {
                 </div>
                  <Button label="Logout" className="absolute right-6 bg-red-500 text-white font-semibold rounded-full" onClick={() => navigate("/login")}/>
              </nav>
-             <nav className="flex justify-between md:hidden items-center bg-gray-900 h-[5vh] px-2">
+             <nav className="flex justify-between lg:hidden items-center bg-gray-900 h-[5vh] px-2">
                  <h1 className="text-2xl font-semibold text-gray-300">Rent a Car</h1>
                  <p className="text-lg text-gray-300">Welcome, {currentUser}</p>
                  <div className="z-50">

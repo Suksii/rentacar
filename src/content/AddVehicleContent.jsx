@@ -46,25 +46,29 @@ const AddVehicleContent = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center h-full">
-            <h1 className="text-4xl font-semibold">Add Vehicle</h1>
-            <div className="flex flex-col gap-1">
-                <img src={selectedImage} alt="car" className="w-[200px] h-[200px] object-cover object-center rounded-md"/>
-                <div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-300 cursor-pointer rounded-md">
-                    Change Image
-                    <input type={"file"}
-                           ref={ imgRef }
-                           className="hidden py-3 px-4 m-2 outline-none text-xl"
-                           onChange={changeImage}
-                    />
+        <div className="max-w-xl mx-auto">
+            <h1 className="text-4xl font-semibold text-center py-5">Add Vehicle</h1>
+            <div className="flex justify-between py-10">
+                <div className="flex flex-col gap-1">
+                    <img src={selectedImage} alt="car" className="w-[200px] h-[200px] object-cover object-center rounded-md"/>
+                    <div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-300 cursor-pointer rounded-md">
+                        Change Image
+                        <input type={"file"}
+                               ref={ imgRef }
+                               className="hidden py-3 px-4 m-2 outline-none text-xl"
+                               onChange={changeImage}
+                        />
+                    </div>
+                </div>
+                <div>
+                    <Select label="Year" data={years}/>
+                    <Select label="Model" data={carMakes}/>
+                    {/*<Select label="Make" data={carModels[selectedMake]}/>*/}
+                    <Select label="Seats" data={seatNumbers}/>
                 </div>
             </div>
+            <Button label="Add Vehicle" className="w-full bg-gray-900 text-white font-semibold rounded-full"/>
 
-            <Select label="Year" data={years}/>
-            <Select label="Model" data={carMakes}/>
-            {/*<Select label="Make" data={carModels[selectedMake]}/>*/}
-            <Select label="Seats" data={seatNumbers}/>
-                <Button label="Add Vehicle" className="bg-gray-900 text-white font-semibold rounded-full"/>
         </div>
     );
 };

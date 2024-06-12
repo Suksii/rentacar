@@ -7,6 +7,7 @@ import Layout from "./layout/Layout.jsx";
 import AddVehicleContent from "./content/AddVehicleContent.jsx";
 import AdminBoard from "./pages/AdminBoard.jsx";
 import cardCar from "./assets/card-car.jpg";
+import Contact from "./pages/Contact.jsx";
 
 function App() {
 
@@ -109,6 +110,10 @@ function App() {
                 {
                     path: "/admin-board",
                     element: <AdminBoard data={data} header={header} />
+                },
+                {
+                    path: "/contact",
+                    element: <Contact />
                 }
             ]
         },
