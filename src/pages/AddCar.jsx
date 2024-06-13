@@ -5,7 +5,7 @@ import car from "../assets/car.jpg";
 import Input from "../components/Input.jsx";
 import Textarea from "../components/Textarea.jsx";
 
-const AddVehicleContent = () => {
+const AddCar = () => {
 
     const [selectedYear, setSelectedYear] = useState(null);
     const [selectedModel, setSelectedModel] = useState(null);
@@ -75,4 +75,4 @@ const AddVehicleContent = () => {
     );
 };
 
-export default AddVehicleContent;
+export default AddCar;

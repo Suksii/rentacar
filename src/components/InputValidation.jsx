@@ -15,7 +15,7 @@ const InputValidation = ({
             setShowError(true);
             const timer = setTimeout(() => {
                 setShowError(false);
-            }, 2000);
+            }, 3000);
             return () => clearTimeout(timer);
             } else {
             setShowError(false);

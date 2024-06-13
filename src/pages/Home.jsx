@@ -2,8 +2,8 @@ import React from 'react';
 import CardList from "../components/CardList.jsx";
 import car from "../assets/car.jpg";
 
-
 const Home = ({data}) => {
+
     return (
         <div className="w-full mx-auto overflow-x-hidden">
             <div className="relative">

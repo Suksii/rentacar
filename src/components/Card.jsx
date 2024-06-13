@@ -8,6 +8,7 @@ import ButtonSubmit from "./ButtonSubmit.jsx";
 const Card = ({
                     srcImg,
                     carModel,
+                    carName,
                     rating,
                     price,
                     type,
@@ -22,7 +23,7 @@ const Card = ({
             <div className="flex justify-between items-center p-5">
                 <div className="flex flex-col gap-1">
                     <div className="flex gap-2 items-end">
-                        <h1 className="text-xl font-semibold uppercase">{carModel}</h1>
+                        <h1 className="text-xl font-semibold uppercase">{carModel} - {carName}</h1>
                         <p className="text-gray-500">{year}</p>
                     </div>
                     <div className="flex justify-center items-center gap-2 px-3 py-1.5 rounded-full w-fit h-fit bg-gray-500">

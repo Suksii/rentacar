@@ -26,7 +26,7 @@ const Login = () => {
     }
 
         return (
-        <div className="w-full h-screen flex justify-center items-center bg-cover bg-center bg-no-repeat"
+        <div className="w-full h-screen object-cover flex justify-center items-center bg-cover bg-center bg-no-repeat"
              style={{backgroundImage: `url(${backgroundCar})`}}>
             <div className="flex flex-col md:w-1/2 lg:w-1/3 w-full p-10 rounded-lg shadow-lg shadow-black">
                 <h1 className="text-center text-3xl p-10 font-semibold uppercase">Login</h1>
@@ -45,7 +45,7 @@ const Login = () => {
                     />
                     <Button type="submit" label="Login" className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
-                <p className="flex justify-center gap-2 text-gray-300 font-semibold text-lg py-2">Don't have an account? <Link to="/registration" className="text-blue-900">Register here</Link>
+                <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Don't have an account? <Link to="/registration" className="text-blue-900">Register here</Link>
                 </p>
             </div>
         </div>

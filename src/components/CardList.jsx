@@ -9,6 +9,7 @@ const CardList = ({data}) => {
                     key={car.id}
                     srcImg={car.image}
                     carModel={car?.carModel}
+                    carName={car?.carName}
                     year={car?.year}
                     rating={car?.rating}
                     price={car?.price}

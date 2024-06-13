@@ -14,16 +14,12 @@ const Navbar = () => {
 
     const navItemsUser = [
         {name: "Home", path: "/"},
-        {name: "Cars", path: "/cars"},
         {name: "My Bookings", path: "/bookings"},
         {name: "Contact", path: "/contact"}
     ]
 
     const navItemsAdmin = [
         {name: "Home", path: "/"},
-        {name: "Cars", path: "/cars"},
-        {name: "Add Car", path: "/add-car"},
-        {name: "Bookings", path: "/bookings"},
         {name: "Contact", path: "/contact"}
     ]
 

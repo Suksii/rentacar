@@ -14,8 +14,8 @@ const Registration = () => {
             .required("First Name is required"),
         lastName: yup.string()
             .required("Last Name is required"),
-        username: yup.string()
-            .required("Username is required").min(4, "Username must be at least 4 characters"),
+        phoneNumber: yup.number()
+            .required("Phone Number is required").typeError("Phone Number must be a number"),
         email: yup.string()
             .required("Email is required")
             .email("Email is not valid"),
@@ -47,10 +47,10 @@ const Registration = () => {
                                      errorMessage={errors.lastName?.message}
                     />
                     <InputValidation type="text"
-                                     placeholder="Username"
+                                     placeholder="Phone Number"
                                      className="bg-gray-500 bg-opacity-50 rounded-full placeholder-gray-900"
-                                     register={{...register("username")}}
-                                     errorMessage={errors.username?.message}
+                                     register={{...register("phoneNumber")}}
+                                     errorMessage={errors.phoneNumber?.message}
                     />
                     <InputValidation type="email"
                                      placeholder="Email"
@@ -58,6 +58,18 @@ const Registration = () => {
                                      register={{...register("email")}}
                                      errorMessage={errors.email?.message}
                     />
+                    <div className="flex md:flex-row flex-col">
+                        <InputValidation placeholder="Passport Number"
+                                         className="bg-gray-500 bg-opacity-50 rounded-full placeholder-gray-900"
+                                         register={{...register("passportNumber")}}
+                                         errorMessage={errors.passportNumber?.message}
+                        />
+                        <InputValidation placeholder="Country"
+                                         className="bg-gray-500 bg-opacity-50 rounded-full placeholder-gray-900"
+                                         register={{...register("country")}}
+                                         errorMessage={errors.country?.message}
+                        />
+                    </div>
                     <InputValidation type="password"
                                      placeholder="Password"
                                      className="bg-gray-500 bg-opacity-50 rounded-full placeholder-gray-900"
@@ -66,7 +78,7 @@ const Registration = () => {
                     />
                     <Button type="submit" label="Register" className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
-                <p className="flex justify-center gap-2 text-gray-300 font-semibold text-lg py-2">Already have an account? <Link to="/login" className="text-blue-900">Login here</Link>
+                <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Already have an account? <Link to="/login" className="text-blue-900">Login here</Link>
                 </p>
             </div>
         </div>

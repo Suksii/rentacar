@@ -16,7 +16,7 @@ const Sidebar = () => {
             id: 2,
             title: "Cars",
             icon: <FaCar size={22} />,
-            path: '/cars'
+            path: '/add-car'
         },
         {
             id: 3,

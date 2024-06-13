@@ -4,10 +4,13 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
 import Layout from "./layout/Layout.jsx";
-import AddVehicleContent from "./content/AddVehicleContent.jsx";
+import AddCar from "./pages/AddCar.jsx";
 import AdminBoard from "./pages/AdminBoard.jsx";
 import cardCar from "./assets/card-car.jpg";
 import Contact from "./pages/Contact.jsx";
+import Clients from "./pages/Clients.jsx";
+import Reservations from "./pages/Reservations.jsx";
+import {ModalProvider} from "./context/ModalContext.jsx";
 
 function App() {
 
@@ -28,6 +31,7 @@ function App() {
             id: 1,
             image: cardCar,
             carModel: "mercedes-benz",
+            carName: "C-200",
             rating: 4.5,
             price: 200,
             seats: 4,
@@ -40,6 +44,7 @@ function App() {
             id: 2,
             image: cardCar,
             carModel: "audi",
+            carName: "A4",
             rating: 4.2,
             price: 150,
             seats: 4,
@@ -52,6 +57,7 @@ function App() {
             id: 3,
             image: cardCar,
             carModel: "bmw",
+            carName: "X5",
             rating: 4.7,
             price: 250,
             seats: 4,
@@ -64,6 +70,7 @@ function App() {
             id: 4,
             image: cardCar,
             carModel: "volkswagen",
+            carName: "Tiguan",
             rating: 4.0,
             price: 100,
             seats: 4,
@@ -76,6 +83,7 @@ function App() {
             id: 5,
             image: cardCar,
             carModel: "tesla",
+            carName: "Model S",
             rating: 4.9,
             price: 300,
             seats: 4,
@@ -88,6 +96,7 @@ function App() {
             id: 6,
             image: cardCar,
             carModel: "toyota",
+            carName: "Corolla",
             rating: 4.3,
             price: 120,
             seats: 4,
@@ -112,6 +121,14 @@ function App() {
                     element: <AdminBoard data={data} header={header} />
                 },
                 {
+                    path: "/clients",
+                    element: <Clients />
+                },
+                {
+                    path: "/reservations",
+                    element: <Reservations />
+                },
+                {
                     path: "/contact",
                     element: <Contact />
                 }
@@ -127,14 +144,16 @@ function App() {
         },
         {
             path: "/add-car",
-            element: <AddVehicleContent />
+            element: <AddCar />
         }
 
     ])
 
   return (
     <div className="h-full">
-        <RouterProvider router={router} />
+        <ModalProvider >
+            <RouterProvider router={router} />
+        </ModalProvider>
     </div>
   )
 }
