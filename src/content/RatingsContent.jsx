@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import { CiStar } from "react-icons/ci";
 import { IoIosClose } from "react-icons/io";
 import {useModal} from "../context/ModalContext.jsx";
-const RatingModal = () => {
+const RatingsContent = ({setRating}) => {
 
     const [hoverIndex, setHoverIndex] = useState(-1);
     const {closeModal} = useModal();
-    const [rating, setRating] = useState(0);
 
     const handleHover = (index) => {
         setHoverIndex(index);
@@ -32,6 +31,7 @@ const RatingModal = () => {
                         Array(5).fill().map((_, index) => (
                             <CiStar key={index}
                                     size={30}
+                                    style={{transition: 'color 0.2s ease-in-out', cursor: 'pointer'}}
                                     className={hoverIndex >= index ? 'text-yellow-500' : 'text-gray-300'}
                                     onMouseEnter={() => handleHover(index)}
                                     onMouseLeave={handleLeave}
@@ -45,4 +45,4 @@ const RatingModal = () => {
     );
 };
 
-export default RatingModal;
+export default RatingsContent;

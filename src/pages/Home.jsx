@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import CardList from "../components/CardList.jsx";
 import car from "../assets/car.jpg";
+import {useModal} from "../context/ModalContext.jsx";
+import RatingsContent from "../content/RatingsContent.jsx";
+import {set} from "react-hook-form";
 
 const Home = ({data}) => {
+
+    const {openModal} = useModal();
+    const [rating, setRating] = useState(0);
 
     return (
         <div className="w-full mx-auto overflow-x-hidden">
@@ -18,6 +24,14 @@ const Home = ({data}) => {
             <div className="relative flex justify-center py-10">
                 <CardList data={data}/>
             </div>
+            <button className="fixed bottom-10 right-10 bg-red-500 text-white px-5 py-2 rounded-lg" onClick={
+                () => openModal({
+                    title: "Rate your experience",
+                    content: <RatingsContent setRating={setRating}/>,
+                    showFooter: false,
+                })
+            }>Rate Car</button>
+            {rating > 0 && <div className="fixed bottom-10 right-0 bg-red-500 text-white px-5 py-2 rounded-lg">{rating}</div>}
         </div>
     );
 };

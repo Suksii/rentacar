@@ -151,7 +151,7 @@ function App() {
 
   return (
     <div className="h-full">
-        <ModalProvider >
+        <ModalProvider>
             <RouterProvider router={router} />
         </ModalProvider>
     </div>
