@@ -9,7 +9,7 @@ export const ModalProvider = ({children}) => {
         title: "",
         content: "",
         showFooter: false,
-        onSave: () => {}
+        onSave: () => {},
     });
 
     const openModal = (props) => {
@@ -18,14 +18,25 @@ export const ModalProvider = ({children}) => {
     }
     const closeModal = () => {
         setIsModalOpen(false);
-    }
+        setModalData({
+            title: "",
+            content: "",
+            showFooter: false,
+            onSave: () => {},
+        })}
+
     return (
-        <ModalContext.Provider value={{openModal, closeModal, isModalOpen}}>
+        <ModalContext.Provider value={{
+            openModal,
+            closeModal,
+            isModalOpen,
+        }}>
             {isModalOpen && <Modal title={modalData.title}
                    content={modalData.content}
                    showFooter={modalData.showFooter}
                    onClose={closeModal}
-                   onSave={modalData.onSave}/>
+                   onSave={modalData.onSave}
+            />
             }
             {children}
         </ModalContext.Provider>

@@ -4,6 +4,7 @@ import car from "../assets/car.jpg";
 import {useModal} from "../context/ModalContext.jsx";
 import RatingsContent from "../content/RatingsContent.jsx";
 import {set} from "react-hook-form";
+import ReservationContent from "../content/ReservationContent.jsx";
 
 const Home = ({data}) => {
 
@@ -26,9 +27,10 @@ const Home = ({data}) => {
             </div>
             <button className="fixed bottom-10 right-10 bg-red-500 text-white px-5 py-2 rounded-lg" onClick={
                 () => openModal({
-                    title: "Rate your experience",
-                    content: <RatingsContent setRating={setRating}/>,
-                    showFooter: false,
+                    title: "Reservation",
+                    content: <ReservationContent/>,
+                    showFooter: true,
+                    onSave: () => alert("Reservation Saved")
                 })
             }>Rate Car</button>
             {rating > 0 && <div className="fixed bottom-10 right-0 bg-red-500 text-white px-5 py-2 rounded-lg">{rating}</div>}

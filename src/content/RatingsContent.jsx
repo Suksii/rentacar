@@ -21,27 +21,23 @@ const RatingsContent = ({setRating}) => {
     }
 
     return (
-
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex justify-center items-center">
-            <div className="relative bg-white w-[500px] h-[200px] rounded-lg flex flex-col justify-center items-center">
-                <IoIosClose className="absolute top-0 right-0 cursor-pointer" size={30} color={"gray"} onClick={closeModal}/>
-                <h1 className="text-3xl font-semibold">Rate your experience</h1>
-                <div className="flex gap-2 mt-5">
-                    {
-                        Array(5).fill().map((_, index) => (
-                            <CiStar key={index}
-                                    size={30}
-                                    style={{transition: 'color 0.2s ease-in-out', cursor: 'pointer'}}
-                                    className={hoverIndex >= index ? 'text-yellow-500' : 'text-gray-300'}
-                                    onMouseEnter={() => handleHover(index)}
-                                    onMouseLeave={handleLeave}
-                                    onClick={() => handleRating(index)}
-                            />
-                        ))
-                    }
-                </div>
+        <div className="w-[400px] h-[100px]">
+            <div className="flex justify-center gap-2 my-5">
+                {
+                    Array(5).fill().map((_, index) => (
+                        <CiStar key={index}
+                                size={30}
+                                style={{transition: 'color 0.2s ease-in-out', cursor: 'pointer'}}
+                                className={hoverIndex >= index ? 'text-yellow-500' : 'text-gray-300'}
+                                onMouseEnter={() => handleHover(index)}
+                                onMouseLeave={handleLeave}
+                                onClick={() => handleRating(index)}
+                        />
+                    ))
+                }
             </div>
         </div>
+
     );
 };
 
