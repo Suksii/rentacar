@@ -11,6 +11,7 @@ import Contact from "./pages/Contact.jsx";
 import Clients from "./pages/Clients.jsx";
 import Reservations from "./pages/Reservations.jsx";
 import {ModalProvider} from "./context/ModalContext.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 
 function App() {
 
@@ -111,6 +112,7 @@ function App() {
         {
             path: "/",
             element: <Layout />,
+            errorElement: <ErrorPage />,
             children: [
                 {
                     path: "/",
