@@ -6,6 +6,8 @@ import * as yup from "yup";
 import InputValidation from "../components/InputValidation.jsx";
 import Button from "../components/Button.jsx";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import ButtonSubmit from "../components/ButtonSubmit.jsx";
 
 const Registration = () => {
 
@@ -19,6 +21,10 @@ const Registration = () => {
         email: yup.string()
             .required("Email is required")
             .email("Email is not valid"),
+        passportNumber: yup.string()
+            .required("Passport Number is required"),
+        country: yup.string()
+            .required("Country is required"),
         password: yup.string()
             .required("Password is required")
             .min(6, "Password must be at least 6 characters")
@@ -26,6 +32,11 @@ const Registration = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({resolver: yupResolver(schema)});
     const onSubmit = (data) => {
+        axios.post('http://localhost:3000/api/users/register', data).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        })
         console.log(data);
     }
     return (
