@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const reservationSchema = new Schema({
+    rentalDate: Date,
     car: {
         type: Schema.Types.ObjectId,
         ref: 'Car'
@@ -12,7 +13,8 @@ const reservationSchema = new Schema({
     },
     startDate: Date,
     endDate: Date,
-    totalPrice: Number
+    totalPrice: Number,
+    status: String
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);

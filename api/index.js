@@ -1,19 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
 const dotenv = require('dotenv');
+const app = express();
 
 dotenv.config();
 
+app.use(express.json());
+
+const userRoute = require('./src/routes/UserRoute');
+const carRoute = require('./src/routes/CarRoute');
+const reservationRoute = require('./src/routes/ReservationRoute');
+
 app.get('/', (req, res) => {
-  res.send('Hello world!');
+    res.send('Hello World!');
 });
+
+app.use('/api/users', userRoute);
+app.use('/api/cars', carRoute);
+app.use('/api/reservations', reservationRoute);
 
 async function main() {
   await mongoose.connect(process.env.MONGO_URI);
 }
 main().then(() => console.log("MongoDB connected")).catch(err => console.log(err));
 
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening at http://localhost:${process.env.PORT}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });
