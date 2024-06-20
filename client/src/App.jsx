@@ -149,10 +149,10 @@ function App() {
             path: "/add-car",
             element: <AddCar />
         }
-
     ])
 
     axios.defaults.baseURL = "http://localhost:3000/api";
+    axios.defaults.withCredentials = true;
 
   return (
     <div className="h-full">

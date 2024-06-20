@@ -7,10 +7,12 @@ import InputValidation from "../components/InputValidation.jsx";
 import Button from "../components/Button.jsx";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import ButtonSubmit from "../components/ButtonSubmit.jsx";
+import {useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const Registration = () => {
+
+    const navigate = useNavigate();
 
     const schema = yup.object({
         firstName: yup.string()
@@ -32,13 +34,14 @@ const Registration = () => {
     });
 
     const { register, handleSubmit, formState: { errors } } = useForm({resolver: yupResolver(schema)});
-    const onSubmit = (data) => {
-        axios.post('/users/register', data).then(response => {
-            console.log(response);
-        }).catch(error => {
-            console.log(error);
-        })
-        console.log(data);
+    const onSubmit = async (data) => {
+        try {
+            await axios.post('/users/register', data)
+            navigate('/login')
+        } catch (error) {
+            alert("Something went wrong")
+        }
+        console.log(data)
     }
 
     const [showPassword, setShowPassword] = useState(false);

@@ -5,15 +5,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "../components/Button.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash} from "react-icons/fa6";
+import axios from "axios";
 
 const Login = () => {
 
+    const navigate = useNavigate();
+
     const schema = yup.object({
-        username: yup.string()
-            .required("Username is required")
-            .min(4, "Username must be at least 4 characters"),
+        email: yup.string()
+            .required("Email is required")
+            .email("Email is not valid"),
         password: yup.string().required("Password is required")
             .min(6, "Password must be at least 6 characters")
     });
@@ -21,7 +24,15 @@ const Login = () => {
         resolver: yupResolver(schema)
     });
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data, e) => {
+        e.preventDefault();
+        const { email, password } = data;
+        try {
+            await axios.post('/users/login', { email, password })
+            navigate('/')
+        } catch (error) {
+            alert("Something went wrong")
+        }
         console.log(data);
     }
 
@@ -33,11 +44,11 @@ const Login = () => {
             <div className="flex flex-col md:w-1/2 lg:w-1/3 w-full p-10 rounded-lg shadow-lg shadow-black">
                 <h1 className="text-center text-3xl p-10 font-semibold uppercase">Login</h1>
                 <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-                    <InputValidation type="text"
-                                     placeholder="Username"
+                    <InputValidation type="email"
+                                     placeholder="Email"
                                      className={"bg-gray-500 bg-opacity-50 rounded-full"}
-                                     register={{...register("username")}}
-                                     errorMessage={errors.username?.message}
+                                     register={{...register("email")}}
+                                     errorMessage={errors.email?.message}
                     />
                     <div className="relative">
                         <InputValidation type={showPassword ? "text" : "password"}
