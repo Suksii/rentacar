@@ -12,6 +12,7 @@ import Clients from "./pages/Clients.jsx";
 import Reservations from "./pages/Reservations.jsx";
 import {ModalProvider} from "./context/ModalContext.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import axios from "axios";
 
 function App() {
 
@@ -150,6 +151,8 @@ function App() {
         }
 
     ])
+
+    axios.defaults.baseURL = "http://localhost:3000/api";
 
   return (
     <div className="h-full">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import backgroundCar from "../assets/background-car.jpg";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,6 +8,7 @@ import Button from "../components/Button.jsx";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import ButtonSubmit from "../components/ButtonSubmit.jsx";
+import {FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const Registration = () => {
 
@@ -32,13 +33,16 @@ const Registration = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({resolver: yupResolver(schema)});
     const onSubmit = (data) => {
-        axios.post('http://localhost:3000/api/users/register', data).then(response => {
+        axios.post('/users/register', data).then(response => {
             console.log(response);
         }).catch(error => {
             console.log(error);
         })
         console.log(data);
     }
+
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <div className="w-full h-screen flex justify-center items-center bg-cover bg-center bg-no-repeat"
              style={{backgroundImage: `url(${backgroundCar})`}}>
@@ -81,12 +85,18 @@ const Registration = () => {
                                          errorMessage={errors.country?.message}
                         />
                     </div>
-                    <InputValidation type="password"
-                                     placeholder="Password"
-                                     className="bg-gray-500 bg-opacity-50 rounded-full placeholder-gray-900"
-                                     register={{...register("password")}}
-                                     errorMessage={errors.password?.message}
-                    />
+                    <div className="relative">
+                        <InputValidation type={showPassword ? "text" : "password"}
+                                         placeholder="Password"
+                                         className="bg-gray-500 bg-opacity-50 rounded-full placeholder-gray-900"
+                                         register={{...register("password")}}
+                                         errorMessage={errors.password?.message}
+                        />
+                        <div className="absolute top-1/2 -translate-y-1/2 right-5" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <FaEyeSlash className="text-gray-800" size={22} /> : <FaEye className="text-gray-800" size={22}/>}
+                        </div>
+                    </div>
+
                     <Button type="submit" label="Register" className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
                 <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Already have an account? <Link to="/login" className="text-blue-900">Login here</Link>

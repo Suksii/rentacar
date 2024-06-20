@@ -5,7 +5,7 @@ const getAllUsers = async (req, res) => {
 
 const registerUser = async (req, res) => {
     const { firstName, lastName, phoneNumber, country, passportNumber, email, password } = req.body;
-    await User.create({
+    const user = await User.create({
         firstName,
         lastName,
         phoneNumber,
@@ -14,6 +14,7 @@ const registerUser = async (req, res) => {
         email,
         password
     })
+    res.send(user)
 }
 
 module.exports = {
