@@ -13,6 +13,7 @@ import Reservations from "./pages/Reservations.jsx";
 import {ModalProvider} from "./context/ModalContext.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import axios from "axios";
+import {UserProvider} from "./context/UserContext.jsx";
 
 function App() {
 
@@ -156,9 +157,12 @@ function App() {
 
   return (
     <div className="h-full">
-        <ModalProvider>
-            <RouterProvider router={router} />
-        </ModalProvider>
+        <UserProvider>
+            <ModalProvider>
+                <RouterProvider router={router} />
+            </ModalProvider>
+        </UserProvider>
+
     </div>
   )
 }

@@ -8,10 +8,12 @@ import Button from "../components/Button.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash} from "react-icons/fa6";
 import axios from "axios";
+import {useUser} from "../context/UserContext.jsx";
 
 const Login = () => {
 
     const navigate = useNavigate();
+    const { user, setUser } = useUser();
 
     const schema = yup.object({
         email: yup.string()
@@ -28,7 +30,9 @@ const Login = () => {
         e.preventDefault();
         const { email, password } = data;
         try {
-            await axios.post('/users/login', { email, password })
+            const response = await axios.post('/users/login', { email, password })
+            const { user } = response.data;
+            setUser(user);
             navigate('/')
         } catch (error) {
             alert("Something went wrong")

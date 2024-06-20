@@ -37,7 +37,7 @@ const loginUser = async (req, res) => {
                     if (err) {
                         res.status(422).json(err)
                     } else {
-                    res.cookie('token', token).json({ message: 'Login successful' })
+                    res.cookie('token', token).json({user, message: 'Logged in'})
                 }
             })} else {
                 res.status(422).json({ message: 'Invalid password' })

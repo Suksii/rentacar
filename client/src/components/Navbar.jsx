@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import Button from "./Button.jsx";
+import {useUser} from "../context/UserContext.jsx";
 
 const Navbar = () => {
 
-    const currentUser = "Jane Doe";
     const navigate = useNavigate();
     const [toggle, setToggle] = useState(false);
+    const { user } = useUser();
+    const currentUser = user?.firstName;
 
     const scrollOnTop = () => {
         window.scrollTo(0, 0);
@@ -22,6 +24,7 @@ const Navbar = () => {
         {name: "Home", path: "/"},
         {name: "Contact", path: "/contact"}
     ]
+
 
     return (
          <>
