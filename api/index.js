@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 dotenv.config();
@@ -11,6 +12,7 @@ app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL
 }));
+app.use(cookieParser());
 
 const userRoute = require('./src/routes/UserRoute');
 const carRoute = require('./src/routes/CarRoute');

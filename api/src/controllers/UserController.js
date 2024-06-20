@@ -33,7 +33,10 @@ const loginUser = async (req, res) => {
         if (user) {
             const PassMatch = bcrypt.compareSync(password, user.password)
             if (PassMatch) {
-                jwt.sign({ email: user.email, id: user._id}, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+                jwt.sign({
+                    email: user.email,
+                    id: user._id
+                }, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
                     if (err) {
                         res.status(422).json(err)
                     } else {
@@ -51,8 +54,29 @@ const loginUser = async (req, res) => {
     }
 }
 
+const userProfile = async (req, res) => {
+        const {token} = req.cookies;
+        if(token) {
+            jwt.verify(token, process.env.JWT_SECRET, {}, async (err, user) => {
+              if(err) {
+                res.status(401).json({ message: 'Unauthorized' })
+              }
+                const {firstName, email, _id} = await User.findById(user.id)
+                res.json({firstName, email, _id})
+            })
+        } else {
+            res.status(401).json({ message: 'Unauthorized' })
+        }
+}
+
+const logoutUser = async (req, res) => {
+    res.clearCookie('token').json({ message: 'Logged out' })
+}
+
 module.exports = {
     getAllUsers,
     registerUser,
-    loginUser
+    loginUser,
+    userProfile,
+    logoutUser
 }

@@ -7,8 +7,8 @@ const Navbar = () => {
 
     const navigate = useNavigate();
     const [toggle, setToggle] = useState(false);
-    const { user } = useUser();
-    const currentUser = user?.firstName;
+    const { user, logout } = useUser();
+    const currentUser = !!user && user?.firstName;
 
     const scrollOnTop = () => {
         window.scrollTo(0, 0);
@@ -36,7 +36,17 @@ const Navbar = () => {
                         <Link key={index} to={item.path} className="text-lg font-semibold">{item.name}</Link>
                     ))}
                 </div>
-                 <Button label="Logout" className="absolute right-6 bg-red-500 text-white font-semibold rounded-full" onClick={() => navigate("/login")}/>
+                 <Button label={currentUser ? 'Logout' : 'Login'} className="absolute right-6 bg-red-500 text-white font-semibold rounded-full" onClick={
+                        () => {
+                            if(currentUser) {
+                                logout();
+                                navigate('/login');
+                            } else {
+                                navigate('/login');
+                            }
+                        }
+                    }
+                     />
              </nav>
              <nav className="flex justify-between lg:hidden items-center bg-gray-900 h-[5vh] px-2">
                  <h1 className="text-2xl font-semibold text-gray-300">Rent a Car</h1>

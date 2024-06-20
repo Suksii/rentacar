@@ -13,7 +13,7 @@ import {useUser} from "../context/UserContext.jsx";
 const Login = () => {
 
     const navigate = useNavigate();
-    const { user, setUser } = useUser();
+    const { setUser } = useUser();
 
     const schema = yup.object({
         email: yup.string()
