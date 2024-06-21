@@ -8,14 +8,17 @@ export const UserProvider = ({ children }) => {
     useEffect( () => {
         if(!user) {
             axios.get('/users/profile').then(response => {
-                setUser(response.data)
+                setUser(response.data);
             })
         }
-    })
-
+    },[])
     const logout = async () => {
-        await axios.get('/users/logout');
-        setUser(null);
+        try {
+            await axios.post('/users/logout');
+            setUser(null);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

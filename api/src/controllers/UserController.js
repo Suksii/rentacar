@@ -5,7 +5,12 @@ const jwt = require('jsonwebtoken');
 const bcryptSalt = bcrypt.genSaltSync(10);
 
 const getAllUsers = async (req, res) => {
-    res.send('Get all users');
+    try {
+        const users = await User.find()
+        res.json(users)
+    } catch (error) {
+        res.status(422).json(error)
+    }
 }
 
 const registerUser = async (req, res) => {
@@ -69,8 +74,8 @@ const userProfile = async (req, res) => {
         }
 }
 
-const logoutUser = async (req, res) => {
-    res.clearCookie('token').json({ message: 'Logged out' })
+const logoutUser = (req, res) => {
+    res.cookie('token', '').json(true)
 }
 
 module.exports = {

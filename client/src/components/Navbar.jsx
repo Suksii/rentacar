@@ -36,19 +36,18 @@ const Navbar = () => {
                         <Link key={index} to={item.path} className="text-lg font-semibold">{item.name}</Link>
                     ))}
                 </div>
-                 <Button label={currentUser ? 'Logout' : 'Login'} className="absolute right-6 bg-red-500 text-white font-semibold rounded-full" onClick={
-                        () => {
-                            if(currentUser) {
-                                logout();
-                                navigate('/login');
-                            } else {
-                                navigate('/login');
-                            }
+                 <Button label={currentUser ? 'Logout' : 'Login'}
+                         className="absolute right-6 bg-red-500 text-white font-semibold rounded-full"
+                         onClick={() => {
+                             if(currentUser) {
+                                 logout();
+                                 navigate('/');
+                             } else navigate('/login');
+                         }
                         }
-                    }
-                     />
-             </nav>
-             <nav className="flex justify-between lg:hidden items-center bg-gray-900 h-[5vh] px-2">
+                             />
+                         </nav>
+                             <nav className="flex justify-between lg:hidden items-center bg-gray-900 h-[5vh] px-2">
                  <h1 className="text-2xl font-semibold text-gray-300">Rent a Car</h1>
                  <p className="text-lg text-gray-300">Welcome, {currentUser}</p>
                  <div className="z-50">
@@ -76,7 +75,16 @@ const Navbar = () => {
                              </Link>
                          );
                      })}
-                     <Button label="Logout" className="w-1/2 my-4 mx-auto bg-red-500 text-white font-semibold rounded-full" onClick={() => navigate("/login")}/>
+                     <Button label={currentUser ? 'Logout' : 'Login'}
+                             className="w-1/2 my-4 mx-auto bg-red-500 text-white font-semibold rounded-full"
+                             onClick={() => {
+                                 if(currentUser) {
+                                     logout();
+                                     navigate('/');
+                                 } else navigate('/login');
+                             }
+                             }
+                     />
                  </div>
              </div>
          </>
