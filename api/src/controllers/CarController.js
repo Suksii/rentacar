@@ -1,6 +1,11 @@
 const Car = require('../model/Car');
 const getAllCars = async (req, res) => {
-    res.send('Get all cars');
+    try {
+        const cars = await Car.find()
+        res.json(cars)
+    } catch (error) {
+        res.status(422).json(error)
+    }
 }
 
 const addCar = async (req, res) => {

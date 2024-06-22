@@ -46,22 +46,22 @@ const AddCar = () => {
     // }
 
     const addCar = async () => {
-        // try {
-        //     const response = await axios.post('/cars/add', {
-        //         model: selectedModel,
-        //         name,
-        //         year: selectedYear,
-        //         // image: selectedImage,
-        //         fuelType,
-        //         seats,
-        //         transmission,
-        //         description,
-        //         price
-        //     })
-        //     console.log(response.data);
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        try {
+            const response = await axios.post('/cars/add', {
+                model: selectedModel,
+                name: name,
+                year: selectedYear,
+                // image: selectedImage,
+                fuelType: fuelType,
+                seats: seats,
+                transmission: transmission,
+                description: description,
+                price: price
+            })
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
         console.log(selectedModel, name, selectedYear, fuelType, seats, transmission, description, price)
     }
 
