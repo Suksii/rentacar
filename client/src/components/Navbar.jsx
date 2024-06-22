@@ -30,7 +30,7 @@ const Navbar = () => {
          <>
              <nav className="relative hidden lg:flex justify-evenly items-center py-5 bg-gray-900 text-white">
                 <h1 className="absolute left-6 text-2xl font-semibold">Rent a Car</h1>
-                 <p className="text-lg">Welcome, {currentUser}</p>
+                 {currentUser && <p className="text-lg">Welcome, {currentUser}</p>}
                 <div className="flex justify-between gap-5">
                     {navItemsAdmin.map((item, index) => (
                         <Link key={index} to={item.path} className="text-lg font-semibold">{item.name}</Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
                          </nav>
                              <nav className="flex justify-between lg:hidden items-center bg-gray-900 h-[5vh] px-2">
                  <h1 className="text-2xl font-semibold text-gray-300">Rent a Car</h1>
-                 <p className="text-lg text-gray-300">Welcome, {currentUser}</p>
+                 {currentUser && <p className="text-lg text-gray-300">Welcome, {currentUser}</p>}
                  <div className="z-50">
                      <button className={toggle ? "menu x" : "menu"}
                              onClick={() => setToggle(prevState => !prevState)}>
@@ -80,6 +80,7 @@ const Navbar = () => {
                              onClick={() => {
                                  if(currentUser) {
                                      logout();
+                                     setToggle(false);
                                      navigate('/');
                                  } else navigate('/login');
                              }

@@ -1,19 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {IoMdArrowDropdown, IoMdArrowDropup} from "react-icons/io";
 
-const Select = ({data, label}) => {
+const Select = ({options, label, selected, setSelected}) => {
+
+    const [active, setActive] = useState(false)
+
     return (
         <div className="flex flex-col w-full">
             {label && label.length > 0 && <label className="text-xl">{label}</label>}
-            <select className={`px-4 py-3 min-w-[240px] w-full rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md`}>
-                {data.map((item, index) => {
-                    return <option key={index}
-                                   value={item}>
-                        {item}
-                    </option>
-                })}
-            </select>
+            <div className="relative">
+                <div className="flex justify-between items-center bg-gray-100 py-3 px-4 rounded-sm shadow-md text-xl font-semibold text-gray-500" onClick={() => setActive(!active)}>
+                    {selected ? selected : "Choose one option"}
+                    {active ? <IoMdArrowDropup /> : <IoMdArrowDropdown/>}
+                </div>
+                {active && <div className="absolute top-12 w-full bg-gray-100 rounded-sm shadow-md z-50">
+                    {options.map((option, index) => {
+                        return <p key={index}
+                                  onClick={() => {
+                                      setSelected(option)
+                                      setActive(false)
+                                  }}
+                                  className="px-4 py-3 hover:bg-gray-200 cursor-pointer text-lg font-semibold"
+                        >
+                            {option}
+                        </p>
+                    })}
+                </div>}
+            </div>
         </div>
-
     );
 };
 
