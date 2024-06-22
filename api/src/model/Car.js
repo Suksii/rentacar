@@ -5,7 +5,7 @@ const carSchema = new Schema({
     model: { type: String, required: true },
     name: { type: String, required: true },
     year: { type: Number, required: true },
-    // image: { type: String, required: true },
+    image: { type: String, required: true },
     fuelType: { type: String, required: true },
     seats: { type: Number, required: true },
     transmission: { type: String, required: true },

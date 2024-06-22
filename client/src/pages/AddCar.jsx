@@ -12,11 +12,11 @@ const AddCar = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    // const [selectedImage, setSelectedImage] = useState('');
+    const [selectedImage, setSelectedImage] = useState('');
     const [fuelType, setFuelType] = useState('');
     const [seats, setSeats] = useState('');
     const [transmission, setTransmission] = useState('');
-    // const imgRef = useRef(null);
+    const imgRef = useRef(null);
 
     const getYears = () => {
         const currentYear = new Date().getFullYear();
@@ -34,16 +34,20 @@ const AddCar = () => {
     const fuelTypes = ["Diesel", "Electric", "Gasoline", "Hybrid"];
     const transmissionTypes = ["Automatic", "Manual", "Tiptronic"];
 
-    // const changeImage = () => {
-    //     const file = imgRef.current.files[0];
-    //     const reader = new FileReader();
-    //     reader.onloadend = () => {
-    //         setSelectedImage(reader.result);
-    //     }
-    //     if (file) {
-    //         reader.readAsDataURL(file);
-    //     }
-    // }
+    const changeImage = () => {
+        const file = imgRef.current.files[0];
+        const data = new FormData();
+        data.append('photos', file);
+        axios.post('/cars/upload', data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => {
+            // const {data: filename} = response;
+            // setSelectedImage(`/uploads/${filename}`);
+            console.log(response.data);
+        })
+    }
 
     const addCar = async () => {
         try {
@@ -51,7 +55,7 @@ const AddCar = () => {
                 model: selectedModel,
                 name: name,
                 year: selectedYear,
-                // image: selectedImage,
+                image: selectedImage,
                 fuelType: fuelType,
                 seats: seats,
                 transmission: transmission,
@@ -70,15 +74,15 @@ const AddCar = () => {
             <h1 className="text-4xl font-semibold text-center py-5">Add Car</h1>
             <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-10 py-10">
                 <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2 justify-center md:justify-start items-center">
-                    {/*<img src={selectedImage} alt="car" className="w-[200px] h-[200px] object-cover object-center rounded-md"/>*/}
-                    {/*<div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-300 cursor-pointer rounded-sm">*/}
-                    {/*    Change Image*/}
-                    {/*    <input type={"file"}*/}
-                    {/*           ref={ imgRef }*/}
-                    {/*           className="hidden py-3 px-4 m-2 outline-none text-xl"*/}
-                    {/*           onChange={changeImage}*/}
-                    {/*    />*/}
-                    {/*</div>*/}
+                    <img src={selectedImage} alt="car" className="w-[200px] h-[200px] object-cover object-center rounded-md"/>
+                    <div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-300 cursor-pointer rounded-sm">
+                        Change Image
+                        <input type={"file"}
+                               ref={ imgRef }
+                               className="hidden py-3 px-4 m-2 outline-none text-xl"
+                               onChange={changeImage}
+                        />
+                    </div>
                     <Select label="Model"
                             options={carMakes}
                             selected={selectedModel}

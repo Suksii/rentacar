@@ -1,4 +1,5 @@
 const Car = require('../model/Car');
+const fs = require('fs');
 const getAllCars = async (req, res) => {
     try {
         const cars = await Car.find()
@@ -28,7 +29,16 @@ const addCar = async (req, res) => {
     }
 }
 
+const uploadImage = (req, res) => {
+    const {path, originalname} = req.files[0];
+    const extension = originalname.split('.').pop();
+    const newPath = path + '.' + extension;
+    fs.renameSync(path, newPath);
+    res.send(newPath.split(`\\`).slice(1));
+}
+
 module.exports = {
     getAllCars,
-    addCar
+    addCar,
+    uploadImage
 }
