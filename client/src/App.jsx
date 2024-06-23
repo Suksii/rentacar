@@ -135,6 +135,10 @@ function App() {
                 {
                     path: "/contact",
                     element: <Contact />
+                },
+                {
+                    path: "/add-car",
+                    element: <AddCar />
                 }
             ]
         },
@@ -145,10 +149,6 @@ function App() {
         {
             path: "/login",
             element: <Login />
-        },
-        {
-            path: "/add-car",
-            element: <AddCar />
         }
     ])
 

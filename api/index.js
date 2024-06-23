@@ -13,6 +13,7 @@ app.use(cors({
     origin: process.env.CLIENT_URL
 }));
 app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 const userRoute = require('./src/routes/UserRoute');
 const carRoute = require('./src/routes/CarRoute');
