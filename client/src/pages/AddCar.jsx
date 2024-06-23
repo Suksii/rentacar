@@ -6,6 +6,7 @@ import Textarea from "../components/Textarea.jsx";
 import axios from "axios";
 import {FiCameraOff} from "react-icons/fi";
 import * as http from "http";
+import {useNavigate} from "react-router-dom";
 
 const AddCar = () => {
 
@@ -20,6 +21,7 @@ const AddCar = () => {
     const [seats, setSeats] = useState('');
     const [transmission, setTransmission] = useState('');
     const imgRef = useRef(null);
+    const navigate = useNavigate();
 
     const getYears = () => {
         const currentYear = new Date().getFullYear();
@@ -40,11 +42,6 @@ const AddCar = () => {
     const changeImage = () => {
         const file = imgRef.current.files[0];
         const data = new FormData();
-        // const reader = new FileReader();
-        // reader.onload = () => {
-        //     setShownImage(reader.result);
-        // }
-        // reader.readAsDataURL(file);
         data.append('photos', file);
         axios.post('/cars/upload', data, {
             headers: {
@@ -53,7 +50,6 @@ const AddCar = () => {
         }).then(response => {
             const {data: filename} = response;
             setSelectedImage(filename[0]);
-            // console.log(data);
         }).catch(error => {
             console.log(error);
         });
@@ -76,6 +72,7 @@ const AddCar = () => {
         } catch (error) {
             console.log(error);
         }
+        navigate('/');
         console.log(selectedModel, name, selectedYear, fuelType, seats, transmission, description, price)
     }
 

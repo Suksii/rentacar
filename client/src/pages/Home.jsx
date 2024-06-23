@@ -1,15 +1,25 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CardList from "../components/CardList.jsx";
 import car from "../assets/car.jpg";
 import {useModal} from "../context/ModalContext.jsx";
-import RatingsContent from "../content/RatingsContent.jsx";
-import {set} from "react-hook-form";
 import ReservationContent from "../content/ReservationContent.jsx";
+import axios from "axios";
 
 const Home = ({data}) => {
 
     const {openModal} = useModal();
     const [rating, setRating] = useState(0);
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        axios.get('/cars').then(response => {
+            const {data} = response;
+            setCars(data);
+            console.log(data)
+        }).catch(error => {
+            console.log(error);
+        });
+    }, []);
 
     return (
         <div className="w-full mx-auto overflow-x-hidden">
@@ -23,7 +33,7 @@ const Home = ({data}) => {
                 </div>
             </div>
             <div className="relative flex justify-center py-10">
-                <CardList data={data}/>
+                <CardList data={cars}/>
             </div>
             <button className="fixed bottom-10 right-10 bg-red-500 text-white px-5 py-2 rounded-lg" onClick={
                 () => openModal({

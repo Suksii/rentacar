@@ -17,9 +17,14 @@ const Card = ({
                     fuel,
                     year
               }) => {
+
+
     return (
         <div className="flex flex-col shadow-xl min-w-[350px] max-w-[400px]">
-            <img src={srcImg} alt={carModel}/>
+            <img src={`http://localhost:3000/uploads/` + srcImg}
+                  className="w-full h-[300px] object-cover object-center"
+                  alt={carModel}
+            />
             <div className="flex justify-between items-center p-5">
                 <div className="flex flex-col gap-1">
                     <div className="flex gap-2 items-end">
