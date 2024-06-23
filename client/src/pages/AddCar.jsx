@@ -20,6 +20,7 @@ const AddCar = () => {
     const [fuelType, setFuelType] = useState('');
     const [seats, setSeats] = useState('');
     const [transmission, setTransmission] = useState('');
+    const [errors, setErrors] = useState({});
     const imgRef = useRef(null);
     const navigate = useNavigate();
 
@@ -56,6 +57,22 @@ const AddCar = () => {
     }
 
     const addCar = async () => {
+        let errorMessages = {};
+
+        if (!selectedModel) errorMessages.selectedModel = 'Model is required';
+        if (!name) errorMessages.name = 'Name is required';
+        if (!selectedYear) errorMessages.selectedYear = 'Year is required';
+        if (!selectedImage) errorMessages.selectedImage = 'Image is required';
+        if (!fuelType) errorMessages.fuelType = 'Fuel type is required';
+        if (!seats) errorMessages.seats = 'Seats are required';
+        if (!transmission) errorMessages.transmission = 'Transmission is required';
+        if (!description) errorMessages.description = 'Description is required';
+        if (!price) errorMessages.price = 'Price is required';
+
+        if (Object.keys(errorMessages).length > 0) {
+            setErrors(errorMessages);
+            return;
+        }
         try {
             const response = await axios.post('/cars/add', {
                 model: selectedModel,
@@ -96,21 +113,25 @@ const AddCar = () => {
                                onChange={changeImage}
                         />
                     </div>
+                    <p className="text-red-500 text-sm font-semibold">{errors.selectedImage}</p>
                     <Select label="Model"
                             options={carMakes}
                             selected={selectedModel}
                             setSelected={setSelectedModel}
                     />
+                    <p className="text-red-500 text-sm font-semibold">{errors.selectedModel}</p>
                     <Input label="Name"
                            placeholder={"Enter name"}
                            className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
                            onChange={(e) => setName(e.target.value)}
                     />
+                    <p className="text-red-500 text-sm font-semibold">{errors.name}</p>
                     <Select label="Year"
                             options={years}
                             selected={selectedYear}
                             setSelected={setSelectedYear}
                     />
+                    <p className="text-red-500 text-sm font-semibold">{errors.selectedYear}</p>
                 </div>
                 <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2">
                     <Select label="Fuel types"
@@ -118,26 +139,31 @@ const AddCar = () => {
                             selected={fuelType}
                             setSelected={setFuelType}
                     />
+                    <p className="text-red-500 text-sm font-semibold">{errors.fuelType}</p>
                     <Select label="Seats"
                             options={seatNumbers}
                             selected={seats}
                             setSelected={setSeats}
                     />
+                    <p className="text-red-500 text-sm font-semibold">{errors.seats}</p>
                     <Select label="Transmission"
                             options={transmissionTypes}
                             selected={transmission}
                             setSelected={setTransmission}
                     />
+                    <p className="text-red-500 text-sm font-semibold">{errors.transmission}</p>
                     <Textarea label="Description"
                               placeholder={"Enter description"}
                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
                               onChange={(e) => setDescription(e.target.value)}
                     />
+                    <p className="text-red-500 text-sm font-semibold">{errors.description}</p>
                     <Input label="Price"
                            placeholder={"Enter price"}
                            className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
                            onChange={(e) => setPrice(e.target.value)}
                     />
+                    <p className="text-red-500 text-sm font-semibold">{errors.price}</p>
                 </div>
             </div>
             <div className="w-[90%] mx-auto md:w-full ">
