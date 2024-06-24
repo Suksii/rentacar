@@ -5,6 +5,7 @@ import { PiSeatbeltFill } from "react-icons/pi";
 import { FaGear } from "react-icons/fa6";
 import { BsFuelPumpDieselFill } from "react-icons/bs";
 import ButtonSubmit from "./ButtonSubmit.jsx";
+import userButtons from "../hooks/useButtons.jsx";
 const Card = ({
                     srcImg,
                     carModel,
@@ -18,6 +19,7 @@ const Card = ({
                     year
               }) => {
 
+    const buttons = userButtons();
 
     return (
         <div className="flex flex-col shadow-xl min-w-[350px] max-w-[400px]">
@@ -65,8 +67,10 @@ const Card = ({
                 </div>
             </div>
             <div className="flex justify-center items-center gap-5">
-                <ButtonSubmit label="Details" className="bg-gray-200 text-gray-800 hover:bg-gray-800 hover:text-white duration-500"/>
-                <ButtonSubmit label="Rent" className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"/>
+                {buttons.map((button, index) => {
+                    return <ButtonSubmit key={index} label={button.label} className={button.className} onClick={button.onClick}/>
+                })
+                }
             </div>
 
         </div>

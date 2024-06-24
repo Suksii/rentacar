@@ -41,7 +41,7 @@ const loginUser = async (req, res) => {
                 jwt.sign({
                     email: user.email,
                     id: user._id
-                }, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+                }, process.env.JWT_SECRET, {}, (err, token) => {
                     if (err) {
                         res.status(422).json(err)
                     } else {

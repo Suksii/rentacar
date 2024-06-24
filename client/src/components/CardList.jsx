@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from "./Card.jsx";
 
-const CardList = ({data}) => {
+const CardList = ({data, onDetails, onRent, onEdit, onDelete}) => {
     return (
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-evenly">
             {data.map((car) => (
@@ -17,6 +17,10 @@ const CardList = ({data}) => {
                     gear={car?.transmission}
                     fuel={car?.fuelType}
                     type={car?.type ? car?.type : "SUV"}
+                    onDetails={onDetails}
+                    onRent={onRent}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
                 />
             ))}
         </div>

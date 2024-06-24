@@ -5,7 +5,7 @@ import {useModal} from "../context/ModalContext.jsx";
 import ReservationContent from "../content/ReservationContent.jsx";
 import axios from "axios";
 
-const Home = ({data}) => {
+const Home = () => {
 
     const {openModal} = useModal();
     const [rating, setRating] = useState(0);
