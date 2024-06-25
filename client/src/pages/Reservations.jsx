@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Table from "../components/Table.jsx";
 import {useReservation} from "../context/ReservationContext.jsx";
 
 const Reservations = () => {
 
-    const { reservation } = useReservation();
+    const { reservation, fetchReservations } = useReservation();
 
     const header = [
         { title: "Car", index: "car" },
@@ -16,6 +16,9 @@ const Reservations = () => {
         // { title: "Status", index: "status" }
     ];
 
+    useEffect(() => {
+        fetchReservations();
+    }, []);
 
     return (
         <div className="w-full flex justify-center items-center">

@@ -1,4 +1,5 @@
 import {createContext, useContext, useState} from "react";
+import axios from "axios";
 
 const ReservationContext = createContext();
 
@@ -8,6 +9,29 @@ export const ReservationProvider = ({children}) => {
         const [returnDate, setReturnDate] = useState(null);
         const [price, setPrice] = useState(0);
         const [reservation, setReservation] = useState({});
+
+        const fetchReservations = async () => {
+                try {
+                        const response = await axios.get('/reservations');
+                        const { data } = response;
+
+                        const mappedReservations = data.map(reservation => {
+                                const carName = reservation.car.model + ' ' + reservation.car.name;
+                                const userEmail = reservation.user.email;
+                                const rentalDate = new Date(reservation.rentalDate).toLocaleDateString();
+                                return{
+                                ...reservation,
+                                car: carName,
+                                user: userEmail,
+                                rentalDate: rentalDate
+                        }});
+
+                        console.log(mappedReservations);
+                        setReservation(mappedReservations);
+                } catch (error) {
+                        console.error(error);
+                }
+        }
 
 
         return (
@@ -19,7 +43,8 @@ export const ReservationProvider = ({children}) => {
                 reservation,
                 setReservation,
                 price,
-                setPrice
+                setPrice,
+                fetchReservations
             }}>
                 {children}
             </ReservationContext.Provider>

@@ -19,12 +19,10 @@ const UseButtons = (isAdmin, carName, carId) => {
                 totalPrice: price
                 }
             );
-                setReservation(response.data);
-                console.log(response.data);
         } catch (error) {
             console.log(error);
         }
-    }, [carName, pickupDate, returnDate]);
+    }, [carId, pickupDate, returnDate, price]);
 
     const onDetails = () => {}
     const onEdit = () => {}
