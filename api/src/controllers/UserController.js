@@ -40,7 +40,7 @@ const loginUser = async (req, res) => {
             if (PassMatch) {
                 jwt.sign({
                     email: user.email,
-                    id: user._id
+                    id: user._id,
                 }, process.env.JWT_SECRET, {}, (err, token) => {
                     if (err) {
                         res.status(422).json(err)

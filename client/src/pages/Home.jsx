@@ -21,6 +21,7 @@ const Home = () => {
         });
     }, []);
 
+
     return (
         <div className="w-full mx-auto overflow-x-hidden">
             <div className="relative">
@@ -35,15 +36,6 @@ const Home = () => {
             <div className="relative flex justify-center py-10">
                 <CardList data={cars}/>
             </div>
-            <button className="fixed bottom-10 right-10 bg-red-500 text-white px-5 py-2 rounded-lg" onClick={
-                () => openModal({
-                    title: "Reservation",
-                    content: <ReservationContent/>,
-                    showFooter: true,
-                    onSave: () => alert("Reservation Saved")
-                })
-            }>Rate Car</button>
-            {rating > 0 && <div className="fixed bottom-10 right-0 bg-red-500 text-white px-5 py-2 rounded-lg">{rating}</div>}
         </div>
     );
 };
