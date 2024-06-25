@@ -5,7 +5,6 @@ import Input from "../components/Input.jsx";
 import Textarea from "../components/Textarea.jsx";
 import axios from "axios";
 import {FiCameraOff} from "react-icons/fi";
-import * as http from "http";
 import {useNavigate} from "react-router-dom";
 
 const AddCar = () => {
@@ -16,7 +15,6 @@ const AddCar = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
-    // const [shownImage, setShownImage] = useState('');
     const [fuelType, setFuelType] = useState('');
     const [seats, setSeats] = useState('');
     const [transmission, setTransmission] = useState('');

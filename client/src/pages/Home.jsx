@@ -1,26 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import CardList from "../components/CardList.jsx";
 import car from "../assets/car.jpg";
 import {useModal} from "../context/ModalContext.jsx";
 import ReservationContent from "../content/ReservationContent.jsx";
 import axios from "axios";
+import {useCar} from "../context/CarContext.jsx";
 
 const Home = () => {
 
-    const {openModal} = useModal();
-    const [rating, setRating] = useState(0);
-    const [cars, setCars] = useState([]);
+    const {cars, fetchCars} = useCar()
 
     useEffect(() => {
-        axios.get('/cars').then(response => {
-            const {data} = response;
-            setCars(data);
-            console.log(data)
-        }).catch(error => {
-            console.log(error);
-        });
+        fetchCars();
     }, []);
-
 
     return (
         <div className="w-full mx-auto overflow-x-hidden">

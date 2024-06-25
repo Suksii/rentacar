@@ -42,8 +42,6 @@ const Registration = () => {
             alert("Something went wrong")
         }
     }
-
-
     const [showPassword, setShowPassword] = useState(false);
 
     return (

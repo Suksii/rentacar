@@ -1,5 +1,7 @@
 const Reservation = require('../model/Reservation');
 const jwt = require('jsonwebtoken');
+const Car = require('../model/Car');
+const User = require('../model/User');
 const getAllReservations = async (req, res) => {
     try {
         const reservations = await Reservation.find().populate('car').populate('user');
@@ -16,13 +18,18 @@ const addReservation = async (req, res) => {
             if (err) {
                 res.status(422).json(err);
             } else {
-        const newReservation = await Reservation.create({
-            ...req.body,
-            user: userData.id
-        });
-                console.log(newReservation);
-        const savedReservation = await newReservation.save();
-        res.json(savedReservation);
+                const userDet = await User.findById(userData.id);
+                const carDet = await Car.findById(req.params.id);
+                const { startDate, endDate, rentalDate, totalPrice } = req.body;
+                const newReservation = await Reservation.create({
+                    user: userDet,
+                    car: carDet,
+                    rentalDate,
+                    startDate,
+                    endDate,
+                    totalPrice,
+                });
+                res.json(newReservation);
             }});
     } catch (error) {
         console.log(error);

@@ -7,6 +7,7 @@ const CardList = ({data, onDetails, onRent, onEdit, onDelete}) => {
             {data.map((car) => (
                 <Card
                     key={car._id}
+                    carID={car._id}
                     srcImg={car.image}
                     carModel={car?.model === "Volkswagen" ? "VW" : car?.model}
                     carName={car?.name}

@@ -6,7 +6,6 @@ import { FaGear } from "react-icons/fa6";
 import { BsFuelPumpDieselFill } from "react-icons/bs";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import userButtons from "../hooks/useButtons.jsx";
-import axios from "axios";
 const Card = ({
                     srcImg,
                     carModel,
@@ -17,10 +16,11 @@ const Card = ({
                     seats,
                     gear,
                     fuel,
-                    year
+                    year,
+                    carID
               }) => {
 
-    const buttons = userButtons();
+    const buttons = userButtons(null,carName, carID);
 
 
 
@@ -71,7 +71,12 @@ const Card = ({
             </div>
             <div className="flex justify-center items-center gap-5">
                 {buttons.map((button, index) => {
-                    return <ButtonSubmit key={index} label={button.label} className={button.className} onClick={button.onClick}/>
+                    return <ButtonSubmit
+                        key={index}
+                        label={button.label}
+                        className={button.className}
+                        onClick={button.onClick}
+                            />
                 })
                 }
             </div>

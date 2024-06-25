@@ -14,6 +14,9 @@ import {ModalProvider} from "./context/ModalContext.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import axios from "axios";
 import {UserProvider} from "./context/UserContext.jsx";
+import ReservationContent from "./content/ReservationContent.jsx";
+import {ReservationProvider} from "./context/ReservationContext.jsx";
+import {CarProvider} from "./context/CarContext.jsx";
 
 function App() {
 
@@ -29,87 +32,6 @@ function App() {
         { title: "Year", index: "year" }
     ];
 
-    const data = [
-        {
-            id: 1,
-            image: cardCar,
-            carModel: "mercedes-benz",
-            carName: "C-200",
-            rating: 4.5,
-            price: 200,
-            seats: 4,
-            gear: "automatic",
-            fuel: "diesel",
-            type: "suv",
-            year: 2021
-        },
-        {
-            id: 2,
-            image: cardCar,
-            carModel: "audi",
-            carName: "A4",
-            rating: 4.2,
-            price: 150,
-            seats: 4,
-            gear: "automatic",
-            fuel: "diesel",
-            type: "suv",
-            year: 2020
-        },
-        {
-            id: 3,
-            image: cardCar,
-            carModel: "bmw",
-            carName: "X5",
-            rating: 4.7,
-            price: 250,
-            seats: 4,
-            gear: "automatic",
-            fuel: "diesel",
-            type: "suv",
-            year: 2022
-        },
-        {
-            id: 4,
-            image: cardCar,
-            carModel: "volkswagen",
-            carName: "Tiguan",
-            rating: 4.0,
-            price: 100,
-            seats: 4,
-            gear: "automatic",
-            fuel: "diesel",
-            type: "suv",
-            year: 2019
-        },
-        {
-            id: 5,
-            image: cardCar,
-            carModel: "tesla",
-            carName: "Model S",
-            rating: 4.9,
-            price: 300,
-            seats: 4,
-            gear: "automatic",
-            fuel: "electric",
-            type: "limousine",
-            year: 2023
-        },
-        {
-            id: 6,
-            image: cardCar,
-            carModel: "toyota",
-            carName: "Corolla",
-            rating: 4.3,
-            price: 120,
-            seats: 4,
-            gear: "manual",
-            fuel: "diesel",
-            type: "suv",
-            year: 2018
-        }
-    ];
-
     const router = createBrowserRouter([
         {
             path: "/",
@@ -118,11 +40,11 @@ function App() {
             children: [
                 {
                     path: "/",
-                    element: <Home data={data}/>
+                    element: <Home/>
                 },
                 {
                     path: "/admin-board",
-                    element: <AdminBoard data={data} header={header} />
+                    element: <AdminBoard header={header} />
                 },
                 {
                     path: "/clients",
@@ -157,11 +79,15 @@ function App() {
 
   return (
     <div className="h-full">
-        <UserProvider>
-            <ModalProvider>
-                <RouterProvider router={router} />
-            </ModalProvider>
-        </UserProvider>
+            <UserProvider>
+                <ReservationProvider>
+                    <CarProvider>
+                        <ModalProvider>
+                            <RouterProvider router={router} />
+                        </ModalProvider>
+                    </CarProvider>
+                </ReservationProvider>
+            </UserProvider>
 
     </div>
   )
