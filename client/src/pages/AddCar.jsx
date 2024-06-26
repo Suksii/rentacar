@@ -121,6 +121,7 @@ const AddCar = () => {
                     <Input label="Name"
                            placeholder={"Enter name"}
                            className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                           value={name}
                            onChange={(e) => setName(e.target.value)}
                     />
                     <p className="text-red-500 text-sm font-semibold">{errors.name}</p>
@@ -157,8 +158,10 @@ const AddCar = () => {
                     />
                     <p className="text-red-500 text-sm font-semibold">{errors.description}</p>
                     <Input label="Price"
+                           type={"number"}
                            placeholder={"Enter price"}
                            className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                           value={price}
                            onChange={(e) => setPrice(e.target.value)}
                     />
                     <p className="text-red-500 text-sm font-semibold">{errors.price}</p>

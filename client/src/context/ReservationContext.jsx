@@ -8,6 +8,7 @@ export const ReservationProvider = ({children}) => {
         const [pickupDate, setPickupDate] = useState(null);
         const [returnDate, setReturnDate] = useState(null);
         const [price, setPrice] = useState(0);
+        const [totalPrice, setTotalPrice] = useState(0);
         const [reservation, setReservation] = useState({});
 
         const fetchReservations = async () => {
@@ -18,6 +19,8 @@ export const ReservationProvider = ({children}) => {
                                 const carName = reservation.car.model + ' ' + reservation.car.name;
                                 const userEmail = reservation.user.email;
                                 const rentalDate = new Date(reservation.rentalDate).toLocaleDateString();
+                                const pickupDate = new Date(reservation.startDate).toLocaleDateString();
+                                const returnDate = new Date(reservation.endDate).toLocaleDateString();
                                 return{
                                 ...reservation,
                                 car: carName,
@@ -33,7 +36,6 @@ export const ReservationProvider = ({children}) => {
                 }
         }
 
-
         return (
             <ReservationContext.Provider value={{
                 pickupDate,
@@ -43,8 +45,10 @@ export const ReservationProvider = ({children}) => {
                 reservation,
                 setReservation,
                 price,
+                totalPrice,
+                setTotalPrice,
                 setPrice,
-                fetchReservations
+                fetchReservations,
             }}>
                 {children}
             </ReservationContext.Provider>

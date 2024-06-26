@@ -10,6 +10,9 @@ import Button from "./Button.jsx";
 import {useNavigate} from "react-router-dom";
 import CarContent from "../content/CarContent.jsx";
 import {useModal} from "../context/ModalContext.jsx";
+import ReservationContent from "../content/ReservationContent.jsx";
+import {useReservation} from "../context/ReservationContext.jsx";
+import axios from "axios";
 const Card = ({
                     srcImg,
                     carModel,
@@ -24,13 +27,8 @@ const Card = ({
                     carID
               }) => {
 
-    // const buttons = userButtons(null,carName, carID);
-
-    // const navigate = useNavigate();
-
-    const {openModal, className} = useModal();
-
-
+    const {pickupDate, returnDate, totalPrice} = useReservation();
+    const {openModal} = useModal();
 
     return (
         <div className="flex flex-col shadow-xl min-w-[350px] max-w-[400px]">
@@ -77,7 +75,7 @@ const Card = ({
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center items-center gap-5">
+            <div className="flex justify-center items-center gap-5 pb-4">
                 {/*{buttons.map((button, index) => {*/}
                 {/*    return <ButtonSubmit*/}
                 {/*        key={index}*/}
@@ -88,12 +86,22 @@ const Card = ({
                 {/*})*/}
                 {/*}*/}
                 <Button label="Details"
-                        onClick={() => openModal({
-                    content: <CarContent id={carID}/>,
-                    showFooter: false,
-                    className: "w-[70%] h-[600px] pb-10"
-                })}
                         className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
+                        onClick={() => openModal({
+                            content: <CarContent id={carID}/>,
+                            showFooter: false,
+                            className: "w-[70%] h-[600px] pb-10"
+                        })}
+                />
+                <Button label="Rent"
+                        className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
+                        onClick={() => openModal({
+                            title: `Book ${carName}`,
+                            content: <ReservationContent price={price} carId={carID}/>,
+                            showFooter: false,
+                            className: "w-[95%] md:w-[600px]",
+
+                        })}
                 />
             </div>
 

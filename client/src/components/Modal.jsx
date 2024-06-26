@@ -7,7 +7,7 @@ const Modal = ({title, content, onClose, onSave, showFooter, className}) => {
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex justify-center items-center">
             <div className={`relative bg-white rounded-lg flex flex-col ${className}`}>
                 <IoIosClose className="absolute top-0 right-0 cursor-pointer" size={30} color={"gray"} onClick={onClose}/>
-                <h1 className="text-3xl font-semibold py-4">{title && title.length > 0 && title}</h1>
+                <h1 className="text-2xl font-semibold py-4 text-center">{title && title.length > 0 && title}</h1>
                 <div>
                     {content}
                 </div>

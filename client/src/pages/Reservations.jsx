@@ -8,9 +8,9 @@ const Reservations = () => {
 
     const header = [
         { title: "Car", index: "car" },
-        { title: "Return Date", index: "endDate" },
         { title: "Rental Date", index: "rentalDate" },
         { title: "Pickup Date", index: "startDate" },
+        { title: "Return Date", index: "endDate" },
         { title: "Price", index: "totalPrice" },
         { title: "Customer", index: "user" },
         // { title: "Status", index: "status" }
