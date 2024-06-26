@@ -1,10 +1,11 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useState} from "react";
 import axios from "axios";
 
 const CarContext = createContext();
 
 export const CarProvider = ({children}) => {
 
+    const [car, setCar] = useState({});
     const [cars, setCars] = useState([]);
 
     const fetchCars = async () => {
@@ -17,11 +18,23 @@ export const CarProvider = ({children}) => {
         });
     }
 
+    const fetchCar = async (id) => {
+        axios.get(`/cars/${id}`).then(response => {
+            const {data} = response;
+            setCar(data);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
     return (
         <CarContext.Provider value={{
             cars,
             setCars,
-            fetchCars
+            fetchCars,
+            car,
+            setCar,
+            fetchCar
         }}>
             {children}
         </CarContext.Provider>

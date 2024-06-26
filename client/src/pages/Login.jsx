@@ -39,7 +39,6 @@ const Login = () => {
         } catch (error) {
             toast.error("Invalid credentials")
         }
-        console.log(data);
     }
 
     const [showPassword, setShowPassword] = useState(false);

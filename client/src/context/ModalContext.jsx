@@ -10,11 +10,13 @@ export const ModalProvider = ({children}) => {
         content: "",
         showFooter: false,
         onSave: () => {},
+        className: ""
     });
 
     const openModal = (props) => {
         setIsModalOpen(true);
         setModalData(props);
+
     }
     const closeModal = () => {
         setIsModalOpen(false);
@@ -23,6 +25,7 @@ export const ModalProvider = ({children}) => {
             content: "",
             showFooter: false,
             onSave: () => {},
+            className: ""
         })}
 
     return (
@@ -31,11 +34,12 @@ export const ModalProvider = ({children}) => {
             closeModal,
             isModalOpen,
         }}>
-            {isModalOpen && <Modal title={modalData.title}
-                   content={modalData.content}
-                   showFooter={modalData.showFooter}
-                   onClose={closeModal}
-                   onSave={modalData.onSave}
+            {isModalOpen && <Modal title={modalData?.title}
+                                   content={modalData.content}
+                                   showFooter={modalData.showFooter}
+                                   onClose={closeModal}
+                                   onSave={modalData.onSave}
+                                   className={modalData.className}
             />
             }
             {children}

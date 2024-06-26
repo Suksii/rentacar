@@ -10,7 +10,7 @@ const Input = ({label, type, placeholder, className, required, onChange, disable
                    required={required}
                    onChange={onChange}
                    disabled={disabled}
-                   value={value}
+                   value={value ? value : ""}
                    min={min ? min : null}
             />
         </div>

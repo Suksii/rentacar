@@ -3,22 +3,31 @@ import {useModal} from "../context/ModalContext.jsx";
 import {useReservation} from "../context/ReservationContext.jsx";
 import ReservationContent from "../content/ReservationContent.jsx";
 import axios from "axios";
+import {differenceInCalendarDays} from "date-fns";
 
 const UseButtons = (isAdmin, carName, carId) => {
 
     const [buttons, setButtons] = useState([]);
-    const {openModal} = useModal();
-    const { pickupDate, returnDate, price, setPrice, reservation, setReservation} = useReservation();
+
+    const {openModal, closeModal} = useModal();
+    const { pickupDate, returnDate, price } = useReservation();
+
+    const totalDays = differenceInCalendarDays(new Date(returnDate), new Date(pickupDate));
+
+
+
 
     const handleReservation = useCallback(async () => {
+
         try {
-            const response = await axios.post(`/reservations/add/${carId}`, {
-                startDate: pickupDate,
-                endDate: returnDate,
+            await axios.post(`/reservations/add/${carId}`, {
+                startDate: new Date(pickupDate).toISOString().split('T')[0],
+                endDate: new Date(returnDate).toISOString().split('T')[0],
                 rentalDate: new Date().toISOString().split('T')[0],
-                totalPrice: price
+                totalPrice: price * totalDays
                 }
             );
+            closeModal();
         } catch (error) {
             console.log(error);
         }
@@ -32,7 +41,7 @@ const UseButtons = (isAdmin, carName, carId) => {
     const onRent = useCallback(() => {
         openModal({
             title: `Rent ${carName}`,
-            content: <ReservationContent/>,
+            content: <ReservationContent />,
             showFooter: true,
             onSave: handleReservation
         });

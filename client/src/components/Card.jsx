@@ -6,6 +6,10 @@ import { FaGear } from "react-icons/fa6";
 import { BsFuelPumpDieselFill } from "react-icons/bs";
 import ButtonSubmit from "./ButtonSubmit.jsx";
 import userButtons from "../hooks/useButtons.jsx";
+import Button from "./Button.jsx";
+import {useNavigate} from "react-router-dom";
+import CarContent from "../content/CarContent.jsx";
+import {useModal} from "../context/ModalContext.jsx";
 const Card = ({
                     srcImg,
                     carModel,
@@ -20,7 +24,11 @@ const Card = ({
                     carID
               }) => {
 
-    const buttons = userButtons(null,carName, carID);
+    // const buttons = userButtons(null,carName, carID);
+
+    // const navigate = useNavigate();
+
+    const {openModal, className} = useModal();
 
 
 
@@ -70,15 +78,23 @@ const Card = ({
                 </div>
             </div>
             <div className="flex justify-center items-center gap-5">
-                {buttons.map((button, index) => {
-                    return <ButtonSubmit
-                        key={index}
-                        label={button.label}
-                        className={button.className}
-                        onClick={button.onClick}
-                            />
-                })
-                }
+                {/*{buttons.map((button, index) => {*/}
+                {/*    return <ButtonSubmit*/}
+                {/*        key={index}*/}
+                {/*        label={button.label}*/}
+                {/*        className={button.className}*/}
+                {/*        onClick={button.onClick}*/}
+                {/*            />*/}
+                {/*})*/}
+                {/*}*/}
+                <Button label="Details"
+                        onClick={() => openModal({
+                    content: <CarContent id={carID}/>,
+                    showFooter: false,
+                    className: "w-[70%] h-[600px] pb-10"
+                })}
+                        className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
+                />
             </div>
 
         </div>

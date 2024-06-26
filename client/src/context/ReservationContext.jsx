@@ -14,7 +14,6 @@ export const ReservationProvider = ({children}) => {
                 try {
                         const response = await axios.get('/reservations');
                         const { data } = response;
-
                         const mappedReservations = data.map(reservation => {
                                 const carName = reservation.car.model + ' ' + reservation.car.name;
                                 const userEmail = reservation.user.email;
@@ -23,9 +22,10 @@ export const ReservationProvider = ({children}) => {
                                 ...reservation,
                                 car: carName,
                                 user: userEmail,
-                                rentalDate: rentalDate
+                                rentalDate: rentalDate,
+                                startDate: pickupDate,
+                                endDate: returnDate
                         }});
-
                         console.log(mappedReservations);
                         setReservation(mappedReservations);
                 } catch (error) {

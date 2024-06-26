@@ -9,6 +9,15 @@ const getAllCars = async (req, res) => {
     }
 }
 
+const getCar = async (req, res) => {
+    try {
+        const car = await Car.findById(req.params.id)
+        res.json(car)
+    } catch (error) {
+        res.status(422).json(error)
+    }
+}
+
 const addCar = async (req, res) => {
     const { model, name, year, image, fuelType, seats, transmission, description, price } = req.body;
     try {
@@ -39,6 +48,7 @@ const uploadImage = (req, res) => {
 
 module.exports = {
     getAllCars,
+    getCar,
     addCar,
     uploadImage
 }

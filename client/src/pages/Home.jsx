@@ -1,9 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
 import CardList from "../components/CardList.jsx";
 import car from "../assets/car.jpg";
-import {useModal} from "../context/ModalContext.jsx";
-import ReservationContent from "../content/ReservationContent.jsx";
-import axios from "axios";
 import {useCar} from "../context/CarContext.jsx";
 
 const Home = () => {
