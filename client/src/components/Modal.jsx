@@ -1,8 +1,9 @@
 import React from 'react';
 import {IoIosClose} from "react-icons/io";
 import Button from "./Button.jsx";
+import ButtonSubmit from "./ButtonSubmit.jsx";
 
-const Modal = ({title, content, onClose, onSave, showFooter, className}) => {
+const Modal = ({title, content, onClose, onSave, showFooter, className, label}) => {
     return (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex justify-center items-center">
             <div className={`relative bg-white rounded-lg flex flex-col ${className}`}>
@@ -17,7 +18,8 @@ const Modal = ({title, content, onClose, onSave, showFooter, className}) => {
                             onClick={onClose}
                             className="max-w-[120px] bg-gray-200 text-gray-900 font-semibold rounded-sm"
                     />
-                    <Button label="Save"
+                    <Button label={label}
+                            type={"submit"}
                             onClick={onSave}
                             className="max-w-[120px] bg-gray-900 text-gray-200 font-semibold rounded-sm"/>
                 </div>

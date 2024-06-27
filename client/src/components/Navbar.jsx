@@ -16,15 +16,16 @@ const Navbar = () => {
 
     const navItemsUser = [
         {name: "Home", path: "/"},
-        {name: "My Bookings", path: "/bookings"},
+        {name: "My Bookings", path: "/my-bookings"},
         {name: "Contact", path: "/contact"}
     ]
 
-    const navItemsAdmin = [
+    const navItemsNonUser = [
         {name: "Home", path: "/"},
         {name: "Contact", path: "/contact"}
     ]
 
+    const navItems = currentUser ? navItemsUser : navItemsNonUser;
 
     return (
          <>
@@ -32,7 +33,7 @@ const Navbar = () => {
                 <h1 className="absolute left-6 text-2xl font-semibold">Rent a Car</h1>
                  {currentUser && <p className="text-lg">Welcome, {currentUser}</p>}
                 <div className="flex justify-between gap-5">
-                    {navItemsAdmin.map((item, index) => (
+                    {navItems.map((item, index) => (
                         <Link key={index} to={item.path} className="text-lg font-semibold">{item.name}</Link>
                     ))}
                 </div>
@@ -61,7 +62,7 @@ const Navbar = () => {
              </nav>
              <div className="relative">
                  <div className={`absolute flex flex-col bg-gray-900 text-center h-[25rem] left-0 right-0 ${toggle ? 'translate-y-0 opacity-100' : '-translate-y-[100vh] opacity-0'} duration-1000 z-50`}>
-                     {navItemsAdmin.map((item, index) => {
+                     {navItems.map((item, index) => {
                          return (
                              <Link to={item.path}
                                    key={index}

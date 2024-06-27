@@ -10,7 +10,8 @@ export const ModalProvider = ({children}) => {
         content: "",
         showFooter: false,
         onSave: () => {},
-        className: ""
+        className: "",
+        label: ""
     });
 
     const openModal = (props) => {
@@ -25,7 +26,8 @@ export const ModalProvider = ({children}) => {
             content: "",
             showFooter: false,
             onSave: () => {},
-            className: ""
+            className: "",
+            label: ""
         })}
 
     return (
@@ -40,6 +42,7 @@ export const ModalProvider = ({children}) => {
                                    onClose={closeModal}
                                    onSave={modalData.onSave}
                                    className={modalData.className}
+                                   label={modalData.label}
             />
             }
             {children}

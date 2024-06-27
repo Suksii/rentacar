@@ -1,18 +1,16 @@
 import React from 'react';
 import {AiFillStar} from "react-icons/ai";
-import { FaCar } from "react-icons/fa";
+import {FaCar, FaEdit} from "react-icons/fa";
 import { PiSeatbeltFill } from "react-icons/pi";
-import { FaGear } from "react-icons/fa6";
+import {FaGear, FaTrash} from "react-icons/fa6";
 import { BsFuelPumpDieselFill } from "react-icons/bs";
-import ButtonSubmit from "./ButtonSubmit.jsx";
-import userButtons from "../hooks/useButtons.jsx";
 import Button from "./Button.jsx";
-import {useNavigate} from "react-router-dom";
 import CarContent from "../content/CarContent.jsx";
 import {useModal} from "../context/ModalContext.jsx";
 import ReservationContent from "../content/ReservationContent.jsx";
-import {useReservation} from "../context/ReservationContext.jsx";
 import axios from "axios";
+import DeleteContent from "../content/DeleteContent.jsx";
+import {useUser} from "../context/UserContext.jsx";
 const Card = ({
                     srcImg,
                     carModel,
@@ -27,8 +25,8 @@ const Card = ({
                     carID
               }) => {
 
-    const {pickupDate, returnDate, totalPrice} = useReservation();
     const {openModal} = useModal();
+    const {isAdmin} = useUser();
 
     return (
         <div className="flex flex-col shadow-xl min-w-[350px] max-w-[400px]">
@@ -48,7 +46,7 @@ const Card = ({
                     </div>
                 </div>
                 <div className="flex flex-col">
-                    <p className="text-2xl font-semibold uppercase">${price}</p>
+                    <p className="text-2xl font-semibold uppercase">€{price}</p>
                     <p>per day</p>
                 </div>
             </div>
@@ -76,24 +74,45 @@ const Card = ({
                 </div>
             </div>
             <div className="flex justify-center items-center gap-5 pb-4">
-                <Button label="Details"
-                        className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
-                        onClick={() => openModal({
-                            content: <CarContent id={carID}/>,
-                            showFooter: false,
-                            className: "w-[70%] h-[600px] pb-10"
-                        })}
-                />
-                <Button label="Rent"
-                        className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
-                        onClick={() => openModal({
-                            title: `Book ${carName}`,
-                            content: <ReservationContent price={price} carId={carID}/>,
-                            showFooter: false,
-                            className: "w-[95%] md:w-[600px]",
-
-                        })}
-                />
+                {!isAdmin ? (
+                    <>
+                        <Button label="Details"
+                            className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
+                            onClick={() => openModal({
+                                content: <CarContent id={carID}/>,
+                                showFooter: false,
+                                className: "w-[70%] h-[600px] pb-10"
+                            })}
+                        />
+                        <Button label="Rent"
+                                className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
+                                onClick={() => openModal({
+                                    title: `Book ${carName}`,
+                                    content: <ReservationContent price={price} carId={carID}/>,
+                                    showFooter: false,
+                                    className: "w-[95%] md:w-[600px]",
+                                })}
+                        />
+                    </>
+                ) : (
+                    <>
+                        <FaEdit size={22} className="text-blue-500 cursor-pointer mx-8"/>
+                        <FaTrash size={22} className="text-red-500 cursor-pointer mx-8"
+                                    onClick={() => openModal({
+                                        content: <DeleteContent />,
+                                        showFooter: true,
+                                        label: "Yes",
+                                        onSave: async () => {
+                                            axios.delete(`/cars/${carID}`)
+                                                .then(() => {
+                                                    window.location.reload();
+                                                })
+                                                .catch(err => console.log(err));
+                                        }
+                                    })}
+                        />
+                    </>
+                    )}
             </div>
 
         </div>

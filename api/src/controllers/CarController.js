@@ -37,7 +37,6 @@ const addCar = async (req, res) => {
             res.status(422).json(error)
     }
 }
-
 const uploadImage = (req, res) => {
     const {path, originalname} = req.files[0];
     const extension = originalname.split('.').pop();
@@ -45,10 +44,19 @@ const uploadImage = (req, res) => {
     fs.renameSync(path, newPath);
     res.send(newPath.split(`\\`).slice(1));
 }
+const deleteCar = async (req, res) => {
+    try {
+        await Car.findByIdAndDelete(req.params.id)
+        res.send('Car deleted')
+    } catch (error) {
+        res.status(422).json(error)
+    }
+}
 
 module.exports = {
     getAllCars,
     getCar,
     addCar,
-    uploadImage
+    uploadImage,
+    deleteCar
 }
