@@ -14,7 +14,7 @@ const getAllUsers = async (req, res) => {
 }
 
 const registerUser = async (req, res) => {
-    const { firstName, lastName, phoneNumber, country, passportNumber, email, password } = req.body;
+    const { firstName, lastName, phoneNumber, country, passportNumber, email, password, admin } = req.body;
     try {
         const user = await User.create({
             firstName,
@@ -23,7 +23,8 @@ const registerUser = async (req, res) => {
             country,
             passportNumber,
             email,
-            password: bcrypt.hashSync(password, bcryptSalt)
+            password: bcrypt.hashSync(password, bcryptSalt),
+            admin
         })
         res.send(user)
     } catch (error) {
@@ -60,18 +61,18 @@ const loginUser = async (req, res) => {
 }
 
 const userProfile = async (req, res) => {
-        const {token} = req.cookies;
-        if(token) {
-            jwt.verify(token, process.env.JWT_SECRET, {}, async (err, user) => {
-              if(err) {
-                res.status(401).json({ message: 'Unauthorized' })
-              }
-                const {firstName, email, _id} = await User.findById(user.id)
-                res.json({firstName, email, _id})
-            })
-        } else {
+    const {token} = req.cookies;
+    if(token) {
+        jwt.verify(token, process.env.JWT_SECRET, {}, async (err, user) => {
+          if(err) {
             res.status(401).json({ message: 'Unauthorized' })
-        }
+          }
+            const {firstName, email, _id, admin} = await User.findById(user.id)
+            res.json({firstName, email, _id, admin})
+        })
+    } else {
+        res.status(401).json({ message: 'Unauthorized' })
+    }
 }
 
 const logoutUser = (req, res) => {

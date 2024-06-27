@@ -4,7 +4,7 @@ import {useReservation} from "../context/ReservationContext.jsx";
 
 const Reservations = () => {
 
-    const { fetchClientReservations, clientReservations } = useReservation();
+    const { fetchClientReservations, clientReservations, fetchReservations, reservations } = useReservation();
 
     const header = [
         { title: "Car", index: "car" },
@@ -17,13 +17,13 @@ const Reservations = () => {
     ];
 
     useEffect(() => {
-        fetchClientReservations();
-        console.log(clientReservations)
+        fetchReservations();
+        console.log(reservations)
     }, []);
 
     return (
         <div className="w-full flex justify-center items-center">
-            <Table header={header} data={clientReservations}/>
+            <Table header={header} data={reservations}/>
         </div>
     );
 };

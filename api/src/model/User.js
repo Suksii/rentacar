@@ -9,7 +9,7 @@ const userSchema = new Schema({
     passportNumber: { type: String, required: true },
     country: { type: String, required: true },
     password: { type: String, required: true},
-    // role: Number
+    admin: { type: Boolean, default: false }
 });
 
 const User = mongoose.model('User', userSchema);
