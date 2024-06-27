@@ -76,15 +76,6 @@ const Card = ({
                 </div>
             </div>
             <div className="flex justify-center items-center gap-5 pb-4">
-                {/*{buttons.map((button, index) => {*/}
-                {/*    return <ButtonSubmit*/}
-                {/*        key={index}*/}
-                {/*        label={button.label}*/}
-                {/*        className={button.className}*/}
-                {/*        onClick={button.onClick}*/}
-                {/*            />*/}
-                {/*})*/}
-                {/*}*/}
                 <Button label="Details"
                         className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
                         onClick={() => openModal({

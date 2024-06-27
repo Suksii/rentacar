@@ -11,6 +11,21 @@ const getAllReservations = async (req, res) => {
     }
 }
 
+const getClientReservations = async (req, res) => {
+    try {
+        const { token } = req.cookies;
+        jwt.verify(token, process.env.JWT_SECRET, async (err, userData) => {
+            if (err) {
+                res.status(422).json(err);
+            } else {
+                const reservations = await Reservation.find({ user: userData.id }).populate('car').populate('user');
+                res.json(reservations);
+            }});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const addReservation = async (req, res) => {
     try {
         const { token } = req.cookies;
@@ -38,5 +53,6 @@ const addReservation = async (req, res) => {
 
 module.exports = {
     getAllReservations,
-    addReservation
+    getClientReservations,
+    addReservation,
 }

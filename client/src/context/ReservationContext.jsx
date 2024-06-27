@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, useCallback, useContext, useState} from "react";
 import axios from "axios";
 
 const ReservationContext = createContext();
@@ -9,32 +9,48 @@ export const ReservationProvider = ({children}) => {
         const [returnDate, setReturnDate] = useState(null);
         const [price, setPrice] = useState(0);
         const [totalPrice, setTotalPrice] = useState(0);
-        const [reservation, setReservation] = useState({});
+        const [reservations, setReservations] = useState({});
+        const [clientReservations, setClientReservations] = useState({});
 
-        const fetchReservations = async () => {
+        const mapReservations = (data) => {
+                return data.map(reservation => {
+                const carName = reservation?.car?.model + ' ' + reservation?.car?.name;
+                const userEmail = reservation?.user?.email;
+                const rentalDate = new Date(reservation?.rentalDate).toLocaleDateString();
+                const pickupDate = new Date(reservation?.startDate).toLocaleDateString();
+                const returnDate = new Date(reservation?.endDate).toLocaleDateString();
+                return{
+                        ...reservation,
+                        car: carName,
+                        user: userEmail,
+                        rentalDate: rentalDate,
+                        startDate: pickupDate,
+                        endDate: returnDate
+                }})};
+
+        const fetchReservations = useCallback(async () => {
                 try {
                         const response = await axios.get('/reservations');
                         const { data } = response;
-                        const mappedReservations = data.map(reservation => {
-                                const carName = reservation.car.model + ' ' + reservation.car.name;
-                                const userEmail = reservation.user.email;
-                                const rentalDate = new Date(reservation.rentalDate).toLocaleDateString();
-                                const pickupDate = new Date(reservation.startDate).toLocaleDateString();
-                                const returnDate = new Date(reservation.endDate).toLocaleDateString();
-                                return{
-                                ...reservation,
-                                car: carName,
-                                user: userEmail,
-                                rentalDate: rentalDate,
-                                startDate: pickupDate,
-                                endDate: returnDate
-                        }});
+                        const mappedReservations = mapReservations(data);
                         console.log(mappedReservations);
-                        setReservation(mappedReservations);
+                        setReservations(mappedReservations);
                 } catch (error) {
                         console.error(error);
                 }
-        }
+        }, []);
+
+        const fetchClientReservations = useCallback(async () => {
+                try {
+                        const response = await axios.get('/reservations/client-reservations');
+                        const { data } = response;
+                        const mappedReservations = mapReservations(data);
+                        console.log(mappedReservations);
+                        setClientReservations(mappedReservations);
+                } catch (error) {
+                        console.error(error);
+                }
+        }, []);
 
         return (
             <ReservationContext.Provider value={{
@@ -42,13 +58,15 @@ export const ReservationProvider = ({children}) => {
                 setPickupDate,
                 returnDate,
                 setReturnDate,
-                reservation,
-                setReservation,
+                reservations,
+                setReservations,
                 price,
                 totalPrice,
                 setTotalPrice,
                 setPrice,
                 fetchReservations,
+                fetchClientReservations,
+                clientReservations
             }}>
                 {children}
             </ReservationContext.Provider>
