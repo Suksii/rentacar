@@ -42,6 +42,15 @@ const Login = () => {
     }
 
     const [showPassword, setShowPassword] = useState(false);
+    const handleMouseDown = () => {
+        setShowPassword(true);
+    }
+    const handleMouseUp = () => {
+        setShowPassword(false);
+    }
+    const handleMouseOut = () => {
+        setShowPassword(false);
+    }
 
         return (
         <div className="w-full h-screen object-cover flex justify-center items-center bg-cover bg-center bg-no-repeat"
@@ -63,7 +72,10 @@ const Login = () => {
                                          register={{...register("password")}}
                                          errorMessage={errors.password?.message}
                         />
-                        <div className="absolute top-1/2 -translate-y-1/2 right-5" onClick={() => setShowPassword(!showPassword)}>
+                        <div className="absolute top-1/2 -translate-y-1/2 right-5"
+                             onMouseDown={handleMouseDown}
+                             onMouseUp={handleMouseUp}
+                             onMouseOut={handleMouseOut}>
                             {showPassword ? <FaEyeSlash className="text-gray-800" size={22} /> : <FaEye className="text-gray-800" size={22}/>}
                         </div>
                     </div>
