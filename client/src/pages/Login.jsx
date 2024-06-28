@@ -68,7 +68,7 @@ const Login = () => {
                     <div className="relative">
                         <InputValidation type={showPassword ? "text" : "password"}
                                          placeholder="Password"
-                                         className={"bg-gray-500 bg-opacity-50 rounded-full"}
+                                         className={"bg-gray-500 bg-opacity-50 rounded-full pr-12"}
                                          register={{...register("password")}}
                                          errorMessage={errors.password?.message}
                         />
@@ -76,7 +76,7 @@ const Login = () => {
                              onMouseDown={handleMouseDown}
                              onMouseUp={handleMouseUp}
                              onMouseOut={handleMouseOut}>
-                            {showPassword ? <FaEyeSlash className="text-gray-800" size={22} /> : <FaEye className="text-gray-800" size={22}/>}
+                            {showPassword ? <FaEye className="text-gray-800 cursor-pointer" size={22} /> : <FaEyeSlash className="text-gray-800 cursor-pointer" size={22}/>}
                         </div>
                     </div>
 

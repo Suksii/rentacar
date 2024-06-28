@@ -11,6 +11,7 @@ import ReservationContent from "../content/ReservationContent.jsx";
 import axios from "axios";
 import DeleteContent from "../content/DeleteContent.jsx";
 import {useUser} from "../context/UserContext.jsx";
+import AddCar from "../pages/AddCar.jsx";
 const Card = ({
                     srcImg,
                     carModel,
@@ -96,20 +97,23 @@ const Card = ({
                     </>
                 ) : (
                     <>
-                        <FaEdit size={22} className="text-blue-500 cursor-pointer mx-8"/>
-                        <FaTrash size={22} className="text-red-500 cursor-pointer mx-8"
-                                    onClick={() => openModal({
-                                        content: <DeleteContent />,
-                                        showFooter: true,
-                                        label: "Yes",
-                                        onSave: async () => {
-                                            axios.delete(`/cars/${carID}`)
-                                                .then(() => {
-                                                    window.location.reload();
-                                                })
-                                                .catch(err => console.log(err));
-                                        }
-                                    })}
+                        <FaEdit size={24}
+                                className="text-blue-500 cursor-pointer mx-8"
+                        />
+                        <FaTrash size={24}
+                                 className="text-red-500 cursor-pointer mx-8"
+                                 onClick={() => openModal({
+                                     content: <DeleteContent />,
+                                     showFooter: true,
+                                     label: "Yes",
+                                     onSave: () => {
+                                         axios.delete(`/cars/delete/${carID}`)
+                                         .then(() => {
+                                            window.location.reload();
+                                         })
+                                         .catch(err => console.log(err));
+                                     }
+                                 })}
                         />
                     </>
                     )}

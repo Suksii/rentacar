@@ -10,7 +10,7 @@ const header = [
         { title: "Email", index: "email" },
         { title: "Phone", index: "phoneNumber" },
         { title: "Passport", index: "passportNumber" },
-        { title: "Country", index: "country" }
+        { title: "Country", index: "country" },
     ];
 
     const [clients, setClients] = useState([])

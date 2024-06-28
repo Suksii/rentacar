@@ -19,7 +19,7 @@ const getCar = async (req, res) => {
 }
 
 const addCar = async (req, res) => {
-    const { model, name, year, image, fuelType, seats, transmission, description, price } = req.body;
+    const { model, name, year, image, fuelType, seats, transmission, description, price, rating } = req.body;
     try {
         const car = await Car.create({
             model,
@@ -30,7 +30,9 @@ const addCar = async (req, res) => {
             seats,
             transmission,
             description,
-            price
+            price,
+            rating
+
         })
         res.send(car)
         } catch (error) {
@@ -52,11 +54,32 @@ const deleteCar = async (req, res) => {
         res.status(422).json(error)
     }
 }
+const updateCar = async (req, res) => {
+    const { model, name, year, image, fuelType, seats, transmission, description, price } = req.body;
+    try {
+        const car = await Car.findByIdAndUpdate(req.params.id, {
+            model,
+            name,
+            year,
+            image,
+            fuelType,
+            seats,
+            transmission,
+            description,
+            price,
+        }, {new: true})
+        res.send(car)
+    } catch (error) {
+        res.status(422).json(error)
+    }
+
+}
 
 module.exports = {
     getAllCars,
     getCar,
     addCar,
     uploadImage,
-    deleteCar
+    deleteCar,
+    updateCar
 }
