@@ -48,6 +48,10 @@ function App() {
                 {
                     path: "/add-car",
                     element: <AddCar />
+                },
+                {
+                    path: "/edit-car/:id",
+                    element: <AddCar />
                 }
             ]
         },

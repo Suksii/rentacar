@@ -1,11 +1,12 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Button from "../components/Button.jsx";
 import Select from "../components/Select.jsx";
 import Input from "../components/Input.jsx";
 import Textarea from "../components/Textarea.jsx";
 import axios from "axios";
 import {FiCameraOff} from "react-icons/fi";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {useCar} from "../context/CarContext.jsx";
 
 const AddCar = () => {
 
@@ -21,6 +22,7 @@ const AddCar = () => {
     const [errors, setErrors] = useState({});
     const imgRef = useRef(null);
     const navigate = useNavigate();
+    const {fetchCar} = useCar();
 
     const getYears = () => {
         const currentYear = new Date().getFullYear();
@@ -37,6 +39,7 @@ const AddCar = () => {
     const seatNumbers = [2, 4, 5, 7, 9];
     const fuelTypes = ["Diesel", "Electric", "Gasoline", "Hybrid"];
     const transmissionTypes = ["Automatic", "Manual", "Tiptronic"];
+    const { id } = useParams();
 
     const changeImage = () => {
         const file = imgRef.current.files[0];
@@ -53,8 +56,29 @@ const AddCar = () => {
             console.log(error);
         });
     }
+    useEffect(() => {
+        if (!id) return;
+        const fetchCar = async () => {
+            try {
+                const response = await axios.get(`/cars/${id}`);
+                const {data} = response;
+                setSelectedModel(data.model);
+                setName(data.name);
+                setSelectedYear(data.year);
+                setSelectedImage(data.image);
+                setFuelType(data.fuelType);
+                setSeats(data.seats);
+                setTransmission(data.transmission);
+                setDescription(data.description);
+                setPrice(data.price);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchCar();
+    }, [id]);
 
-    const addCar = async () => {
+    const saveCar = async (e) => {
         let errorMessages = {};
 
         if (!selectedModel) errorMessages.selectedModel = 'Model is required';
@@ -71,29 +95,52 @@ const AddCar = () => {
             setErrors(errorMessages);
             return;
         }
-        try {
-            const response = await axios.post('/cars/add', {
-                model: selectedModel,
-                name: name,
-                year: selectedYear,
-                image: selectedImage,
-                fuelType: fuelType,
-                seats: seats,
-                transmission: transmission,
-                description: description,
-                price: price
-            })
-            console.log(response.data);
-        } catch (error) {
-            console.log(error);
+
+        e.preventDefault();
+
+        if(id) {
+            try {
+                const response = await axios.put(`/cars/update/${id}`, {
+                    model: selectedModel,
+                    name: name,
+                    year: selectedYear,
+                    image: selectedImage,
+                    fuelType: fuelType,
+                    seats: seats,
+                    transmission: transmission,
+                    description: description,
+                    price: price
+                })
+                console.log(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+            navigate('/');
         }
-        navigate('/');
-        console.log(selectedModel, name, selectedYear, fuelType, seats, transmission, description, price)
+        else {
+            try {
+                const response = await axios.post('/cars/add', {
+                    model: selectedModel,
+                    name: name,
+                    year: selectedYear,
+                    image: selectedImage,
+                    fuelType: fuelType,
+                    seats: seats,
+                    transmission: transmission,
+                    description: description,
+                    price: price
+                })
+                console.log(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+            navigate('/');
+        }
     }
 
     return (
         <div className="max-w-2xl mx-auto pb-12">
-            <h1 className="text-4xl font-semibold text-center py-5">Add Car</h1>
+            <h1 className="text-4xl font-semibold text-center py-5">{id ? 'Edit Car' : 'Add Car'}</h1>
             <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-10 py-10">
                 <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2 justify-center md:justify-start items-center">
                     {selectedImage ? <img src={`http://localhost:3000/uploads/` + selectedImage}
@@ -168,9 +215,9 @@ const AddCar = () => {
                 </div>
             </div>
             <div className="w-[90%] mx-auto md:w-full ">
-                <Button label="Add Car"
+                <Button label={id ? 'Save Changes' : 'Add Car'}
                         className="w-full bg-gray-900 text-white font-semibold rounded-sm"
-                        onClick={addCar}
+                        onClick={saveCar}
                 />
             </div>
 

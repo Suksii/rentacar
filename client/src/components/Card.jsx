@@ -11,7 +11,7 @@ import ReservationContent from "../content/ReservationContent.jsx";
 import axios from "axios";
 import DeleteContent from "../content/DeleteContent.jsx";
 import {useUser} from "../context/UserContext.jsx";
-import AddCar from "../pages/AddCar.jsx";
+import {useNavigate} from "react-router-dom";
 const Card = ({
                     srcImg,
                     carModel,
@@ -28,6 +28,7 @@ const Card = ({
 
     const {openModal} = useModal();
     const {isAdmin} = useUser();
+    const navigate = useNavigate();
 
     return (
         <div className="flex flex-col shadow-xl min-w-[350px] max-w-[400px]">
@@ -99,6 +100,7 @@ const Card = ({
                     <>
                         <FaEdit size={24}
                                 className="text-blue-500 cursor-pointer mx-8"
+                                onClick={() => navigate(`/edit-car/${carID}`)}
                         />
                         <FaTrash size={24}
                                  className="text-red-500 cursor-pointer mx-8"

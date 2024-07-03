@@ -72,8 +72,19 @@ const updateCar = async (req, res) => {
     } catch (error) {
         res.status(422).json(error)
     }
-
 }
+const addRating = async (req, res) => {
+    const { rating, user } = req.body;
+    try {
+        const car = await Car.findById(req.params.id);
+        car.rating.push({ rating, user });
+        await car.save();
+        res.send(car);
+    } catch (error) {
+        res.status(422).json(error)
+    }
+}
+
 
 module.exports = {
     getAllCars,
@@ -81,5 +92,6 @@ module.exports = {
     addCar,
     uploadImage,
     deleteCar,
-    updateCar
+    updateCar,
+    addRating
 }
