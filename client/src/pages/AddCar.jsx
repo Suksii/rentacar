@@ -6,7 +6,6 @@ import Textarea from "../components/Textarea.jsx";
 import axios from "axios";
 import {FiCameraOff} from "react-icons/fi";
 import {useNavigate, useParams} from "react-router-dom";
-import {useCar} from "../context/CarContext.jsx";
 
 const AddCar = () => {
 
@@ -22,7 +21,6 @@ const AddCar = () => {
     const [errors, setErrors] = useState({});
     const imgRef = useRef(null);
     const navigate = useNavigate();
-    const {fetchCar} = useCar();
 
     const getYears = () => {
         const currentYear = new Date().getFullYear();
@@ -98,9 +96,11 @@ const AddCar = () => {
 
         e.preventDefault();
 
-        if(id) {
-            try {
-                const response = await axios.put(`/cars/update/${id}`, {
+        try {
+            const response = await axios({
+                method: id ? 'put' : 'post',
+                url: id ? `/cars/update/${id}` : '/cars/add',
+                data: {
                     model: selectedModel,
                     name: name,
                     year: selectedYear,
@@ -110,32 +110,13 @@ const AddCar = () => {
                     transmission: transmission,
                     description: description,
                     price: price
-                })
-                console.log(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-            navigate('/');
+                }
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
         }
-        else {
-            try {
-                const response = await axios.post('/cars/add', {
-                    model: selectedModel,
-                    name: name,
-                    year: selectedYear,
-                    image: selectedImage,
-                    fuelType: fuelType,
-                    seats: seats,
-                    transmission: transmission,
-                    description: description,
-                    price: price
-                })
-                console.log(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-            navigate('/');
-        }
+        navigate('/');
     }
 
     return (

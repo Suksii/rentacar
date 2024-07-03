@@ -10,6 +10,7 @@ export const ReservationProvider = ({children}) => {
         const [price, setPrice] = useState(0);
         const [totalPrice, setTotalPrice] = useState(0);
         const [reservations, setReservations] = useState({});
+        const [status, setStatus] = useState('Pending...');
         const [clientReservations, setClientReservations] = useState({});
 
         const mapReservations = (data) => {
@@ -25,7 +26,8 @@ export const ReservationProvider = ({children}) => {
                         user: userEmail,
                         rentalDate: rentalDate,
                         startDate: pickupDate,
-                        endDate: returnDate
+                        endDate: returnDate,
+                        price: reservation?.totalPrice,
                 }})};
 
         const fetchReservations = useCallback(async () => {
