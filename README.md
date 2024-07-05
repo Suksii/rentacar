@@ -37,3 +37,28 @@ Administrators can manage the car inventory and view all reservations.
 - **React Icons**: Icon library.
 - **TailwindCSS**: Utility-first CSS framework.
 - **React Hot Toast**: Notifications.
+
+## API Endpoints
+
+### User Routes
+
+- `POST /api/users/register` - Register a new user
+- `POST /api/users/login` - Login a user
+- `POST /api/users/logout` - Logout a user
+- `GET /api/users/profile` - Get user profile
+- `GET /api/users` - Get all users (admin)
+
+### Car Routes
+
+- `GET /api/cars` - Get all cars
+- `GET /api/cars/:id` - Get a specific car
+- `POST /api/cars/add` - Add a new car
+- `POST /api/cars/upload` - Upload car image
+- `PUT /api/cars/update/:id` - Update car details
+- `DELETE /api/cars/delete/:id` - Delete a car
+
+### Reservation Routes
+
+- `GET /api/reservations` - Get all reservations
+- `GET /api/reservations/client-reservations` - Get client-specific reservations
+- `POST /api/reservations/add/:id` - Add a new reservation
