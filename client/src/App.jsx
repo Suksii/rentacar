@@ -4,7 +4,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
 import Layout from "./layout/Layout.jsx";
-import AddCar from "./pages/AddCar.jsx";
+import CarAction from "./pages/CarAction.jsx";
 import Contact from "./pages/Contact.jsx";
 import Clients from "./pages/Clients.jsx";
 import Reservations from "./pages/Reservations.jsx";
@@ -47,11 +47,11 @@ function App() {
                 },
                 {
                     path: "/add-car",
-                    element: <AddCar />
+                    element: <CarAction />
                 },
                 {
                     path: "/edit-car/:id",
-                    element: <AddCar />
+                    element: <CarAction />
                 }
             ]
         },
