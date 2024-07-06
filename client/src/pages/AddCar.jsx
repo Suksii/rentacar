@@ -15,6 +15,12 @@ const AddCar = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
+    const [type, setType] = useState('');
+    const [engine, setEngine] = useState('');
+    const [mileage, setMileage] = useState('');
+    const [drive, setDrive] = useState('');
+    const [plate, setPlate] = useState('');
+    const [color, setColor] = useState('');
     const [fuelType, setFuelType] = useState('');
     const [seats, setSeats] = useState('');
     const [transmission, setTransmission] = useState('');
@@ -33,10 +39,11 @@ const AddCar = () => {
 
     const years = getYears();
 
-    const carMakes = ["Audi", "BMW", "Mercedes", "Toyota", "Volkswagen", "Volvo"];
+    const carTypes = ["Sedan", "Coupe", "Convertible", "SUV", "Truck", "Van"];
     const seatNumbers = [2, 4, 5, 7, 9];
     const fuelTypes = ["Diesel", "Electric", "Gasoline", "Hybrid"];
     const transmissionTypes = ["Automatic", "Manual", "Tiptronic"];
+    const driveTypes = ["Front", "Rear", "4x4"];
     const { id } = useParams();
 
     const changeImage = () => {
@@ -67,6 +74,12 @@ const AddCar = () => {
                 setFuelType(data.fuelType);
                 setSeats(data.seats);
                 setTransmission(data.transmission);
+                setMileage(data.mileage);
+                setDrive(data.drive);
+                setPlate(data.plate);
+                setColor(data.color);
+                setType(data.type);
+                setEngine(data.engine);
                 setDescription(data.description);
                 setPrice(data.price);
             } catch (error) {
@@ -86,6 +99,12 @@ const AddCar = () => {
         if (!fuelType) errorMessages.fuelType = 'Fuel type is required';
         if (!seats) errorMessages.seats = 'Seats are required';
         if (!transmission) errorMessages.transmission = 'Transmission is required';
+        if (!mileage) errorMessages.mileage = 'Mileage is required';
+        if (!drive) errorMessages.drive = 'Drive is required';
+        if (!plate) errorMessages.plate = 'Plate is required';
+        if (!color) errorMessages.color = 'Color is required';
+        if (!type) errorMessages.type = 'Type is required';
+        if (!engine) errorMessages.engine = 'Engine is required';
         if (!description) errorMessages.description = 'Description is required';
         if (!price) errorMessages.price = 'Price is required';
 
@@ -108,6 +127,12 @@ const AddCar = () => {
                     fuelType: fuelType,
                     seats: seats,
                     transmission: transmission,
+                    mileage: mileage,
+                    drive: drive,
+                    plate: plate,
+                    color: color,
+                    type: type,
+                    engine: engine,
                     description: description,
                     price: price
                 }
@@ -120,7 +145,7 @@ const AddCar = () => {
     }
 
     return (
-        <div className="max-w-2xl mx-auto pb-12">
+        <div className="w-[60%] mx-auto pb-12">
             <h1 className="text-4xl font-semibold text-center py-5">{id ? 'Edit Car' : 'Add Car'}</h1>
             <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-10 py-10">
                 <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2 justify-center md:justify-start items-center">
@@ -132,7 +157,7 @@ const AddCar = () => {
                         </div>
                     }
                     <div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-300 cursor-pointer rounded-sm">
-                        Change Image
+                        Select Image
                         <input type={"file"}
                                ref={ imgRef }
                                className="hidden py-3 px-4 m-2 outline-none text-xl"
@@ -140,10 +165,11 @@ const AddCar = () => {
                         />
                     </div>
                     <p className="text-red-500 text-sm font-semibold">{errors.selectedImage}</p>
-                    <Select label="Model"
-                            options={carMakes}
-                            selected={selectedModel}
-                            setSelected={setSelectedModel}
+                    <Input label="Model"
+                           placeholder={"Enter model"}
+                           className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                           value={selectedModel}
+                           onChange={(e) => setSelectedModel(e.target.value)}
                     />
                     <p className="text-red-500 text-sm font-semibold">{errors.selectedModel}</p>
                     <Input label="Name"
@@ -159,6 +185,25 @@ const AddCar = () => {
                             setSelected={setSelectedYear}
                     />
                     <p className="text-red-500 text-sm font-semibold">{errors.selectedYear}</p>
+                    <Input label="Engine designation"
+                           placeholder={"Enter engine"}
+                           className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                           value={engine}
+                           onChange={(e) => setEngine(e.target.value)}
+                    />
+                    <p className="text-red-500 text-sm font-semibold">{errors.engine}</p>
+                    <Input label="Color"
+                           placeholder={"Enter color"}
+                           className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                           value={color}
+                           onChange={(e) => setColor(e.target.value)}
+                    />
+                    <p className="text-red-500 text-sm font-semibold">{errors.color}</p>
+                    <Select label="Type"
+                            options={carTypes}
+                            selected={type}
+                            setSelected={setType}
+                    />
                 </div>
                 <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2">
                     <Select label="Fuel types"
@@ -179,6 +224,27 @@ const AddCar = () => {
                             setSelected={setTransmission}
                     />
                     <p className="text-red-500 text-sm font-semibold">{errors.transmission}</p>
+                    <Input label="Mileage"
+                           type={"number"}
+                           placeholder={"Enter mileage"}
+                           className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                           value={mileage}
+                           onChange={(e) => setMileage(e.target.value)}
+                    />
+                    <p className="text-red-500 text-sm font-semibold">{errors.mileage}</p>
+                    <Select label="Drive"
+                            options={driveTypes}
+                            selected={drive}
+                            setSelected={setDrive}
+                    />
+                    <p className="text-red-500 text-sm font-semibold">{errors.drive}</p>
+                    <Input label="Plate"
+                            placeholder={"Enter plate"}
+                            className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                            value={plate}
+                            onChange={(e) => setPlate(e.target.value)}
+                    />
+                    <p className="text-red-500 text-sm font-semibold">{errors.plate}</p>
                     <Textarea label="Description"
                               placeholder={"Enter description"}
                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}

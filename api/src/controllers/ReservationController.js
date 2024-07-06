@@ -1,7 +1,7 @@
-const Reservation = require('../model/Reservation');
+const Reservation = require('../models/Reservation');
 const jwt = require('jsonwebtoken');
-const Car = require('../model/Car');
-const User = require('../model/User');
+const Car = require('../models/Car');
+const User = require('../models/User');
 const getAllReservations = async (req, res) => {
     try {
         const reservations = await Reservation.find().populate('car').populate('user');

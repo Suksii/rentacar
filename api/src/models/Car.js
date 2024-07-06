@@ -23,11 +23,17 @@ const carSchema = new Schema({
     year: { type: Number, required: true },
     image: { type: String, required: true },
     fuelType: { type: String, required: true },
-    seats: { type: Number, required: true },
     transmission: { type: String, required: true },
+    type: { type: String, required: true },
+    seats: { type: Number, required: true },
+    price: { type: Number, required: true },
+    engine: { type: String, required: true },
+    mileage: { type: Number, required: true },
+    drive: { type: String, required: true },
+    plate: { type: String, required: true },
+    color: { type: String, required: true },
     description: { type: String, required: true },
     rating: [ratingSchema],
-    price: { type: Number, required: true },
 });
 
 const Car = mongoose.model('Car', carSchema);

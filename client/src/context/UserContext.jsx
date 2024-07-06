@@ -23,7 +23,6 @@ export const UserProvider = ({ children }) => {
             console.log(error);
         }
     }
-
     return (
         <UserContext.Provider value={{ user, setUser, logout, isAdmin }}>
             {children}

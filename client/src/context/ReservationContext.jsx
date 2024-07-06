@@ -13,6 +13,15 @@ export const ReservationProvider = ({children}) => {
         const [status, setStatus] = useState('Pending...');
         const [clientReservations, setClientReservations] = useState({});
 
+        const approveReservation = async (id) => {
+                try {
+                        const response = await axios.put(`/reservations/${id}/approve`);
+                        console.log(response);
+                } catch (error) {
+                        console.error(error);
+                }
+        }
+
         const mapReservations = (data) => {
                 return data.map(reservation => {
                 const carName = reservation?.car?.model + ' ' + reservation?.car?.name;

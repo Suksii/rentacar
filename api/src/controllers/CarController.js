@@ -1,4 +1,4 @@
-const Car = require('../model/Car');
+const Car = require('../models/Car');
 const fs = require('fs');
 const getAllCars = async (req, res) => {
     try {
@@ -19,7 +19,7 @@ const getCar = async (req, res) => {
 }
 
 const addCar = async (req, res) => {
-    const { model, name, year, image, fuelType, seats, transmission, description, price, rating } = req.body;
+    const { model, name, year, image, fuelType, seats, transmission, description, price, mileage, type, plate, color, engine, drive } = req.body;
     try {
         const car = await Car.create({
             model,
@@ -28,10 +28,15 @@ const addCar = async (req, res) => {
             image,
             fuelType,
             seats,
+            type,
+            engine,
+            mileage,
+            drive,
+            plate,
+            color,
             transmission,
             description,
             price,
-            rating
 
         })
         res.send(car)
@@ -55,7 +60,7 @@ const deleteCar = async (req, res) => {
     }
 }
 const updateCar = async (req, res) => {
-    const { model, name, year, image, fuelType, seats, transmission, description, price } = req.body;
+    const { model, name, year, image, fuelType, seats, transmission, description, price, engine, mileage, drive, plate, color, type } = req.body;
     try {
         const car = await Car.findByIdAndUpdate(req.params.id, {
             model,
@@ -67,6 +72,12 @@ const updateCar = async (req, res) => {
             transmission,
             description,
             price,
+            type,
+            engine,
+            mileage,
+            drive,
+            plate,
+            color
         }, {new: true})
         res.send(car)
     } catch (error) {
