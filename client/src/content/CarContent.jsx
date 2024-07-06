@@ -10,14 +10,59 @@ const CarContent = ({id}) => {
     }, [id]);
 
     return (
-            <div className="flex items-start">
-                <div className="m-10" style={{flex: 1}}>
-                    <img src={`http://localhost:3000/uploads/${car.image}`} alt="car" className="w-full h-full object-cover object-center"/>
-                </div>
+            <div className="flex px-10 py-5 gap-5">
                 <div style={{flex: 1}}>
+                    <div>
+                        <img src={`http://localhost:3000/uploads/${car.image}`} alt="car" className="w-full h-full object-cover object-center"/>
+                    </div>
+                    <div className="mt-2">
+                        <p className="text-lg">{car.description}</p>
+                    </div>
+                </div>
+                <div style={{flex: 1}} className="flex flex-col gap-2">
                     <div className="w-full flex items-end py-4" >
-                        <h1 className="text-3xl font-semibold">{car.name} {car.model}</h1>
+                        <h1 className="text-3xl font-semibold">{car.model} {car.name} - {car.engine}</h1>
                         <p className="text-gray-500 ml-2">{car.year}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Year of production</p>
+                        <p className="text-lg">{car.year}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Engine</p>
+                        <p className="text-lg">{car.engine}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Fuel type</p>
+                        <p className="text-lg">{car.fuelType}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Price per day</p>
+                        <p className="text-lg">{car.price} €</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Number of seats</p>
+                        <p className="text-lg">{car.seats}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Transmission</p>
+                        <p className="text-lg">{car.transmission}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Color</p>
+                        <p className="text-lg">{car.color}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Mileage</p>
+                        <p className="text-lg">{car.mileage}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Type</p>
+                        <p className="text-lg">{car.type}</p>
+                    </div>
+                    <div className="flex justify-between border-b border-orange-400">
+                        <p className="text-xl">Transmission</p>
+                        <p className="text-lg">{car.transmission}</p>
                     </div>
                 </div>
             </div>

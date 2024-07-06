@@ -83,7 +83,7 @@ const Card = ({
                             onClick={() => openModal({
                                 content: <CarContent id={carID}/>,
                                 showFooter: false,
-                                className: "w-[70%] h-[600px] pb-10"
+                                className: "w-[70%] h-fit pb-10"
                             })}
                         />
                         <Button label="Rent"
