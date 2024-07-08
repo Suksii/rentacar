@@ -13,7 +13,7 @@ const Select = ({options, label, selected, setSelected, className}) => {
                     {selected ? selected : "Choose one option"}
                     {active ? <IoMdArrowDropup /> : <IoMdArrowDropdown/>}
                 </div>
-                {active && <div className="absolute top-12 w-full bg-gray-100 rounded-sm shadow-md z-50 overflow-y-scroll max-h-[300px]">
+                {active && <div className="absolute top-12 w-full bg-gray-100 rounded-sm shadow-md z-50 overflow-y-scroll max-h-[200px]">
                     {options.map((option, index) => {
                         return <p key={index}
                                   onClick={() => {

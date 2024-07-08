@@ -14,7 +14,9 @@ const reservationSchema = new Schema({
     startDate: Date,
     endDate: Date,
     totalPrice: Number,
-    status: String
+    approved: {
+        type: Boolean,
+    }
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);

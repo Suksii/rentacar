@@ -1,11 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Table from "../components/Table.jsx";
 import {useReservation} from "../context/ReservationContext.jsx";
 import Button from "../components/Button.jsx";
+import {useParams} from "react-router-dom";
+import axios from "axios";
 
 const Reservations = () => {
 
     const { fetchReservations, reservations } = useReservation();
+    const [approved, setApproved] = useState(false);
+
+    const handleApprove = async (id, approved) => {
+        try {
+            const response = await axios.post(`/reservations/${id}/approve`, { approved });
+            const { data } = response;
+            console.log(data);
+            fetchReservations();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     const header = [
         { title: "Car", index: "car" },
@@ -17,17 +32,40 @@ const Reservations = () => {
         {
             title: "Status",
             index: "status",
-            render: () => (
+            // render: (reservation) => (
+            //     <div className="flex items-center">
+            //         <p>Aprove?</p>
+            //         <Button label={"Yes"}
+            //                 className={"bg-green-500"}
+            //                 onClick={() => handleApprove(reservation._id, true)}
+            //         />
+            //         <Button label={"No"}
+            //                 className={"bg-red-500"}
+            //                 onClick={() => handleApprove(reservation._id, false)}
+            //         />
+            //     </div>
+            // )
+            render: (reservation) => (
                 <div className="flex items-center">
-                    <p>Aprove?</p>
-                    <Button label={"Yes"}
-                            className={"bg-green-500"}
-                            onClick={() => console.log("Yes")}
-                    />
-                    <Button label={"No"}
-                            className={"bg-red-500"}
-                            onClick={() => console.log("No")}
-                    />
+                    {reservation.approved === undefined ? (
+                        <>
+                            <p>Approve?</p>
+                            <Button
+                                label={"Yes"}
+                                className={"bg-green-500"}
+                                onClick={() => handleApprove(reservation._id, true)}
+                            />
+                            <Button
+                                label={"No"}
+                                className={"bg-red-500"}
+                                onClick={() => handleApprove(reservation._id, false)}
+                            />
+                        </>
+                    ) : (
+                        <div className="rounded-full text-gray-900 uppercase font-semibold text-center min-w-[150px] mx-auto">
+                            {reservation.approved ? <p className="bg-green-400 rounded-full py-2">Approved</p> : <p className="bg-red-500 rounded-full py-2">Declined</p>}
+                        </div>
+                    )}
                 </div>
             )
         }

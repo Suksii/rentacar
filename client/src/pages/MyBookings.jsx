@@ -10,7 +10,6 @@ const Reservations = () => {
     const { fetchClientReservations, clientReservations } = useReservation();
     const {openModal} = useModal();
 
-
     const header = [
         { title: "Car", index: "car" },
         { title: "Rental Date", index: "rentalDate" },
@@ -36,9 +35,13 @@ const Reservations = () => {
         {
             title: "Status",
             index: "status",
-            render: () => (
-                <div className="px-2 py-1 rounded-full text-gray-900 bg-gray-300">
-                    Pending...
+            render: (car) => (
+                <div className="text-center min-w-[120px]">
+                    {car.approved === true
+                        ? <p className="bg-green-400 rounded-full py-2">Approved</p>
+                        : car.approved === false
+                            ? <p className="bg-red-500 rounded-full py-2">Declined</p>
+                            : <p className="bg-gray-400 rounded-full py-2">Pending...</p>}
                 </div>
             )
         }

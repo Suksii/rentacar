@@ -50,9 +50,26 @@ const addReservation = async (req, res) => {
         console.log(error);
     }
 }
+const approveReservation = async (req, res) => {
+    try {
+        const { token } = req.cookies;
+        jwt.verify(token, process.env.JWT_SECRET, async (err, userData) => {
+            if (err) {
+                res.status(422).json(err);
+            } else {
+                const reservation = await Reservation.findById(req.params.id);
+                reservation.approved = req.body.approved;
+                await reservation.save();
+                res.json(reservation);
+            }});
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 module.exports = {
     getAllReservations,
     getClientReservations,
     addReservation,
+    approveReservation
 }

@@ -159,7 +159,7 @@ const CarAction = () => {
                                 <FiCameraOff size={50} />
                             </div>
                         }
-                        <div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-300 cursor-pointer rounded-sm">
+                        <div onClick={() => imgRef.current.click()} className="text-center font-semibold py-2 min-w-[200px] px-5 bg-gray-100 cursor-pointer rounded-sm bg-opacity-60">
                             Select Image
                             <input type={"file"}
                                    ref={ imgRef }
