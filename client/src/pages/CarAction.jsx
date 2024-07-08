@@ -141,6 +141,7 @@ const CarAction = () => {
             console.log(response.data);
         } catch (error) {
             console.log(error);
+
         }
         navigate('/');
     }
@@ -169,14 +170,14 @@ const CarAction = () => {
                         <p className="text-red-500 text-sm font-semibold">{errors.selectedImage}</p>
                         <Input label="Model"
                                placeholder={"Enter model"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                value={selectedModel}
                                onChange={(e) => setSelectedModel(e.target.value)}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.selectedModel}</p>
                         <Input label="Name"
                                placeholder={"Enter name"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                value={name}
                                onChange={(e) => setName(e.target.value)}
                         />
@@ -185,18 +186,19 @@ const CarAction = () => {
                                 options={years}
                                 selected={selectedYear}
                                 setSelected={setSelectedYear}
+                                className={"bg-opacity-60"}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.selectedYear}</p>
                         <Input label="Engine designation"
                                placeholder={"Enter engine"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                value={engine}
                                onChange={(e) => setEngine(e.target.value)}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.engine}</p>
                         <Input label="Color"
                                placeholder={"Enter color"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                value={color}
                                onChange={(e) => setColor(e.target.value)}
                         />
@@ -205,6 +207,7 @@ const CarAction = () => {
                                 options={carTypes}
                                 selected={type}
                                 setSelected={setType}
+                                className={"bg-opacity-60"}
                         />
                     </div>
                     <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2">
@@ -212,24 +215,27 @@ const CarAction = () => {
                                 options={fuelTypes}
                                 selected={fuelType}
                                 setSelected={setFuelType}
+                                className={"bg-opacity-60"}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.fuelType}</p>
                         <Select label="Seats"
                                 options={seatNumbers}
                                 selected={seats}
                                 setSelected={setSeats}
+                                className={"bg-opacity-60"}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.seats}</p>
                         <Select label="Transmission"
                                 options={transmissionTypes}
                                 selected={transmission}
                                 setSelected={setTransmission}
+                                className={"bg-opacity-60"}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.transmission}</p>
                         <Input label="Mileage"
                                type={"number"}
                                placeholder={"Enter mileage"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                value={mileage}
                                onChange={(e) => setMileage(e.target.value)}
                         />
@@ -238,25 +244,26 @@ const CarAction = () => {
                                 options={driveTypes}
                                 selected={drive}
                                 setSelected={setDrive}
+                                className={"bg-opacity-60"}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.drive}</p>
                         <Input label="Plate"
                                 placeholder={"Enter plate"}
-                                className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                                className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                 value={plate}
                                 onChange={(e) => setPlate(e.target.value)}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.plate}</p>
                         <Textarea label="Description"
                                   placeholder={"Enter description"}
-                                  className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                                  className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                   onChange={(e) => setDescription(e.target.value)}
                         />
                         <p className="text-red-500 text-sm font-semibold">{errors.description}</p>
                         <Input label="Price"
                                type={"number"}
                                placeholder={"Enter price"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                value={price}
                                onChange={(e) => setPrice(e.target.value)}
                         />

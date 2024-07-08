@@ -27,7 +27,7 @@ const Card = ({
               }) => {
 
     const {openModal} = useModal();
-    const {isAdmin} = useUser();
+    const {isAdmin, user} = useUser();
     const navigate = useNavigate();
 
     return (
@@ -88,12 +88,13 @@ const Card = ({
                         />
                         <Button label="Rent"
                                 className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
-                                onClick={() => openModal({
-                                    title: `Book ${carName}`,
-                                    content: <ReservationContent price={price} carId={carID}/>,
-                                    showFooter: false,
-                                    className: "w-[95%] md:w-[600px]",
-                                })}
+                                onClick={user ? () => openModal({
+                                        title: `Book ${carName}`,
+                                        content: <ReservationContent price={price} carId={carID}/>,
+                                        showFooter: false,
+                                        className: "w-[95%] md:w-[600px]",})
+                                              : () => navigate("/login")
+                                }
                         />
                     </>
                 ) : (
@@ -120,7 +121,6 @@ const Card = ({
                     </>
                     )}
             </div>
-
         </div>
     );
 };
