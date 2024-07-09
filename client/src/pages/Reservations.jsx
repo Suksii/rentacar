@@ -32,35 +32,23 @@ const Reservations = () => {
         {
             title: "Status",
             index: "status",
-            // render: (reservation) => (
-            //     <div className="flex items-center">
-            //         <p>Aprove?</p>
-            //         <Button label={"Yes"}
-            //                 className={"bg-green-500"}
-            //                 onClick={() => handleApprove(reservation._id, true)}
-            //         />
-            //         <Button label={"No"}
-            //                 className={"bg-red-500"}
-            //                 onClick={() => handleApprove(reservation._id, false)}
-            //         />
-            //     </div>
-            // )
             render: (reservation) => (
-                <div className="flex items-center">
+                <div className="flex items-center justify-center">
                     {reservation.approved === undefined ? (
-                        <>
-                            <p>Approve?</p>
+                        <div className="flex items-center gap-2">
                             <Button
-                                label={"Yes"}
-                                className={"bg-green-500"}
+                                label={"Approve"}
+                                className={"bg-green-500 py-2"}
+
+
                                 onClick={() => handleApprove(reservation._id, true)}
                             />
                             <Button
-                                label={"No"}
-                                className={"bg-red-500"}
+                                label={"Decline"}
+                                className={"bg-red-500 py-2"}
                                 onClick={() => handleApprove(reservation._id, false)}
                             />
-                        </>
+                        </div>
                     ) : (
                         <div className="rounded-full text-gray-900 uppercase font-semibold text-center min-w-[150px] mx-auto">
                             {reservation.approved ? <p className="bg-green-400 rounded-full py-2">Approved</p> : <p className="bg-red-500 rounded-full py-2">Declined</p>}

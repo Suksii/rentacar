@@ -14,6 +14,7 @@ import toast, {Toaster} from "react-hot-toast";
 const Login = () => {
 
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const { setUser } = useUser();
 
     const schema = yup.object({
@@ -29,8 +30,9 @@ const Login = () => {
 
     const onSubmit = async (data, e) => {
         e.preventDefault();
-        const { email, password } = data;
+        setLoading(true);
         try {
+            const { email, password } = data;
             const response = await axios.post('/users/login', { email, password })
             const { user } = response.data;
             setUser(user);
@@ -38,6 +40,8 @@ const Login = () => {
             navigate('/')
         } catch (error) {
             toast.error("Invalid credentials")
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -80,7 +84,9 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <Button type="submit" label="Login" className="bg-gray-900 text-white font-semibold rounded-full"/>
+                    <Button type="submit"
+                            label={loading ? "Loading..." : "Login"}
+                            className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
                 <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Don't have an account? <Link to="/registration" className="text-blue-900">Register here</Link>
                 </p>

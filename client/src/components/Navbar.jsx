@@ -38,15 +38,15 @@ const Navbar = () => {
                     ))}
                 </div>
                  <Button label={currentUser ? 'Logout' : 'Login'}
-                         className="absolute right-6 bg-red-500 text-white font-semibold rounded-full"
+                         className="absolute right-6 bg-red-500 text-white font-semibold rounded-full min-w-[140px]"
                          onClick={() => {
                              if(currentUser) {
                                  logout();
-                                 navigate('/');
+                                 navigate('/login');
                              } else navigate('/login');
                          }
                         }
-                             />
+                 />
                          </nav>
                              <nav className="flex justify-between lg:hidden items-center bg-gray-900 h-[5vh] px-2">
                  <h1 className="text-2xl font-semibold text-gray-300">Rent a Car</h1>

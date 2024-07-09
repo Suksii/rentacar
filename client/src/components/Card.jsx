@@ -79,7 +79,7 @@ const Card = ({
                 {!isAdmin ? (
                     <>
                         <Button label="Details"
-                            className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
+                            className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500 min-w-[120px]"
                             onClick={() => openModal({
                                 content: <CarContent id={carID}/>,
                                 showFooter: false,
@@ -87,7 +87,7 @@ const Card = ({
                             })}
                         />
                         <Button label="Rent"
-                                className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500"
+                                className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500 min-w-[120px]"
                                 onClick={user ? () => openModal({
                                         title: `Book ${carName}`,
                                         content: <ReservationContent price={price} carId={carID}/>,

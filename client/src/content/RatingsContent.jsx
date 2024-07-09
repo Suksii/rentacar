@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import { CiStar } from "react-icons/ci";
-import { IoIosClose } from "react-icons/io";
+import { FaStar } from "react-icons/fa6";
 import {useModal} from "../context/ModalContext.jsx";
 const RatingsContent = ({setRating}) => {
 
@@ -25,7 +24,7 @@ const RatingsContent = ({setRating}) => {
             <div className="flex justify-center gap-2 my-5">
                 {
                     Array(5).fill().map((_, index) => (
-                        <CiStar key={index}
+                        <FaStar key={index}
                                 size={30}
                                 style={{transition: 'color 0.2s ease-in-out', cursor: 'pointer'}}
                                 className={hoverIndex >= index ? 'text-yellow-500' : 'text-gray-300'}
