@@ -12,6 +12,7 @@ import axios from "axios";
 import DeleteContent from "../content/DeleteContent.jsx";
 import {useUser} from "../context/UserContext.jsx";
 import {useNavigate} from "react-router-dom";
+import Loading from "../loading/Loading.jsx";
 const Card = ({
                     srcImg,
                     carModel,

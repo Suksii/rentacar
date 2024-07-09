@@ -69,7 +69,7 @@ const ReservationContent = ({price, carId}) => {
             <div className="flex justify-evenly w-full py-4">
                 <Button label="Close"
                         onClick={closeModal}
-                        className="max-w-[120px] bg-gray-200 text-gray-900 font-semibold rounded-sm"
+                        className="max-w-[120px] bg-gray-200 text-gray-900 font-semibold rounded-sm py-0"
                 />
                 <Button label="Save"
                         onClick={addReservation}

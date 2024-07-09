@@ -114,7 +114,10 @@ const Registration = () => {
                         </div>
                     </div>
 
-                    <Button type="submit" label={loading ? 'Loading...' : 'Register'} className="bg-gray-900 text-white font-semibold rounded-full"/>
+                    <Button type="submit"
+                            label={loading ? 'Loading...' : 'Register'}
+                            disabled={loading}
+                            className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
                 <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Already have an account? <Link to="/login" className="text-blue-900">Login here</Link>
                 </p>

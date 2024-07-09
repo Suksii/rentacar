@@ -10,6 +10,7 @@ import {FaEye, FaEyeSlash} from "react-icons/fa6";
 import axios from "axios";
 import {useUser} from "../context/UserContext.jsx";
 import toast, {Toaster} from "react-hot-toast";
+import ButtonLoading from "../loading/ButtonLoading.jsx";
 
 const Login = () => {
 
@@ -83,9 +84,9 @@ const Login = () => {
                             {showPassword ? <FaEye className="text-gray-800 cursor-pointer" size={22} /> : <FaEyeSlash className="text-gray-800 cursor-pointer" size={22}/>}
                         </div>
                     </div>
-
                     <Button type="submit"
-                            label={loading ? "Loading..." : "Login"}
+                            disabled={loading}
+                            label={loading ? <ButtonLoading /> : "Login"}
                             className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
                 <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Don't have an account? <Link to="/registration" className="text-blue-900">Register here</Link>
