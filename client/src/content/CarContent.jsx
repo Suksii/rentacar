@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import {useCar} from "../context/CarContext.jsx";
+import {FaStar} from "react-icons/fa6";
+import {BsStarFill} from "react-icons/bs";
 
 const CarContent = ({id}) => {
 
@@ -12,8 +14,12 @@ const CarContent = ({id}) => {
     return (
             <div className="flex px-10 py-5 gap-5">
                 <div style={{flex: 1}}>
-                    <div>
+                    <div className="relative">
                         <img src={`http://localhost:3000/uploads/${car.image}`} alt="car" className="w-full h-full object-cover object-center"/>
+                        <div className="absolute top-0 right-0">
+                            <BsStarFill size={50}  className="text-yellow-300"/>
+                            <p className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 font-semibold">{car.rating}</p>
+                        </div>
                     </div>
                     <div className="mt-2">
                         <p className="text-lg">{car.description}</p>
