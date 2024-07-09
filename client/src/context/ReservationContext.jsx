@@ -10,7 +10,6 @@ export const ReservationProvider = ({children}) => {
         const [price, setPrice] = useState(0);
         const [totalPrice, setTotalPrice] = useState(0);
         const [reservations, setReservations] = useState({});
-        const [status, setStatus] = useState('Pending...');
         const [clientReservations, setClientReservations] = useState({});
 
 
@@ -18,12 +17,14 @@ export const ReservationProvider = ({children}) => {
         const mapReservations = (data) => {
                 return data.map(reservation => {
                 const carName = reservation?.car?.model + ' ' + reservation?.car?.name;
+                const carId = reservation?.car?._id;
                 const userEmail = reservation?.user?.email;
                 const rentalDate = new Date(reservation?.rentalDate).toLocaleDateString();
                 const pickupDate = new Date(reservation?.startDate).toLocaleDateString();
                 const returnDate = new Date(reservation?.endDate).toLocaleDateString();
                 return{
                         ...reservation,
+                        carId: carId,
                         car: carName,
                         user: userEmail,
                         rentalDate: rentalDate,
@@ -55,6 +56,7 @@ export const ReservationProvider = ({children}) => {
                         console.error(error);
                 }
         }, []);
+
 
         return (
             <ReservationContext.Provider value={{

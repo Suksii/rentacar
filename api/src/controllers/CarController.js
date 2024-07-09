@@ -85,10 +85,9 @@ const updateCar = async (req, res) => {
     }
 }
 const addRating = async (req, res) => {
-    const { rating, user } = req.body;
     try {
         const car = await Car.findById(req.params.id);
-        car.rating.push({ rating, user });
+        car.rating = req.body.rate;
         await car.save();
         res.send(car);
     } catch (error) {
@@ -104,5 +103,5 @@ module.exports = {
     uploadImage,
     deleteCar,
     updateCar,
-    addRating
+    addRating,
 }

@@ -1,22 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const ratingSchema = new Schema({
-    rating: {
-        type: Number,
-        min: 1,
-        max: 5,
-    },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    car: {
-        type: Schema.Types.ObjectId,
-        ref: 'Car'
-    }
-}, { timestamps: true });
-
 const carSchema = new Schema({
     model: { type: String, required: true },
     name: { type: String, required: true },
@@ -33,7 +17,7 @@ const carSchema = new Schema({
     plate: { type: String, required: true },
     color: { type: String, required: true },
     description: { type: String, required: true },
-    rating: [ratingSchema],
+    rating: { type: Number },
 });
 
 const Car = mongoose.model('Car', carSchema);

@@ -8,7 +8,6 @@ import axios from "axios";
 const Reservations = () => {
 
     const { fetchReservations, reservations } = useReservation();
-    const [approved, setApproved] = useState(false);
 
     const handleApprove = async (id, approved) => {
         try {
@@ -20,7 +19,6 @@ const Reservations = () => {
             console.error(error);
         }
     }
-
 
     const header = [
         { title: "Car", index: "car" },
@@ -39,8 +37,6 @@ const Reservations = () => {
                             <Button
                                 label={"Approve"}
                                 className={"bg-green-500 py-2"}
-
-
                                 onClick={() => handleApprove(reservation._id, true)}
                             />
                             <Button

@@ -4,11 +4,21 @@ import {useReservation} from "../context/ReservationContext.jsx";
 import {useModal} from "../context/ModalContext.jsx";
 import Button from "../components/Button.jsx";
 import RatingsContent from "../content/RatingsContent.jsx";
+import axios from "axios";
 
 const Reservations = () => {
 
     const { fetchClientReservations, clientReservations } = useReservation();
     const {openModal} = useModal();
+
+    const handleRate = async (rowId ,id, rate) => {
+        try {
+            await axios.post(`/cars/${id}/rating`, { rate });
+            fetchClientReservations();
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     const header = [
         { title: "Car", index: "car" },
@@ -20,15 +30,15 @@ const Reservations = () => {
         {
             title: "Rate",
             index: null,
-            render: (row) => (
+            render: (reservation) => (
                 <div className="flex justify-center items-center">
                     <Button label={"Rate"}
                             className={""}
                             onClick={() => openModal({
-                        title: `Rate ${row.car}`,
-                        content: <RatingsContent />,
-                        }
-                    )} />
+                        title: `Rate ${reservation.car}`,
+                        content: <RatingsContent setRating={(setRating) => handleRate(reservation._id, reservation.carId, setRating)}/>
+                    })}
+                    />
                 </div>
             )
         },
@@ -49,7 +59,6 @@ const Reservations = () => {
 
     useEffect(() => {
         fetchClientReservations();
-        console.log(clientReservations);
     }, []);
 
     return (

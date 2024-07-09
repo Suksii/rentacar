@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash } from "react-icons/fa6";
+import ButtonLoading from "../loading/ButtonLoading.jsx";
 
 const Registration = () => {
 
@@ -115,8 +116,8 @@ const Registration = () => {
                     </div>
 
                     <Button type="submit"
-                            label={loading ? 'Loading...' : 'Register'}
                             disabled={loading}
+                            label={loading ? <ButtonLoading/> : 'Register'}
                             className="bg-gray-900 text-white font-semibold rounded-full"/>
                 </form>
                 <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Already have an account? <Link to="/login" className="text-blue-900">Login here</Link>
