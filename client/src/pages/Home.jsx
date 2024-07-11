@@ -2,15 +2,21 @@ import React, { useEffect } from 'react';
 import CardList from "../components/CardList.jsx";
 import car from "../assets/car.jpg";
 import {useCar} from "../context/CarContext.jsx";
+import Loading from "../loading/Loading.jsx";
 
 const Home = () => {
 
-    const {cars, fetchCars} = useCar()
+    const {cars, fetchCars, loading} = useCar()
 
     useEffect(() => {
         fetchCars();
     }, []);
 
+    if (loading) {
+        return (
+            <Loading />
+        );
+    }
     return (
         <div className="w-full mx-auto overflow-x-hidden">
             <div className="relative">

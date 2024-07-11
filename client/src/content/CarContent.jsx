@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {useCar} from "../context/CarContext.jsx";
-import {FaStar} from "react-icons/fa6";
 import {BsStarFill} from "react-icons/bs";
 
 const CarContent = ({id}) => {

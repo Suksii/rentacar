@@ -7,15 +7,18 @@ export const CarProvider = ({children}) => {
 
     const [car, setCar] = useState({});
     const [cars, setCars] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const fetchCars = async () => {
-        axios.get('/cars').then(response => {
-            const {data} = response;
-            setCars(data);
-            console.log(data)
-        }).catch(error => {
-            console.log(error);
-        });
+        try {
+            setLoading(true);
+            const response = await axios.get('/cars');
+            setCars(response.data);
+        } catch (error) {
+            console.error("Failed to fetch cars:", error)
+        } finally {
+            setLoading(false);
+        }
     }
 
     const fetchCar = async (id) => {
@@ -34,7 +37,8 @@ export const CarProvider = ({children}) => {
             fetchCars,
             car,
             setCar,
-            fetchCar
+            fetchCar,
+            loading
         }}>
             {children}
         </CarContext.Provider>

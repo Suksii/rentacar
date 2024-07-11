@@ -70,16 +70,15 @@ function App() {
 
   return (
     <div className="h-full">
-            <UserProvider>
-                <ReservationProvider>
-                    <CarProvider>
-                        <ModalProvider>
-                            <RouterProvider router={router} />
-                        </ModalProvider>
-                    </CarProvider>
-                </ReservationProvider>
-            </UserProvider>
-
+        <UserProvider>
+            <ReservationProvider>
+                <CarProvider>
+                    <ModalProvider>
+                        <RouterProvider router={router} />
+                    </ModalProvider>
+                </CarProvider>
+            </ReservationProvider>
+        </UserProvider>
     </div>
   )
 }
