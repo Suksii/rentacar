@@ -10,6 +10,11 @@ const CarContent = ({id}) => {
         fetchCar(id);
     }, [id]);
 
+    const displayRating = (rating) => {
+        if(rating % 1 === 0) return rating.toString()
+        return rating.toFixed(1)
+    }
+
     return (
             <div className="flex px-10 py-5 gap-5">
                 <div style={{flex: 1}}>
@@ -17,7 +22,7 @@ const CarContent = ({id}) => {
                         <img src={`http://localhost:3000/uploads/${car.image}`} alt="car" className="w-full h-full object-cover object-center"/>
                         <div className="absolute top-0 right-0">
                             <BsStarFill size={50}  className="text-yellow-300"/>
-                            <p className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 font-semibold">{car.rating}</p>
+                            <p className="absolute top-1/2 -translate-y-1/3 left-1/2 -translate-x-1/2 font-semibold">{displayRating(car.averageRating)}</p>
                         </div>
                     </div>
                     <div className="mt-2">

@@ -44,7 +44,7 @@ const CarAction = () => {
     const seatNumbers = [2, 4, 5, 7, 9];
     const fuelTypes = ["Diesel", "Electric", "Gasoline", "Hybrid"];
     const transmissionTypes = ["Automatic", "Manual", "Tiptronic"];
-    const driveTypes = ["Front", "Rear", "4x4"];
+    const driveTypes = ["FWD (Front Wheel Drive)", "RWD (Rear Wheel Drive)", "AWD (All Wheel Drive)"];
     const { id } = useParams();
 
     const changeImage = () => {

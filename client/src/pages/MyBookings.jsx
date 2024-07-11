@@ -18,9 +18,12 @@ const Reservations = () => {
             await axios.post(`/cars/${id}/rating`, { rate });
             fetchClientReservations();
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     }
+
+        const currentDate = new Date();
+
 
     const header = [
         { title: "Car", index: "car" },
@@ -33,15 +36,22 @@ const Reservations = () => {
             title: "Rate",
             index: null,
             render: (reservation) => (
-                <div className="flex justify-center items-center">
-                    <Button label={"Rate"}
-                            className={""}
+                reservation.approved && currentDate > new Date(reservation.endDate) ? (
+                    <div className="flex justify-center items-center">
+                        <Button
+                            label="Rate"
+                            className=""
                             onClick={() => openModal({
-                        title: `Rate ${reservation.car}`,
-                        content: <RatingsContent setRating={(setRating) => handleRate(reservation._id, reservation.carId, setRating)}/>
-                    })}
-                    />
-                </div>
+                                title: `Rate ${reservation.car}`,
+                                content: (
+                                    <RatingsContent
+                                        setRating={(rate) => handleRate(reservation._id, reservation.carId, rate)}
+                                    />
+                                )
+                            })}
+                        />
+                    </div>
+                ) : null
             )
         },
         {

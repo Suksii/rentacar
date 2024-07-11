@@ -17,8 +17,23 @@ const carSchema = new Schema({
     plate: { type: String, required: true },
     color: { type: String, required: true },
     description: { type: String, required: true },
-    rating: { type: Number },
+    ratings: {
+        type: [Number],
+        default: []
+    },
+    averageRating: {
+        type: Number,
+        default: 0
+    }
 });
+
+carSchema.methods.calculateAverageRating = function () {
+    if (this.ratings.length === 0) {
+        return 0;
+    }
+    const sum = this.ratings.reduce((acc, rating) => acc + rating, 0);
+    return sum / this.ratings.length;
+};
 
 const Car = mongoose.model('Car', carSchema);
 

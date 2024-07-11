@@ -15,6 +15,7 @@ import {UserProvider, useUser} from "./context/UserContext.jsx";
 import {ReservationProvider} from "./context/ReservationContext.jsx";
 import {CarProvider} from "./context/CarContext.jsx";
 import MyBookings from "./pages/MyBookings.jsx";
+import Loading from "./loading/Loading.jsx";
 
 function App() {
 
@@ -55,7 +56,7 @@ function App() {
                     path: "/edit-car/:id",
                     element: <CarAction />
                 }
-            ]
+            ].filter(Boolean)
         },
         {
             path: "/registration",
