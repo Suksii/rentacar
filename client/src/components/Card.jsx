@@ -1,8 +1,8 @@
 import React from 'react';
 import {AiFillStar} from "react-icons/ai";
-import {FaCar, FaEdit, FaRegTrashAlt, FaTrashAlt} from "react-icons/fa";
+import {FaCar, FaTrashAlt} from "react-icons/fa";
 import { PiSeatbeltFill } from "react-icons/pi";
-import {FaGear, FaTrash} from "react-icons/fa6";
+import {FaGear} from "react-icons/fa6";
 import { BsFuelPumpDieselFill } from "react-icons/bs";
 import Button from "./Button.jsx";
 import CarContent from "../content/CarContent.jsx";
@@ -11,7 +11,7 @@ import ReservationContent from "../content/ReservationContent.jsx";
 import axios from "axios";
 import DeleteContent from "../content/DeleteContent.jsx";
 import {useUser} from "../context/UserContext.jsx";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {RiEdit2Line} from "react-icons/ri";
 const Card = ({
                     srcImg,
@@ -31,6 +31,8 @@ const Card = ({
     const {isAdmin, user } = useUser();
     const navigate = useNavigate();
 
+    const scrollToTop = () => window.scrollTo(0, 0);
+
     return (
         <div className="flex flex-col shadow-xl min-w-[350px] max-w-[400px]">
             <div className="relative">
@@ -41,13 +43,14 @@ const Card = ({
                 <div className="w-full absolute bottom-0">
                     {isAdmin &&
                     <div className="flex justify-between">
-                        <div className="m-4 rounded-full bg-gray-600 flex items-center justify-center bg-opacity-60 cursor-pointer "
-                             onClick={() => navigate(`/edit-car/${carID}`)}>
+                        <Link to={`/edit-car/${carID}`}
+                              className="m-4 rounded-full bg-gray-600 flex items-center justify-center bg-opacity-60 cursor-pointer">
                             <RiEdit2Line size={30}
                                          title={"Edit"}
+                                         onClick={scrollToTop}
                                          className="text-gray-100 m-3"
                             />
-                        </div>
+                        </Link>
                         <div className="m-4 rounded-full bg-gray-600 flex items-center justify-center bg-opacity-60 cursor-pointer "
                              onClick={() => openModal({
                             content: <DeleteContent />,
