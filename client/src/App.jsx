@@ -11,12 +11,14 @@ import Reservations from "./pages/Reservations.jsx";
 import {ModalProvider} from "./context/ModalContext.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import axios from "axios";
-import {UserProvider} from "./context/UserContext.jsx";
+import {UserProvider, useUser} from "./context/UserContext.jsx";
 import {ReservationProvider} from "./context/ReservationContext.jsx";
 import {CarProvider} from "./context/CarContext.jsx";
 import MyBookings from "./pages/MyBookings.jsx";
 
 function App() {
+
+    const { isAdmin } = useUser();
 
 
     const router = createBrowserRouter([
@@ -27,7 +29,7 @@ function App() {
             children: [
                 {
                     path: "/",
-                    element: <Home/>
+                    element: <Home/>,
                 },
                 {
                     path: "/contact",
@@ -37,19 +39,19 @@ function App() {
                     path: "/my-bookings",
                     element: <MyBookings />
                 },
-                {
+                isAdmin && {
                     path: "/clients",
                     element: <Clients />
                 },
-                {
+                isAdmin && {
                     path: "/reservations",
                     element: <Reservations />
                 },
-                {
+                isAdmin && {
                     path: "/add-car",
                     element: <CarAction />
                 },
-                {
+                isAdmin && {
                     path: "/edit-car/:id",
                     element: <CarAction />
                 }
@@ -70,7 +72,6 @@ function App() {
 
   return (
     <div className="h-full">
-        <UserProvider>
             <ReservationProvider>
                 <CarProvider>
                     <ModalProvider>
@@ -78,7 +79,6 @@ function App() {
                     </ModalProvider>
                 </CarProvider>
             </ReservationProvider>
-        </UserProvider>
     </div>
   )
 }

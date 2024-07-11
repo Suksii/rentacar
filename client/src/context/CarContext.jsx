@@ -10,8 +10,8 @@ export const CarProvider = ({children}) => {
     const [loading, setLoading] = useState(false);
 
     const fetchCars = async () => {
+        setLoading(true);
         try {
-            setLoading(true);
             const response = await axios.get('/cars');
             setCars(response.data);
         } catch (error) {

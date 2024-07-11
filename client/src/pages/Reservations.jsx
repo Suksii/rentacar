@@ -4,10 +4,11 @@ import {useReservation} from "../context/ReservationContext.jsx";
 import Button from "../components/Button.jsx";
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import Loading from "../loading/Loading.jsx";
 
 const Reservations = () => {
 
-    const { fetchReservations, reservations } = useReservation();
+    const { fetchReservations, reservations, loading } = useReservation();
 
     const handleApprove = async (id, approved) => {
         try {
@@ -59,6 +60,8 @@ const Reservations = () => {
         fetchReservations();
         console.log(reservations)
     }, []);
+
+    if (loading) return <Loading />;
 
     return (
         <div className="w-full flex justify-center items-center">

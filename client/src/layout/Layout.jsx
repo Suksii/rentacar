@@ -6,11 +6,13 @@ import {useUser} from "../context/UserContext.jsx";
 
 const Layout = () => {
 
+    const {isAdmin} = useUser();
+
     return (
         <div>
             <Navbar />
-            <div className="md:flex">
-                <Sidebar/>
+            <div className={`${!isAdmin && 'min-h-[calc(100vh-70px)] items-center'} md:flex`}>
+                {isAdmin && <Sidebar />}
                 <Outlet />
             </div>
         </div>

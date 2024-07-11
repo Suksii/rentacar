@@ -12,11 +12,8 @@ const Home = () => {
         fetchCars();
     }, []);
 
-    if (loading) {
-        return (
-            <Loading />
-        );
-    }
+    if (loading) return <Loading />;
+
     return (
         <div className="w-full mx-auto overflow-x-hidden">
             <div className="relative">

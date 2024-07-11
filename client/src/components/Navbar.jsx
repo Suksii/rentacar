@@ -29,7 +29,7 @@ const Navbar = () => {
 
     return (
          <>
-             <nav className="relative hidden lg:flex justify-evenly items-center py-5 bg-gray-900 text-white">
+             <nav className="relative hidden lg:flex justify-evenly items-center bg-gray-900 text-white h-[70px]">
                 <h1 className="absolute left-6 text-2xl font-semibold">Rent a Car</h1>
                  {currentUser && <p className="text-lg">Welcome, {currentUser}</p>}
                 <div className="flex justify-between gap-5">

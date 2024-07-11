@@ -11,6 +11,7 @@ export const ReservationProvider = ({children}) => {
         const [totalPrice, setTotalPrice] = useState(0);
         const [reservations, setReservations] = useState({});
         const [clientReservations, setClientReservations] = useState({});
+        const [loading, setLoading] = useState(false);
 
 
 
@@ -34,6 +35,7 @@ export const ReservationProvider = ({children}) => {
                 }})};
 
         const fetchReservations = useCallback(async () => {
+                setLoading(true)
                 try {
                         const response = await axios.get('/reservations');
                         const { data } = response;
@@ -42,10 +44,13 @@ export const ReservationProvider = ({children}) => {
                         setReservations(mappedReservations);
                 } catch (error) {
                         console.error(error);
+                } finally {
+                        setLoading(false);
                 }
         }, []);
 
         const fetchClientReservations = useCallback(async () => {
+                setLoading(true)
                 try {
                         const response = await axios.get('/reservations/client-reservations');
                         const { data } = response;
@@ -54,6 +59,8 @@ export const ReservationProvider = ({children}) => {
                         setClientReservations(mappedReservations);
                 } catch (error) {
                         console.error(error);
+                } finally {
+                        setLoading(false);
                 }
         }, []);
 
@@ -72,7 +79,8 @@ export const ReservationProvider = ({children}) => {
                 setPrice,
                 fetchReservations,
                 fetchClientReservations,
-                clientReservations
+                clientReservations,
+                loading
             }}>
                 {children}
             </ReservationContext.Provider>

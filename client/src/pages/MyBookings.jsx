@@ -5,10 +5,12 @@ import {useModal} from "../context/ModalContext.jsx";
 import Button from "../components/Button.jsx";
 import RatingsContent from "../content/RatingsContent.jsx";
 import axios from "axios";
+import loading from "../loading/Loading.jsx";
+import Loading from "../loading/Loading.jsx";
 
 const Reservations = () => {
 
-    const { fetchClientReservations, clientReservations } = useReservation();
+    const { fetchClientReservations, clientReservations, loading } = useReservation();
     const {openModal} = useModal();
 
     const handleRate = async (rowId ,id, rate) => {
@@ -60,6 +62,8 @@ const Reservations = () => {
     useEffect(() => {
         fetchClientReservations();
     }, []);
+
+    if (loading) return <Loading />;
 
     return (
         <div className="w-full flex justify-center items-center">

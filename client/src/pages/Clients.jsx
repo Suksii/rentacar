@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Table from "../components/Table.jsx";
 import axios from "axios";
+import Loading from "../loading/Loading.jsx";
 
 const Clients = () => {
 
@@ -13,20 +14,26 @@ const header = [
         { title: "Country", index: "country" },
     ];
 
-    const [clients, setClients] = useState([])
+    const [clients, setClients] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
         const fetchClients = async () => {
+            setLoading(true);
             try {
                 const response = await axios.get('/users');
                 setClients(response.data);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         }
         fetchClients();
     }, []);
+
+    if (loading) return <Loading />;
 
     return (
         <div className="w-full flex justify-center items-center">
