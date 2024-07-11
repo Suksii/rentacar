@@ -148,7 +148,7 @@ const CarAction = () => {
 
     return (
         <div className="w-full h-full flex justify-center items-center bg-cover bg-center bg-no-repeat py-4 lg:py-10" style={{backgroundImage: `url(${carBg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-            <div className="bg-gray-200 w-[90%] lg:w-[65%] mx-auto p-5 rounded-md shadow-md bg-opacity-80">
+            <div className="bg-gray-200 w-[95%] lg:w-[65%] mx-auto p-5 rounded-md shadow-md bg-opacity-80">
                 <h1 className="text-4xl font-semibold text-center py-5">{id ? 'Edit Car' : 'Add Car'}</h1>
                 <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-10 py-10">
                     <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2 justify-center md:justify-start items-center">

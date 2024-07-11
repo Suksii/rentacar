@@ -84,5 +84,5 @@ module.exports = {
     registerUser,
     loginUser,
     userProfile,
-    logoutUser
+    logoutUser,
 }
