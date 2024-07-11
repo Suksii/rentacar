@@ -15,8 +15,6 @@ export const UserProvider = ({ children }) => {
             try {
                 const response = await axios.get('/users/profile');
                 setUser(response.data);
-                setIsAdmin(response.data.admin);
-                console.log(response.data.admin)
             } catch (error) {
                 console.error("Failed to fetch user:", error)
             } finally {
@@ -27,6 +25,16 @@ export const UserProvider = ({ children }) => {
             fetchUserProfile();
         }
     }, []);
+
+    useEffect(() => {
+        if (user && typeof user.admin !== 'undefined') {
+            setIsAdmin(user.admin);
+            console.log(user.admin)
+        } else {
+            setIsAdmin(false);
+        }
+    }, [user]);
+
     const logout = async () => {
         try {
             await axios.post('/users/logout');
