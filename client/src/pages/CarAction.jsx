@@ -168,47 +168,60 @@ const CarAction = () => {
                             />
                         </div>
                         <p className="text-red-500 text-sm font-semibold">{errors.selectedImage}</p>
-                        <Input label="Model"
-                               placeholder={"Enter model"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
-                               value={selectedModel}
-                               onChange={(e) => setSelectedModel(e.target.value)}
-                        />
-                        <p className="text-red-500 text-sm font-semibold">{errors.selectedModel}</p>
-                        <Input label="Name"
-                               placeholder={"Enter name"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
-                               value={name}
-                               onChange={(e) => setName(e.target.value)}
-                        />
-                        <p className="text-red-500 text-sm font-semibold">{errors.name}</p>
-                        <Select label="Year"
-                                options={years}
-                                selected={selectedYear}
-                                setSelected={setSelectedYear}
-                                className={"bg-opacity-60"}
-                        />
-                        <p className="text-red-500 text-sm font-semibold">{errors.selectedYear}</p>
-                        <Input label="Engine designation"
-                               placeholder={"Enter engine"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
-                               value={engine}
-                               onChange={(e) => setEngine(e.target.value)}
-                        />
-                        <p className="text-red-500 text-sm font-semibold">{errors.engine}</p>
-                        <Input label="Color"
-                               placeholder={"Enter color"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
-                               value={color}
-                               onChange={(e) => setColor(e.target.value)}
-                        />
-                        <p className="text-red-500 text-sm font-semibold">{errors.color}</p>
-                        <Select label="Type"
-                                options={carTypes}
-                                selected={type}
-                                setSelected={setType}
-                                className={"bg-opacity-60"}
-                        />
+                        <div className="w-full flex flex-col gap-2">
+                            <Input label="Model"
+                                   placeholder={"Enter model"}
+                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                   value={selectedModel}
+                                   onChange={(e) => setSelectedModel(e.target.value)}
+                            />
+                            <p className="ml-2 text-red-500 text-sm font-semibold">{errors.selectedModel}</p>
+                        </div>
+                        <div className="w-full flex flex-col gap-2">
+                            <Input label="Name"
+                                   placeholder={"Enter name"}
+                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                   value={name}
+                                   onChange={(e) => setName(e.target.value)}
+                            />
+                            <p className="text-red-500 text-sm font-semibold">{errors.name}</p>
+                        </div>
+                        <div className="w-full flex flex-col gap-2">
+                            <Select label="Year"
+                                    options={years}
+                                    selected={selectedYear}
+                                    setSelected={setSelectedYear}
+                                    className={"bg-opacity-60"}
+                            />
+                            <p className="ml-2 text-red-500 text-sm font-semibold">{errors.selectedYear}</p>
+                        </div>
+                        <div className="w-full flex flex-col gap-2">
+                            <Input label="Engine designation"
+                                   placeholder={"Enter engine"}
+                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                   value={engine}
+                                   onChange={(e) => setEngine(e.target.value)}
+                            />
+                            <p className="ml-2 text-red-500 text-sm font-semibold">{errors.engine}</p>
+                        </div>
+                        <div className="w-full flex flex-col gap-2">
+                            <Input label="Color"
+                                   placeholder={"Enter color"}
+                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                   value={color}
+                                   onChange={(e) => setColor(e.target.value)}
+                            />
+                            <p className="ml-2 text-red-500 text-sm font-semibold">{errors.color}</p>
+                        </div>
+                        <div className="w-full flex flex-col gap-2">
+                            <Select label="Type"
+                                    options={carTypes}
+                                    selected={type}
+                                    setSelected={setType}
+                                    className={"bg-opacity-60"}
+                            />
+                            <p className="ml-2 text-red-500 text-sm font-semibold">{errors.type}</p>
+                        </div>
                     </div>
                     <div className="w-[90%] mx-auto md:w-full flex flex-col gap-2">
                         <Select label="Fuel types"
@@ -217,57 +230,57 @@ const CarAction = () => {
                                 setSelected={setFuelType}
                                 className={"bg-opacity-60"}
                         />
-                        <p className="text-red-500 text-sm font-semibold">{errors.fuelType}</p>
+                        <p className="ml-2 text-red-500 text-sm font-semibold">{errors.fuelType}</p>
                         <Select label="Seats"
                                 options={seatNumbers}
                                 selected={seats}
                                 setSelected={setSeats}
                                 className={"bg-opacity-60"}
                         />
-                        <p className="text-red-500 text-sm font-semibold">{errors.seats}</p>
+                        <p className="ml-2 text-red-500 text-sm font-semibold">{errors.seats}</p>
                         <Select label="Transmission"
                                 options={transmissionTypes}
                                 selected={transmission}
                                 setSelected={setTransmission}
                                 className={"bg-opacity-60"}
                         />
-                        <p className="text-red-500 text-sm font-semibold">{errors.transmission}</p>
+                        <p className="ml-2 text-red-500 text-sm font-semibold">{errors.transmission}</p>
                         <Input label="Mileage"
                                type={"number"}
                                placeholder={"Enter mileage"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
                                value={mileage}
                                onChange={(e) => setMileage(e.target.value)}
                         />
-                        <p className="text-red-500 text-sm font-semibold">{errors.mileage}</p>
+                        <p className="ml-2 text-red-500 text-sm font-semibold">{errors.mileage}</p>
                         <Select label="Drive"
                                 options={driveTypes}
                                 selected={drive}
                                 setSelected={setDrive}
                                 className={"bg-opacity-60"}
                         />
-                        <p className="text-red-500 text-sm font-semibold">{errors.drive}</p>
+                        <p className="ml-2 text-red-500 text-sm font-semibold">{errors.drive}</p>
                         <Input label="Plate"
                                 placeholder={"Enter plate"}
-                                className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
+                                className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
                                 value={plate}
                                 onChange={(e) => setPlate(e.target.value)}
                         />
-                        <p className="text-red-500 text-sm font-semibold">{errors.plate}</p>
+                        <p className="ml-2 text-red-500 text-sm font-semibold">{errors.plate}</p>
                         <Textarea label="Description"
                                   placeholder={"Enter description"}
                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
                                   onChange={(e) => setDescription(e.target.value)}
                         />
-                        <p className="text-red-500 text-sm font-semibold">{errors.description}</p>
+                        <p className="ml-2 text-red-500 text-sm font-semibold">{errors.description}</p>
                         <Input label="Price"
                                type={"number"}
                                placeholder={"Enter price"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
                                value={price}
                                onChange={(e) => setPrice(e.target.value)}
                         />
-                        <p className="text-red-500 text-sm font-semibold">{errors.price}</p>
+                        <p className="ml-2 text-red-500 text-sm font-semibold">{errors.price}</p>
                     </div>
                 </div>
                 <div className="w-[90%] mx-auto md:w-full ">

@@ -11,6 +11,7 @@ const ReservationContent = ({price, carId}) => {
 
     const {setPickupDate, pickupDate, setReturnDate, returnDate, setTotalPrice, totalPrice} = useReservation();
     const {closeModal} = useModal();
+    const [errors, setErrors] = useState({});
 
     const getNextDay = (date) => {
         const nextDate = new Date(date);
@@ -23,6 +24,17 @@ const ReservationContent = ({price, carId}) => {
     }, [pickupDate, returnDate, price, setTotalPrice]);
 
     const addReservation = async () => {
+
+        let errorMessages = [];
+
+        if (!pickupDate) errorMessages.pickupDate = 'Pickup date is required';
+        if (!returnDate) errorMessages.returnDate = 'Return date is required';
+
+        if (Object.keys(errorMessages).length > 0) {
+            setErrors(errorMessages);
+            return;
+        }
+
         try {
             await axios.post(`/reservations/add/${carId}`, {
                 startDate: new Date(pickupDate).toISOString().split('T')[0],
@@ -42,23 +54,29 @@ const ReservationContent = ({price, carId}) => {
     return (
         <div className="px-4 md:px-10">
             <Toaster containerStyle={{position: 'fixed', top: '80px', right: '10px'}}/>
-            <Input label="Pickup Date"
-                   type="date"
-                   className="rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md my-2"
-                   value={pickupDate}
-                   onChange={(e) => setPickupDate(e.target.value)}
-                   min={new Date().toISOString().split('T')[0]}
-                   required={true}
-            />
-            <Input label="Return Date"
-                   type="date"
-                   className="rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md my-2"
-                   value={returnDate}
-                   onChange={(e) => setReturnDate(e.target.value)}
-                   disabled={!pickupDate}
-                   min={getNextDay(pickupDate)}
-                   required={true}
-            />
+            <div>
+                <Input label="Pickup Date"
+                       type="date"
+                       className="rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md my-2 py-3"
+                       value={pickupDate}
+                       onChange={(e) => setPickupDate(e.target.value)}
+                       min={new Date().toISOString().split('T')[0]}
+                       required={true}
+                />
+                {errors?.pickupDate && <p className="ml-2 text-red-500 text-sm font-semibold">{errors?.pickupDate}</p>}
+            </div>
+            <div>
+                <Input label="Return Date" py-3
+                       type="date"
+                       className="rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md my-2 py-3"
+                       value={returnDate}
+                       onChange={(e) => setReturnDate(e.target.value)}
+                       disabled={!pickupDate}
+                       min={getNextDay(pickupDate)}
+                       required={true}
+                />
+                {errors?.returnDate && <p className="ml-2 text-red-500 text-sm font-semibold">{errors?.returnDate}</p>}
+            </div>
             {pickupDate && returnDate &&
                 <div className="flex justify-around">
                     <p className="py-2">Total days: <span className="text-xl font-semibold">{totalDays}</span></p>
