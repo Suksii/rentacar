@@ -59,14 +59,13 @@ const header = [
             <h1 className="text-3xl font-bold">Clients</h1>
             <div className="flex gap-2">
                 <Input placeholder="Search for a client"
-                       className={"w-full border-2 border-gray-300 rounded-md p-2"}
+                       className={"w-full border-2 border-gray-300 rounded-md"}
                        value={search}
                        onChange={(e) => setSearch(e.target.value)}
                 />
                 <Button label={"Search"} onClick={handleSearch} className={"bg-blue-800 text-white rounded-md min-w-[120px]"} />
             </div>
                 <Table header={header} data={filteredClients.length > 0 ? filteredClients : clients} />
-
         </div>
     );
 };
