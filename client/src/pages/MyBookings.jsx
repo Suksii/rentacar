@@ -7,26 +7,31 @@ import RatingsContent from "../content/RatingsContent.jsx";
 import axios from "axios";
 import Loading from "../loading/Loading.jsx";
 import Input from "../components/Input.jsx";
+import {BsStarFill} from "react-icons/bs";
 
 const Reservations = () => {
 
-    const { fetchClientReservations, clientReservations, loading, setLoading } = useReservation();
+    const { fetchClientReservations, clientReservations, loading, setLoading, setClientReservations } = useReservation();
     const [search, setSearch] = useState("");
     const [filteredReservations, setFilteredReservations] = useState([]);
     const {openModal} = useModal();
 
-    const handleRate = async (rowId ,id, rate) => {
+    const handleRate = async (rowId, id, rate, isRated) => {
         setLoading(true);
         try {
             await axios.post(`/cars/${id}/rating`, { rate });
-            fetchClientReservations();
+            await axios.put(`/reservations/${rowId}/rate`, { isRated, rating: rate});
+            setClientReservations(prevReservations => prevReservations.map(reservation =>
+                reservation._id === rowId
+                    ? { ...reservation, isCarRated: true, rating: rate }
+                    : reservation
+            ));
         } catch (error) {
             console.log(error);
         } finally {
             setLoading(false);
         }
     }
-
     const handleSearch = () => {
         const filtered = clientReservations.filter((reservation) => {
             return (
@@ -40,9 +45,7 @@ const Reservations = () => {
         });
         setFilteredReservations(filtered);
     }
-
         const currentDate = new Date();
-
 
     const header = [
         { title: "Car", index: "car" },
@@ -55,22 +58,26 @@ const Reservations = () => {
             title: "Rate",
             index: null,
             render: (reservation) => (
-                reservation.approved && currentDate > new Date(reservation.endDate) ? (
+                reservation.approved &&
+                // currentDate > new Date(reservation.endDate) &&
+                !reservation.isCarRated ? (
                     <div className="flex justify-center items-center">
                         <Button
                             label="Rate"
-                            className=""
+                            className="bg-blue-800 text-white rounded-md"
                             onClick={() => openModal({
                                 title: `Rate ${reservation.car}`,
                                 content: (
-                                    <RatingsContent
-                                        setRating={(rate) => handleRate(reservation._id, reservation.carId, rate)}
-                                    />
+                                    <RatingsContent setRating={(rate) => handleRate(reservation._id, reservation.carId, rate)} />
                                 )
                             })}
                         />
                     </div>
-                ) : null
+                ) : (
+                    <div className="text-center">
+                        {reservation.isCarRated ? <div className="flex items-center gap-1 justify-center"><BsStarFill className="text-yellow-500 text-xl"/><span className="font-semibold">{reservation.rating}</span></div> : null}
+                    </div>
+                )
             )
         },
         {
@@ -102,7 +109,10 @@ const Reservations = () => {
                        value={search}
                        onChange={(e) => setSearch(e.target.value)}
                 />
-                <Button label={"Search"} onClick={handleSearch} className={"bg-blue-800 text-white rounded-md min-w-[120px]"} />
+                <Button label={"Search"}
+                        onClick={handleSearch}
+                        className={"bg-blue-800 text-white rounded-md min-w-[120px]"}
+                />
             </div>
             <Table header={header} data={filteredReservations.length > 0 ? filteredReservations : clientReservations} />
         </div>

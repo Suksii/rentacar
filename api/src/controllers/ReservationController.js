@@ -66,10 +66,22 @@ const approveReservation = async (req, res) => {
         console.log(error);
     }
 }
+const isRated = async (req, res) => {
+    try {
+        const reservation = await Reservation.findById(req.params.id);
+        reservation.isCarRated = true;
+        reservation.rating = req.body.rating;
+        await reservation.save();
+        res.json(reservation);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 module.exports = {
     getAllReservations,
     getClientReservations,
     addReservation,
     approveReservation,
+    isRated
 }

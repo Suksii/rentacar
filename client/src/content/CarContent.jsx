@@ -20,7 +20,7 @@ const CarContent = ({id}) => {
                 <div style={{flex: 1}}>
                     <div className="relative">
                         <img src={`http://localhost:3000/uploads/${car?.image}`} alt="car" className="w-full h-full object-cover object-center"/>
-                        {car.ratings.length > 0 && <div className="absolute top-0 right-0">
+                        {car?.ratings?.length > 0 && <div className="absolute top-0 right-0">
                             <BsStarFill size={50}  className="text-yellow-300"/>
                             <p className="absolute top-1/2 -translate-y-1/3 left-1/2 -translate-x-1/2 font-semibold">{displayRating(car.averageRating)}</p>
                         </div>}

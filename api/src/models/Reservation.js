@@ -17,6 +17,14 @@ const reservationSchema = new Schema({
     approved: {
         type: Boolean,
     },
+    isCarRated: {
+        type: Boolean,
+        default: false
+    },
+    rating: {
+        type: Number,
+        default: 0
+    }
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);

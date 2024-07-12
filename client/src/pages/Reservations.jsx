@@ -2,14 +2,15 @@ import React, {useEffect, useState} from 'react';
 import Table from "../components/Table.jsx";
 import {useReservation} from "../context/ReservationContext.jsx";
 import Button from "../components/Button.jsx";
-import {useParams} from "react-router-dom";
 import axios from "axios";
 import Loading from "../loading/Loading.jsx";
-import {comment} from "postcss";
+import Input from "../components/Input.jsx";
 
 const Reservations = () => {
 
     const { fetchReservations, reservations, loading } = useReservation();
+    const [search, setSearch] = useState("");
+    const [filteredReservations, setFilteredReservations] = useState([]);
 
     const handleApprove = async (id, approved) => {
         try {
@@ -21,6 +22,21 @@ const Reservations = () => {
             console.error(error);
         }
     }
+
+    const handleSearch = () => {
+        const filtered = reservations.filter((reservation) => {
+            return (
+                reservation.car.toLowerCase().includes(search.toLowerCase()) ||
+                reservation.user.toLowerCase().includes(search.toLowerCase()) ||
+                reservation.rentalDate.toLowerCase().includes(search.toLowerCase()) ||
+                reservation.startDate.toLowerCase().includes(search.toLowerCase()) ||
+                reservation.endDate.toLowerCase().includes(search.toLowerCase()) ||
+                reservation.totalPrice.toString().includes(search.toLowerCase())
+            );
+        });
+        setFilteredReservations(filtered);
+    }
+
 
     const header = [
         { title: "Car", index: "car" },
@@ -65,8 +81,19 @@ const Reservations = () => {
     if (loading) return <Loading />;
 
     return (
-        <div className="w-full flex justify-center items-center">
-            <Table header={header} data={reservations}/>
+        <div className="w-full flex flex-col gap-10 justify-center items-center">
+            <div className="flex gap-2">
+                <Input placeholder="Search for a reservation"
+                       className={"w-full border-2 border-gray-300 rounded-md"}
+                       value={search}
+                       onChange={(e) => setSearch(e.target.value)}
+                />
+                <Button label={"Search"}
+                        onClick={handleSearch}
+                        className={"bg-blue-800 text-white rounded-md min-w-[120px]"}
+                />
+            </div>
+            <Table header={header} data={filteredReservations.length > 0 ? filteredReservations : reservations} />
         </div>
     );
 };

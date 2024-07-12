@@ -80,6 +80,7 @@ export const ReservationProvider = ({children}) => {
                 fetchReservations,
                 fetchClientReservations,
                 clientReservations,
+                setClientReservations,
                 loading,
                 setLoading
             }}>
