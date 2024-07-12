@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Table from "../components/Table.jsx";
-import axios from "axios";
 import Loading from "../loading/Loading.jsx";
 import Input from "../components/Input.jsx";
 import Button from "../components/Button.jsx";
+import {useUser} from "../context/UserContext.jsx";
 
 const Clients = () => {
 
@@ -15,30 +15,16 @@ const header = [
         { title: "Passport", index: "passportNumber" },
         { title: "Country", index: "country" },
     ];
-
-    const [clients, setClients] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const { fetchClients, clients, loading } = useUser();
     const [search, setSearch] = useState("");
     const [filteredClients, setFilteredClients] = useState([]);
 
     useEffect(() => {
-        const fetchClients = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.get('/users');
-                setClients(response.data);
-                console.log(response.data)
-            } catch (error) {
-                console.log(error);
-            } finally {
-                setLoading(false);
-            }
-        }
+
         fetchClients();
     }, []);
 
     const handleSearch = () => {
-
         const filtered = clients.filter((client) => {
             return (
                 client.email.toLowerCase().includes(search.toLowerCase()) ||

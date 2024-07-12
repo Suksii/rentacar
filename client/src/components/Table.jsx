@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const Table = ({header, data}) => {
 
     const [sortedData, setSortedData] = useState(data);
     const [sortDirection, setSortDirection] = useState({key: "", direction: "asc"});
+
+    useEffect(() => {
+        setSortedData(data);
+    }, [data]);
 
     const handleSort = (index) => {
         const newDirection = sortDirection.key === index && sortDirection.direction === "asc" ? "desc" : "asc";

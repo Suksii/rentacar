@@ -22,7 +22,6 @@ const ReservationContent = ({price, carId}) => {
         setTotalPrice(totalDays * price);
     }, [pickupDate, returnDate, price, setTotalPrice]);
 
-
     const addReservation = async () => {
         try {
             await axios.post(`/reservations/add/${carId}`, {
@@ -68,12 +67,16 @@ const ReservationContent = ({price, carId}) => {
             }
             <div className="flex justify-evenly w-full py-4">
                 <Button label="Close"
-                        onClick={closeModal}
-                        className="max-w-[120px] bg-gray-200 text-gray-900 font-semibold rounded-sm py-0"
+                        onClick={() => {
+                            closeModal();
+                            setPickupDate(null);
+                            setReturnDate(null);
+                        }}
+                        className="max-w-[120px] py-3 bg-gray-200 text-gray-900 font-semibold rounded-sm"
                 />
                 <Button label="Save"
                         onClick={addReservation}
-                        className="max-w-[120px] bg-gray-900 text-gray-200 font-semibold rounded-sm"/>
+                        className="max-w-[120px] py-3 bg-gray-900 text-gray-200 font-semibold rounded-sm"/>
             </div>
         </div>
     );

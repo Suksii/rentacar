@@ -20,9 +20,9 @@ export const ReservationProvider = ({children}) => {
                 const carName = reservation?.car?.model + ' ' + reservation?.car?.name;
                 const carId = reservation?.car?._id;
                 const userEmail = reservation?.user?.email;
-                const rentalDate = new Date(reservation?.rentalDate).toLocaleDateString();
-                const pickupDate = new Date(reservation?.startDate).toLocaleDateString();
-                const returnDate = new Date(reservation?.endDate).toLocaleDateString();
+                const rentalDate = new Date(reservation?.rentalDate).toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
+                const pickupDate = new Date(reservation?.startDate).toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
+                const returnDate = new Date(reservation?.endDate).toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
                 return{
                         ...reservation,
                         carId: carId,
@@ -80,7 +80,8 @@ export const ReservationProvider = ({children}) => {
                 fetchReservations,
                 fetchClientReservations,
                 clientReservations,
-                loading
+                loading,
+                setLoading
             }}>
                 {children}
             </ReservationContext.Provider>

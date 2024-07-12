@@ -6,6 +6,7 @@ const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(false);
 
 
@@ -35,6 +36,18 @@ export const UserProvider = ({ children }) => {
         }
     }, [user]);
 
+    const fetchClients = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get('/users');
+            setClients(response.data);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     const logout = async () => {
         try {
             await axios.post('/users/logout');
@@ -45,7 +58,7 @@ export const UserProvider = ({ children }) => {
         }
     }
     return (
-        <UserContext.Provider value={{ user, setUser, logout, isAdmin, loading }}>
+        <UserContext.Provider value={{ user, setUser, logout, isAdmin, loading, fetchClients, clients }}>
             {children}
         </UserContext.Provider>
     );

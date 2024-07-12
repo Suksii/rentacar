@@ -79,9 +79,9 @@ const Card = ({
                         <h1 className="text-xl font-semibold uppercase">{carModel} - {carName}</h1>
                         <p className="text-gray-500">{year}</p>
                     </div>
-                    <div className="flex justify-center items-center gap-2 px-3 py-1.5 rounded-full w-fit h-fit bg-gray-500">
+                    <div className="flex justify-center items-center gap-1 px-3 py-1.5 rounded-full w-fit h-fit bg-gray-500">
                         <AiFillStar className="text-yellow-500"/>
-                        <p className="text-white">{rating}</p>
+                        <p className="text-white font-semibold">{rating}</p>
                     </div>
                 </div>
                 <div className="flex flex-col">
@@ -114,7 +114,7 @@ const Card = ({
             </div>
             <div className="flex justify-center items-center gap-5 pb-4">
                     <Button label="Details"
-                        className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500 min-w-[120px]"
+                        className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500 min-w-[120px] py-3"
                         onClick={() => openModal({
                             content: <CarContent id={carID}/>,
                             showFooter: false,
@@ -122,7 +122,7 @@ const Card = ({
                         })}
                     />
                     <Button label="Rent"
-                            className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500 min-w-[120px]"
+                            className="bg-gray-800 text-white hover:bg-gray-200 hover:text-gray-800 duration-500 min-w-[120px] py-3"
                             onClick={user ? () => openModal({
                                     title: `Book ${carName}`,
                                     content: <ReservationContent price={price} carId={carID}/>,

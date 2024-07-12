@@ -16,12 +16,12 @@ const Modal = ({title, content, onClose, onSave, showFooter, className, label}) 
                 <div className="flex justify-evenly pb-4 w-full">
                     <Button label="Close"
                             onClick={onClose}
-                            className="min-w-[120px] bg-gray-200 text-gray-900 font-semibold rounded-sm"
+                            className="min-w-[120px] py-3 bg-gray-200 text-gray-900 font-semibold rounded-sm"
                     />
                     <Button label={label}
                             type={"submit"}
                             onClick={onSave}
-                            className="min-w-[120px] bg-gray-900 text-gray-200 font-semibold rounded-sm"/>
+                            className="min-w-[120px] py-3 bg-gray-900 text-gray-200 font-semibold rounded-sm"/>
                 </div>
                 }
             </div>
