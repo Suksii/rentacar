@@ -9,6 +9,7 @@ The application allows users to:
 - View car details
 - Make reservations
 - View their reservations
+- Rate booked car
 - Search through their reservations
 
 Administrators can:
