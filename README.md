@@ -30,7 +30,7 @@ Administrators can:
 
 ### Register and Login Pages
 
-| ![rentacar-admin-registration](https://github.com/user-attachments/assets/4a594f4d-fcac-4c7a-8f83-d71251c147ce) | ![Login Page](https://github.com/user-attachments/assets/00ecb2a6-c885-4694-9fb6-f3ba0194a828) |
+| ![rentacar-admin-registration](https://github.com/user-attachments/assets/4a594f4d-fcac-4c7a-8f83-d71251c147ce) | ![rentacar-admin-login](https://github.com/user-attachments/assets/3c82dc3f-632c-491a-b7ba-833ca7daa0b8) |
 |:---:|:---:|
 | Register Page | Login Page |
 
@@ -42,9 +42,13 @@ Administrators can:
 
 ### Car Actions
 
-| ![Login Page](https://github.com/user-attachments/assets/00ecb2a6-c885-4694-9fb6-f3ba0194a828) | ![Login Page](https://github.com/user-attachments/assets/00ecb2a6-c885-4694-9fb6-f3ba0194a828) |
+| ![rentacar-admin-add_car](https://github.com/user-attachments/assets/33c9baf4-a9a2-4ddb-b590-7d9c90c8f560) | ![rentacar-admin-edit_car](https://github.com/user-attachments/assets/57c69989-df69-472f-ad31-83805a55c04e) |
 |:---:|:---:|
 | Add Car Page | Edit Car Page |
+
+| ![rentacar-admin-clients](https://github.com/user-attachments/assets/d794691f-42cf-4a7a-9455-462668047450) | ![rentacar-admin-reservations](https://github.com/user-attachments/assets/c6591747-bafa-40e0-9c97-11e3002e7c8d) |
+|:---:|:---:|
+| Clients Page | Reservations Page |
 
 ### Backend
 
