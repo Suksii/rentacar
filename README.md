@@ -2,9 +2,24 @@
 
 ## About
 
+![Car Rental](./screenshots/rentacar-admin-homepage.png)
+
 This project is a full-stack rent-a-car application built with React for the frontend and Express, Node.js, and MongoDB for the backend.</br>
-The application allows users to register, login, browse available cars, make reservations, and manage their profile.</br>
-Administrators can manage the car inventory and view all reservations.
+The application allows users to:
+- Register and log in
+- Browse available cars
+- View car details
+- Make reservations
+- View their reservations
+- Search through their reservations
+
+Administrators can:
+- Edit and delete cars
+- Add new cars
+- View car details
+- Approve users' reservations
+- View all clients and reservations
+- Search through clients and reservations
 
 ## Features
 
