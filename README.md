@@ -2,8 +2,6 @@
 
 ## About
 
-![Car Rental](./screenshots/rentacar-admin-homepage.png)
-
 This project is a full-stack rent-a-car application built with React for the frontend and Express, Node.js, and MongoDB for the backend.</br>
 The application allows users to:
 - Register and log in
@@ -28,7 +26,25 @@ Administrators can:
 - **Reservation Management**: Make reservations, view client-specific reservations, and view all reservations.
 - **Responsive Design**: Optimized for various screen sizes using TailwindCSS.
 
-## Technologies Used
+## Pages
+
+### Register and Login Pages
+
+| ![rentacar-admin-registration](https://github.com/user-attachments/assets/4a594f4d-fcac-4c7a-8f83-d71251c147ce) | ![Login Page](https://github.com/user-attachments/assets/00ecb2a6-c885-4694-9fb6-f3ba0194a828) |
+|:---:|:---:|
+| Register Page | Login Page |
+
+## Admin
+
+## Home Page Admin
+
+![Admin HomePage](https://github.com/user-attachments/assets/00ecb2a6-c885-4694-9fb6-f3ba0194a828)
+
+### Car Actions
+
+| ![Login Page](https://github.com/user-attachments/assets/00ecb2a6-c885-4694-9fb6-f3ba0194a828) | ![Login Page](https://github.com/user-attachments/assets/00ecb2a6-c885-4694-9fb6-f3ba0194a828) |
+|:---:|:---:|
+| Add Car Page | Edit Car Page |
 
 ### Backend
 
