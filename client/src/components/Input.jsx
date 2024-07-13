@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Input = ({label, type, placeholder, className, required, onChange, disabled, min, value}) => {
+const Input = ({label, type, placeholder, className, required, onChange, disabled, min, value, onKeyDown}) => {
     return (
         <div className="flex flex-col w-full">
             {label && label.length > 2 && <label className="text-xl">{label}</label>}
@@ -10,6 +10,7 @@ const Input = ({label, type, placeholder, className, required, onChange, disable
                    required={required}
                    onChange={onChange}
                    disabled={disabled}
+                   onKeyDown={onKeyDown}
                    value={value ? value : ""}
                    min={min ? min : null}
             />

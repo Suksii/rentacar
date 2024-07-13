@@ -25,6 +25,7 @@ const CarContent = ({id}) => {
                             <p className="absolute top-1/2 -translate-y-1/3 left-1/2 -translate-x-1/2 font-semibold">{displayRating(car.averageRating)}</p>
                         </div>}
                         {car?.ratings?.length > 0 && <p className="font-semibold">{car?.ratings?.length} reviews</p>}
+
                     </div>
                     <div className="mt-2">
                         <p className="text-lg">{car?.description}</p>

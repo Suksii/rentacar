@@ -8,6 +8,7 @@ import axios from "axios";
 import Loading from "../loading/Loading.jsx";
 import Input from "../components/Input.jsx";
 import {BsStarFill} from "react-icons/bs";
+import toast, {Toaster} from "react-hot-toast";
 
 const Reservations = () => {
 
@@ -44,6 +45,9 @@ const Reservations = () => {
             );
         });
         setFilteredReservations(filtered);
+        if (filtered.length === 0) {
+            toast.error('No reservations found');
+        }
     }
         const currentDate = new Date();
 
@@ -101,13 +105,22 @@ const Reservations = () => {
 
     if (loading) return <Loading />;
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    }
+
     return (
         <div className="w-full flex flex-col gap-10 justify-center items-center">
+            <Toaster />
+            <h1 className="text-3xl font-bold">My Bookings</h1>
             <div className="flex gap-2">
                 <Input placeholder="Search for a reservation"
                        className={"w-full border-2 border-gray-300 rounded-md"}
                        value={search}
                        onChange={(e) => setSearch(e.target.value)}
+                       onKeyDown={handleKeyPress}
                 />
                 <Button label={"Search"}
                         onClick={handleSearch}

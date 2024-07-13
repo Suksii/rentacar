@@ -38,7 +38,7 @@ const Navbar = () => {
                     ))}
                 </div>
                  <Button label={currentUser ? 'Logout' : 'Login'}
-                         className="absolute right-6 bg-red-500 text-white font-semibold rounded-full min-w-[140px]"
+                         className="absolute right-6 bg-red-500 text-white font-semibold rounded-full min-w-[140px] py-3"
                          onClick={() => {
                              if(currentUser) {
                                  logout();
@@ -77,7 +77,7 @@ const Navbar = () => {
                          );
                      })}
                      <Button label={currentUser ? 'Logout' : 'Login'}
-                             className="w-1/2 my-4 mx-auto bg-red-500 text-white font-semibold rounded-full"
+                             className="w-1/2 my-4 mx-auto bg-red-500 text-white font-semibold rounded-full py-3"
                              onClick={() => {
                                  if(currentUser) {
                                      logout();
