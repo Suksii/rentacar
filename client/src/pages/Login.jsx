@@ -58,22 +58,23 @@ const Login = () => {
     }
 
         return (
-        <div className="w-full h-screen object-cover flex justify-center items-center bg-cover bg-center bg-no-repeat"
+        <div className="relative w-full h-screen object-cover flex justify-center items-center bg-cover bg-center bg-no-repeat"
              style={{backgroundImage: `url(${backgroundCar})`}}>
+            <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
             <Toaster />
-            <div className="flex flex-col md:w-1/2 lg:w-1/3 w-full p-10 rounded-lg shadow-lg shadow-black">
-                <h1 className="text-center text-3xl p-10 font-semibold uppercase">Login</h1>
+            <div className=" relative flex flex-col md:w-1/2 lg:w-1/3 w-full p-10 rounded-lg bg-black bg-opacity-50">
+                <h1 className="text-center text-3xl p-10 font-semibold uppercase text-gray-300">Login</h1>
                 <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                     <InputValidation type="email"
                                      placeholder="Email"
-                                     className={"bg-gray-500 bg-opacity-50 rounded-full"}
+                                     className={"bg-gray-500 bg-opacity-50 rounded-full text-gray-100"}
                                      register={{...register("email")}}
                                      errorMessage={errors.email?.message}
                     />
                     <div className="relative">
                         <InputValidation type={showPassword ? "text" : "password"}
                                          placeholder="Password"
-                                         className={"bg-gray-500 bg-opacity-50 rounded-full pr-12"}
+                                         className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
                                          register={{...register("password")}}
                                          errorMessage={errors.password?.message}
                         />
@@ -81,15 +82,15 @@ const Login = () => {
                              onMouseDown={handleMouseDown}
                              onMouseUp={handleMouseUp}
                              onMouseOut={handleMouseOut}>
-                            {showPassword ? <FaEye className="text-gray-800 cursor-pointer" size={22} /> : <FaEyeSlash className="text-gray-800 cursor-pointer" size={22}/>}
+                            {showPassword ? <FaEye className="text-gray-300 cursor-pointer" size={22} /> : <FaEyeSlash className="text-gray-300 cursor-pointer" size={22}/>}
                         </div>
                     </div>
                     <Button type="submit"
                             disabled={loading}
                             label={loading ? <ButtonLoading /> : "Login"}
-                            className="bg-gray-900 text-white font-semibold rounded-full"/>
+                            className="bg-gray-900 text-white font-semibold rounded-full py-3"/>
                 </form>
-                <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Don't have an account? <Link to="/registration" className="text-blue-900">Register here</Link>
+                <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Don't have an account? <Link to="/registration" className="text-blue-600">Register here</Link>
                 </p>
             </div>
         </div>

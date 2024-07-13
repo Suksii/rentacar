@@ -84,16 +84,6 @@ const updateCar = async (req, res) => {
         res.status(422).json(error)
     }
 }
-// const addRating = async (req, res) => {
-//     try {
-//         const car = await Car.findById(req.params.id);
-//         car.rating = req.body.rate;
-//         await car.save();
-//         res.send(car);
-//     } catch (error) {
-//         res.status(422).json(error)
-//     }
-// }
 
 const addRating = async (req, res) => {
     try {

@@ -7,9 +7,9 @@ const Select = ({options, label, selected, setSelected, className}) => {
 
     return (
         <div className="flex flex-col w-full">
-            {label && label.length > 0 && <label className="text-xl">{label}</label>}
+            {label && label.length > 0 && <label className="text-xl text-gray-300">{label}</label>}
             <div className="relative">
-                <div className={`flex justify-between items-center bg-gray-100 py-3 px-4 rounded-sm shadow-md text-xl font-semibold text-gray-500 ${className}`} onClick={() => setActive(!active)}>
+                <div className={`flex justify-between items-center bg-gray-100 py-3 px-4 rounded-sm shadow-md text-xl font-semibold text-gray-800 ${className}`} onClick={() => setActive(!active)}>
                     {selected ? selected : "Choose one option"}
                     {active ? <IoMdArrowDropup /> : <IoMdArrowDropdown/>}
                 </div>
@@ -20,7 +20,7 @@ const Select = ({options, label, selected, setSelected, className}) => {
                                       setSelected(option)
                                       setActive(false)
                                   }}
-                                  className="px-4 py-3 hover:bg-gray-200 cursor-pointer text-lg font-semibold"
+                                  className="bg-gray-100 px-4 py-3 hover:bg-gray-200 cursor-pointer text-lg font-semibold"
                         >
                             {option}
                         </p>

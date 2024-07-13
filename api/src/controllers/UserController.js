@@ -79,6 +79,7 @@ const logoutUser = (req, res) => {
     res.cookie('token', '').json(true)
 }
 
+
 module.exports = {
     getAllUsers,
     registerUser,
