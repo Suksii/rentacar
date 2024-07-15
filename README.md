@@ -92,9 +92,12 @@ Administrators can:
 - `POST /api/cars/upload` - Upload car image
 - `PUT /api/cars/update/:id` - Update car details
 - `DELETE /api/cars/delete/:id` - Delete a car
+- `POST /api/cars/:id/rating` - Rate a car
 
 ### Reservation Routes
 
 - `GET /api/reservations` - Get all reservations
 - `GET /api/reservations/client-reservations` - Get client-specific reservations
 - `POST /api/reservations/add/:id` - Add a new reservation
+- `PUT /api/reservations/:id/rate`
+- `POST /api/reservations/:id/approve` - Approve or decline reservations
