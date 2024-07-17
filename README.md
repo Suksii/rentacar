@@ -51,28 +51,32 @@ Administrators can:
 |:---:|:---:|
 | Clients Page | Reservations Page |
 
+## Client
+
+![rentacar - client - myBookings](https://github.com/user-attachments/assets/5e4d552d-284c-4c14-99a6-6115c71fc5f1)
+
 ### Backend
 
-- **Node.js**: JavaScript runtime.
-- **Express**: Web framework for Node.js.
-- **MongoDB**: NoSQL database.
-- **Mongoose**: MongoDB object modeling for Node.js.
-- **JWT**: JSON Web Tokens for authentication.
-- **Bcrypt**: Library for hashing passwords.
-- **Multer**: Middleware for handling file uploads.
+- **Node.js**
+- **Express**
+- **MongoDB**
+- **Mongoose**
+- **JWT**
+- **Bcrypt**
+- **Multer**
 - **Other Libraries**: `cookie-parser`, `cors`, `dotenv`, `fs`, `nodemon`.
 
 ### Frontend
 
-- **React**: JavaScript library for building user interfaces.
-- **Axios**: Promise-based HTTP client.
-- **React Router**: Declarative routing for React.
-- **React Hook Form**: Form handling.
-- **Yup**: Schema validation.
-- **Date-fns**: Date utility library.
-- **React Icons**: Icon library.
-- **TailwindCSS**: Utility-first CSS framework.
-- **React Hot Toast**: Notifications.
+- **React**
+- **Axios**
+- **React Router**
+- **React Hook Form**
+- **Yup**
+- **Date-fns**
+- **React Icons**
+- **TailwindCSS**
+- **React Hot Toast**
 
 ## API Endpoints
 
