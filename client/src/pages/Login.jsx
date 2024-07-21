@@ -85,6 +85,7 @@ const Login = () => {
                             {showPassword ? <FaEye className="text-gray-300 cursor-pointer" size={22} /> : <FaEyeSlash className="text-gray-300 cursor-pointer" size={22}/>}
                         </div>
                     </div>
+                    <Link to={"/forgot-password"} className="text-center text-gray-300 font-semibold text-lg pb-2">Forgot password?</Link>
                     <Button type="submit"
                             disabled={loading}
                             label={loading ? <ButtonLoading /> : "Login"}

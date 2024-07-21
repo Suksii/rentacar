@@ -16,6 +16,8 @@ import {ReservationProvider} from "./context/ReservationContext.jsx";
 import {CarProvider} from "./context/CarContext.jsx";
 import MyBookings from "./pages/MyBookings.jsx";
 import Loading from "./loading/Loading.jsx";
+import ForgotPassword from "./pages/ForgotPassword.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 
 function App() {
 
@@ -65,6 +67,14 @@ function App() {
         {
             path: "/login",
             element: <Login />
+        },
+        {
+            path: "/forgot-password",
+            element: <ForgotPassword />
+        },
+        {
+            path: "/reset-password/:id/:token",
+            element: <ResetPassword />
         }
     ])
 

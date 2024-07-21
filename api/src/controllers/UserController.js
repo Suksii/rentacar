@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 
@@ -79,6 +80,62 @@ const logoutUser = (req, res) => {
     res.cookie('token', '').json(true)
 }
 
+const forgotPassword = async (req, res) => {
+    try {
+        const {email} = req.body;
+        const user = await User.findOne({email});
+        if (!user) {
+            return res.status(404).json({message: "User not found"});
+        }
+        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '1d'});
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.USER_EMAIL,
+                pass: process.env.USER_PASSWORD
+            }
+        });
+
+        var mailOptions = {
+            from: process.env.USER_EMAIL,
+            to: email,
+            subject: 'Reset Password',
+            text: `http://localhost:5173/reset-password/` + user._id + '/' + token
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                res.status(422).json(error)
+            } else {
+                res.json({message: 'Email sent'})
+            }
+        });
+    } catch (error) {
+        res.status(422).json(error)
+    }
+}
+
+const resetPassword = async (req, res) => {
+    try {
+        const {id, token} = req.params;
+        const {password} = req.body;
+        jwt.verify(token, process.env.JWT_SECRET, {}, async (err, user) => {
+            if(err) {
+                res.status(401).json({message: 'Unauthorized'})
+            }
+            bcrypt.hash(password, bcryptSalt, async (err, hash) => {
+                if(err) {
+                    res.status(422).json(err)
+                }
+                await User.findByIdAndUpdate({_id: id}, {password: hash})
+                res.json({message: 'Password updated'})
+            })
+        })
+    } catch (error) {
+        res.status(422).json(error)
+    }
+}
 
 module.exports = {
     getAllUsers,
@@ -86,4 +143,6 @@ module.exports = {
     loginUser,
     userProfile,
     logoutUser,
+    forgotPassword,
+    resetPassword
 }

@@ -63,7 +63,7 @@ const Reservations = () => {
             index: null,
             render: (reservation) => (
                 reservation.approved &&
-                // currentDate > new Date(reservation.endDate) &&
+                currentDate > new Date(reservation.endDate) &&
                 !reservation.isCarRated ? (
                     <div className="flex justify-center items-center">
                         <Button
