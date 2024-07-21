@@ -30,7 +30,6 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         if (user && typeof user.admin !== 'undefined') {
             setIsAdmin(user.admin);
-            console.log(user.admin)
         } else {
             setIsAdmin(false);
         }

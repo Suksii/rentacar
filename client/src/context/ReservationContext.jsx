@@ -40,7 +40,6 @@ export const ReservationProvider = ({children}) => {
                         const response = await axios.get('/reservations');
                         const { data } = response;
                         const mappedReservations = mapReservations(data);
-                        console.log(mappedReservations);
                         setReservations(mappedReservations);
                 } catch (error) {
                         console.error(error);
