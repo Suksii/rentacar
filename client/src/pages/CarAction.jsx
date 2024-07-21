@@ -172,7 +172,7 @@ const CarAction = () => {
                         <div className="w-full flex flex-col gap-2">
                             <Input label="Model"
                                    placeholder={"Enter model"}
-                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3 placeholder-gray-800 text-gray-800"}
                                    value={selectedModel}
                                    onChange={(e) => setSelectedModel(e.target.value)}
                             />
@@ -181,7 +181,7 @@ const CarAction = () => {
                         <div className="w-full flex flex-col gap-2">
                             <Input label="Name"
                                    placeholder={"Enter name"}
-                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3 placeholder-gray-800 text-gray-800"}
                                    value={name}
                                    onChange={(e) => setName(e.target.value)}
                             />
@@ -199,7 +199,7 @@ const CarAction = () => {
                         <div className="w-full flex flex-col gap-2">
                             <Input label="Engine designation"
                                    placeholder={"Enter engine"}
-                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3 placeholder-gray-800 text-gray-800"}
                                    value={engine}
                                    onChange={(e) => setEngine(e.target.value)}
                             />
@@ -208,7 +208,7 @@ const CarAction = () => {
                         <div className="w-full flex flex-col gap-2">
                             <Input label="Color"
                                    placeholder={"Enter color"}
-                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                   className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3 placeholder-gray-800 text-gray-800"}
                                    value={color}
                                    onChange={(e) => setColor(e.target.value)}
                             />
@@ -249,7 +249,7 @@ const CarAction = () => {
                         <Input label="Mileage"
                                type={"number"}
                                placeholder={"Enter mileage"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3 placeholder-gray-800 text-gray-800"}
                                value={mileage}
                                onChange={(e) => setMileage(e.target.value)}
                         />
@@ -263,7 +263,7 @@ const CarAction = () => {
                         <p className="ml-2 text-red-500 text-sm font-semibold">{errors.drive}</p>
                         <Input label="Plate"
                                 placeholder={"Enter plate"}
-                                className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                                className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3 placeholder-gray-800 text-gray-800"}
                                 value={plate}
                                 onChange={(e) => setPlate(e.target.value)}
                         />
@@ -277,7 +277,7 @@ const CarAction = () => {
                         <Input label="Price"
                                type={"number"}
                                placeholder={"Enter price"}
-                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3"}
+                               className={"rounded-sm outline-none text-xl tracking-wider font-semibold bg-gray-100 shadow-md bg-opacity-60 py-3 placeholder-gray-800 text-gray-800"}
                                value={price}
                                onChange={(e) => setPrice(e.target.value)}
                         />

@@ -38,7 +38,7 @@ const ForgotPassword = () => {
                 <Input type="email"
                        placeholder="Email"
                        value={email}
-                       className={"bg-gray-500 bg-opacity-50 rounded-full text-gray-100 py-3 my-4"}
+                       className={"bg-gray-500 bg-opacity-50 rounded-full text-gray-100 py-3 my-4 placeholder-gray-300"}
                        onChange={(e) => setEmail(e.target.value)}
                 />
                 <Button type="submit"
