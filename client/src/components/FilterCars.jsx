@@ -31,12 +31,14 @@ const FilterCars = ({data, setFilteredCars}) => {
     const handleSubmit = () => {
         const filtered = data.filter(car =>
             car.price >= priceValue[0] &&
-            car.price <= yearValue[1] &&
+            car.price <= priceValue[1] &&
             car.year >= yearValue[0] &&
             car.year <= yearValue[1] &&
             (model === 'All' || car.model === model) &&
             (fuelType === 'All' || car.fuelType === fuelType) &&
-            (drive === 'All' || car.drive === drive)
+            (drive === 'All' || car.drive === drive) &&
+            (transmission === 'All' || car.transmission === transmission) &&
+            (type === 'All' || car.type === type)
         )
         console.log('clicked')
         setFilteredCars(filtered);
@@ -55,48 +57,54 @@ const FilterCars = ({data, setFilteredCars}) => {
     return (
         <div className="flex justify-center items-center flex-col w-full">
             <div className="flex lg:flex-row flex-col justify-around gap-10 py-10">
-                <ReactSlider$1
-                    className="h-[25px] w-[400px] bg-gray-200 rounded-full flex items-center justify-center cursor-pointer"
-                    min={lowestPrice}
-                    max={highestPrice}
-                    value={priceValue}
-                    onChange={setPriceValue}
-                    renderThumb={(props, state) => (
-                        <div
-                            {...props}
-                            className="h-[25px] w-[25px] bg-black text-white rounded-full flex items-center justify-center cursor-grab"
-                        >
-                            <p className="text-xs">{state.valueNow}</p>
-                        </div>
-                    )}
-                    renderTrack={(props, state) => (
-                        <div
-                            {...props}
-                            className={`top-0 bottom-0 rounded-full ${state.index === 1 ? 'bg-red-500' : 'bg-gray-300'}`}
-                        />
-                    )}
-                />
-                <ReactSlider$1
-                    className="h-[25px] w-[400px] bg-gray-200 rounded-full flex items-center justify-center cursor-pointer"
-                    min={lowestYear}
-                    max={highestYear}
-                    value={yearValue}
-                    onChange={setYearValue}
-                    renderThumb={(props, state) => (
-                        <div
-                            {...props}
-                            className="h-[25px] w-[25px] bg-black text-white rounded-full flex items-center justify-center cursor-grab"
-                        >
-                            <p className="text-xs">{state.valueNow}</p>
-                        </div>
-                    )}
-                    renderTrack={(props, state) => (
-                        <div
-                            {...props}
-                            className={`top-0 bottom-0 rounded-full ${state.index === 1 ? 'bg-red-500' : 'bg-gray-300'}`}
-                        />
-                    )}
-                />
+                <div className={"flex flex-col items-center gap-12"}>
+                    <p className="text-xl text-gray-8c00">Price</p>
+                    <ReactSlider$1
+                        className="h-[5px] w-[400px] bg-gray-200 rounded-full flex items-center justify-center cursor-pointer shadow shadow-gray-300"
+                        min={lowestPrice}
+                        max={highestPrice}
+                        value={priceValue}
+                        onChange={setPriceValue}
+                        renderThumb={(props, state) => (
+                            <div
+                                {...props}
+                                className="h-[25px] w-1 bg-black flex items-center justify-center cursor-grab"
+                            >
+                                <p className="w-10 text-center py-2 bg-red-500 text-gray-800 font-semibold shadow shadow-black absolute -top-5 -translate-y-1/2">{state.valueNow}</p>
+                            </div>
+                        )}
+                        renderTrack={(props, state) => (
+                            <div
+                                {...props}
+                                className={`top-0 bottom-0 rounded-full ${state.index === 1 ? 'bg-red-500' : 'bg-gray-300'}`}
+                            />
+                        )}
+                    />
+                </div>
+                <div className={"flex flex-col items-center gap-12"}>
+                    <p className="text-xl text-gray-8c00">Year</p>
+                    <ReactSlider$1
+                        className="h-[5px] w-[400px] bg-gray-200 rounded-full flex items-center justify-center cursor-pointer shadow shadow-gray-300"
+                        min={lowestYear}
+                        max={highestYear}
+                        value={yearValue}
+                        onChange={setYearValue}
+                        renderThumb={(props, state) => (
+                            <div
+                                {...props}
+                                className="h-[25px] w-1 bg-black flex items-center justify-center cursor-grab"
+                            >
+                                <p className="w-10 text-center py-2 bg-red-500 text-gray-800 font-semibold shadow shadow-black absolute -top-5 -translate-y-1/2">{state.valueNow}</p>
+                            </div>
+                        )}
+                        renderTrack={(props, state) => (
+                            <div
+                                {...props}
+                                className={`top-0 bottom-0 rounded-full ${state.index === 1 ? 'bg-red-500' : 'bg-gray-300'}`}
+                            />
+                        )}
+                    />
+                </div>
             </div>
             <div className="w-full bg-red-800 flex items-center justify-center py-4">
                 <div className="w-[95%] mx-auto grid sm:grid-cols-2 xl:grid-cols-6 gap-2 items-end">
@@ -131,8 +139,8 @@ const FilterCars = ({data, setFilteredCars}) => {
                             className={"min-w-[180px] cursor-pointer"}
                     />
                     <div className="flex gap-4 w-full h-fit">
-                        <Button onClick={handleReset} label="Reset" className="flex-grow bg-gray-900 text-white font-semibold rounded-sm py-3"/>
-                        <Button onClick={handleSubmit} label="Search" className="flex-grow bg-gray-900 text-white font-semibold rounded-sm py-3"/>
+                        <Button onClick={handleReset} label="Reset" className="w-full flex-grow bg-gray-900 text-white font-semibold rounded-sm py-3"/>
+                        <Button onClick={handleSubmit} label="Search" className="w-full flex-grow bg-gray-900 text-white font-semibold rounded-sm py-3"/>
                     </div>
                 </div>
             </div>
