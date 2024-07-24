@@ -37,8 +37,7 @@ const Login = () => {
             const response = await axios.post('/users/login', { email, password })
             const { user } = response.data;
             setUser(user);
-            toast.success("Logged in successfully")
-            navigate('/')
+            navigate('/');
         } catch (error) {
             toast.error("Invalid credentials")
         } finally {

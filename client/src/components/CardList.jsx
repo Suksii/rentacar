@@ -9,7 +9,7 @@ const CardList = ({data}) => {
     }
 
     return (
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-evenly">
+        <div className="w-full md:w-[90%] flex flex-wrap gap-12 justify-center">
             {data.map((car) => (
                 <Card
                     key={car._id}

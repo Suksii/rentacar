@@ -30,7 +30,7 @@ const Home = () => {
                         <h1 className="text-4xl text-red-500 font-semibold text-center leading-5">Our Cars</h1>
                     </div>
                 </div>
-                <div className={"relative flex justify-center items-center rounded-t-full h-[300px]"}>
+                <div className={"relative flex justify-center items-center rounded-t-full my-10"}>
                     <FilterCars data={cars} setFilteredCars={setFilteredCars}/>
                 </div>
             </div>

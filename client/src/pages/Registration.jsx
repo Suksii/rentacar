@@ -10,6 +10,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {FaEye, FaEyeSlash } from "react-icons/fa6";
 import ButtonLoading from "../loading/ButtonLoading.jsx";
+import toast, {Toaster} from "react-hot-toast";
 
 const Registration = () => {
 
@@ -42,7 +43,7 @@ const Registration = () => {
             await axios.post('/users/register', data)
             navigate('/login')
         } catch (error) {
-            alert("Something went wrong")
+            toast.error("Email already exists");
         } finally {
             setLoading(false)
         }
@@ -59,72 +60,75 @@ const Registration = () => {
     }
 
     return (
-        <div className="relative w-full h-screen flex justify-center items-center bg-cover bg-center bg-no-repeat"
-             style={{backgroundImage: `url(${backgroundCar})`}}>
-            <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
-            <div className="relative flex flex-col md:w-1/2 lg:w-[700px] w-full p-10 rounded-lg bg-black bg-opacity-50">
-                <h1 className="text-center text-3xl p-10 font-semibold uppercase text-gray-300">Registration</h1>
-                <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-                    <InputValidation type="text"
-                                     placeholder="First Name"
-                                     className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
-                                     register={{...register("firstName")}}
-                                     errorMessage={errors.firstName?.message}
-                    />
-                    <InputValidation type="text"
-                                     placeholder="Last Name"
-                                     className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
-                                     register={{...register("lastName")}}
-                                     errorMessage={errors.lastName?.message}
-                    />
-                    <InputValidation type="text"
-                                     placeholder="Phone Number"
-                                     className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
-                                     register={{...register("phoneNumber")}}
-                                     errorMessage={errors.phoneNumber?.message}
-                    />
-                    <InputValidation type="email"
-                                     placeholder="Email"
-                                     className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
-                                     register={{...register("email")}}
-                                     errorMessage={errors.email?.message}
-                    />
-                    <div className="flex lg:flex-row flex-col w-full">
-                        <InputValidation placeholder="Passport Number"
+        <>
+            <Toaster />
+            <div className="relative w-full h-screen flex justify-center items-center bg-cover bg-center bg-no-repeat"
+                 style={{backgroundImage: `url(${backgroundCar})`}}>
+                <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
+                <div className="relative flex flex-col md:w-1/2 lg:w-[700px] w-full p-10 rounded-lg bg-black bg-opacity-50">
+                    <h1 className="text-center text-3xl p-10 font-semibold uppercase text-gray-300">Registration</h1>
+                    <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+                        <InputValidation type="text"
+                                         placeholder="First Name"
                                          className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
-                                         register={{...register("passportNumber")}}
-                                         errorMessage={errors.passportNumber?.message}
+                                         register={{...register("firstName")}}
+                                         errorMessage={errors.firstName?.message}
                         />
-                        <InputValidation placeholder="Country"
+                        <InputValidation type="text"
+                                         placeholder="Last Name"
                                          className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
-                                         register={{...register("country")}}
-                                         errorMessage={errors.country?.message}
+                                         register={{...register("lastName")}}
+                                         errorMessage={errors.lastName?.message}
                         />
-                    </div>
-                    <div className="relative">
-                        <InputValidation type={showPassword ? "text" : "password"}
-                                         placeholder="Password"
+                        <InputValidation type="text"
+                                         placeholder="Phone Number"
                                          className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
-                                         register={{...register("password")}}
-                                         errorMessage={errors.password?.message}
+                                         register={{...register("phoneNumber")}}
+                                         errorMessage={errors.phoneNumber?.message}
                         />
-                        <div className="absolute top-1/2 -translate-y-1/2 right-5"
-                             onMouseDown={handleMouseDown}
-                             onMouseUp={handleMouseUp}
-                             onMouseOut={handleMouseOut}>
-                            {showPassword ? <FaEye className="text-gray-300 cursor-pointer" size={22} /> : <FaEyeSlash className="text-gray-300 cursor-pointer" size={22}/>}
+                        <InputValidation type="email"
+                                         placeholder="Email"
+                                         className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
+                                         register={{...register("email")}}
+                                         errorMessage={errors.email?.message}
+                        />
+                        <div className="flex lg:flex-row flex-col w-full">
+                            <InputValidation placeholder="Passport Number"
+                                             className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
+                                             register={{...register("passportNumber")}}
+                                             errorMessage={errors.passportNumber?.message}
+                            />
+                            <InputValidation placeholder="Country"
+                                             className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
+                                             register={{...register("country")}}
+                                             errorMessage={errors.country?.message}
+                            />
                         </div>
-                    </div>
+                        <div className="relative">
+                            <InputValidation type={showPassword ? "text" : "password"}
+                                             placeholder="Password"
+                                             className={"bg-gray-500 bg-opacity-50 rounded-full pr-12 text-gray-100"}
+                                             register={{...register("password")}}
+                                             errorMessage={errors.password?.message}
+                            />
+                            <div className="absolute top-1/2 -translate-y-1/2 right-5"
+                                 onMouseDown={handleMouseDown}
+                                 onMouseUp={handleMouseUp}
+                                 onMouseOut={handleMouseOut}>
+                                {showPassword ? <FaEye className="text-gray-300 cursor-pointer" size={22} /> : <FaEyeSlash className="text-gray-300 cursor-pointer" size={22}/>}
+                            </div>
+                        </div>
 
-                    <Button type="submit"
-                            disabled={loading}
-                            label={loading ? <ButtonLoading/> : 'Register'}
-                            className="bg-gray-900 text-white font-semibold rounded-full"/>
-                </form>
-                <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Already have an account? <Link to="/login" className="text-blue-600">Login here</Link>
-                </p>
+                        <Button type="submit"
+                                disabled={loading}
+                                label={loading ? <ButtonLoading/> : 'Register'}
+                                className="bg-gray-900 text-white font-semibold rounded-full"/>
+                    </form>
+                    <p className="flex flex-col md:flex-row text-center justify-center md:gap-2 text-gray-300 font-semibold text-lg py-2">Already have an account? <Link to="/login" className="text-blue-600">Login here</Link>
+                    </p>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

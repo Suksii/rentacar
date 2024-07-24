@@ -10,6 +10,7 @@ const ForgotPassword = () => {
 
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,12 +19,9 @@ const ForgotPassword = () => {
             const response = await axios.post('/users/forgot-password', { email });
             if (response.data) {
                 navigate('/login');
-            } else {
-                console.log("Error");
             }
-            console.log(response.data)
         } catch (error) {
-            console.log(error);
+            setError("Email not found!");
         } finally {
             setLoading(false);
         }
@@ -38,13 +36,14 @@ const ForgotPassword = () => {
                 <Input type="email"
                        placeholder="Email"
                        value={email}
-                       className={"bg-gray-500 bg-opacity-50 rounded-full text-gray-100 py-3 my-4 placeholder-gray-300"}
+                       className={"bg-gray-500 bg-opacity-50 rounded-full text-gray-100 py-3 my-2 placeholder-gray-300"}
                        onChange={(e) => setEmail(e.target.value)}
                 />
+                {error && <p className="text-red-500 text-center">{error}</p>}
                 <Button type="submit"
                         disabled={loading}
                         label={loading ? <ButtonLoading /> : "Send Verification Link"}
-                        className="bg-gray-900 text-white font-semibold rounded-full py-3"
+                        className="bg-gray-900 text-white font-semibold rounded-full py-3 my-2"
                         onClick={handleSubmit}
                 />
             </div>

@@ -45,7 +45,9 @@ const ReservationContent = ({price, carId}) => {
             closeModal();
             setPickupDate(null);
             setReturnDate(null);
-            toast.success('Reservation added successfully');
+            setTimeout(() => {
+                toast.success('Reservation added successfully');
+            }, 100);
         } catch (error) {
             console.log(error);
         }

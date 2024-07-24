@@ -47,8 +47,8 @@ const Navbar = () => {
                          }
                         }
                  />
-                         </nav>
-                             <nav className="flex justify-between lg:hidden items-center bg-gray-900 h-[5vh] px-2">
+             </nav>
+             <nav className="flex justify-between lg:hidden items-center bg-gray-900 h-[5vh] px-2">
                  <h1 className="text-2xl font-semibold text-gray-300">Rent a Car</h1>
                  {currentUser && <p className="text-lg text-gray-300">Welcome, {currentUser}</p>}
                  <div className="z-50">
